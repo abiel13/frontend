@@ -5,7 +5,7 @@ import {toast , ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const RecoverPage = () => {
   const [email, setEmail] = useState<string>("");
   const router = useRouter()
 
@@ -52,4 +52,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default RecoverPage;

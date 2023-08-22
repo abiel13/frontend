@@ -5,7 +5,7 @@ import {toast , ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const ResetPage = () => {
   const [email, setEmail] = useState<string>("");
   const router = useRouter()
 const [pin , setPin ] = useState<number | string>(0)
@@ -74,4 +74,4 @@ const [pin , setPin ] = useState<number | string>(0)
   );
 };
 
-export default page;
+export default ResetPage;
