@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 const page = () => {
   const [email, setEmail] = useState<string>("");
   const router = useRouter()
-const [pin , setPin ] = useState<number | string>(0)
 
   const sendRecoveryEmail = async () => {
     let data = JSON.stringify({
@@ -30,43 +29,22 @@ const [pin , setPin ] = useState<number | string>(0)
   return (
     <div className="mt-[1rem] px-3 min-h-[70vh] flex items-center justify-center flex-col">
       <h3 className="text-3xl  font-bold tracking-wider text-white ">
-        Reset PassWord{" "}
+        Recover PassWord{" "}
       </h3>
-      <div className=" mt-[1rem] flex flex-col py-4 gap-4 w-full items-center">
-        <div className="w-3/4">
-        <p className="text-white text-xl font-bold">Code</p>
+      <p className="text-white text-lg">input email to get started</p>
+      <div className=" mt-[1rem] flex flex-col py-4 gap-4 w-3/4">
+        <p className="text-white text-xl font-bold">Email</p>
         <input
-          value={pin}
-          onChange={(e) => setPin(e.target.value)}
-          type="number"
-          placeholder="input your six digit pin"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          placeholder="input your email"
           className="px-2 text-gray-400 text-lg py-5 rounded-xl"
         />
-        </div>
-        <div className="w-3/4">
-        <p className="text-white text-xl font-bold">Password</p>
-        <input
-          value={pin}
-          onChange={(e) => setPin(e.target.value)}
-          type="password"
-          placeholder="input your six digit pin"
-          className="px-2 text-gray-400 text-lg py-5 rounded-xl"
-        />
-        </div>
-        <div className="w-3/4">
-        <p className="text-white text-xl font-bold">Confirm Password</p>
-        <input
-          value={pin}
-          onChange={(e) => setPin(e.target.value)}
-          type="password"
-          placeholder="input your six digit pin"
-          className="px-2 text-gray-400 text-lg py-5 rounded-xl"
-        />
-        </div>
       </div>
       <div className="w-full flex justify-center">
         <button onClick={() => sendRecoveryEmail()} className="bg-red-700 text-lg text-white px-3 py-4 mt-6 w-3/4  rounded-xl">
-          Reset Pin
+          Recover
         </button>
       </div>
       <ToastContainer />

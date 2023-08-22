@@ -56,17 +56,17 @@ const SignUp = () => {
         return {
           ...prev,
           password:
-            "password must contain a capital letter with special character",
+            "password must contain a capital letter with special character and numbers",
         };
       });
     }
-    if (confirmPassword != password) {
+ else   if (confirmPassword != password) {
       setError((prev) => {
         return { ...prev, confirmPassword: "passwords dont match" };
       });
     }
     
-    else if(passwordRegex.test(password) && password == confirmPassword  && emailRegex.test(email)) {
+    else {
       setError({
         email: "",
         password: "",
@@ -96,7 +96,7 @@ const SignUp = () => {
       toast("Connecting to server...", { theme: "colored" });
       const response =   await axios
       .post("https://api.alteflix.com/api/v1/accounts/new", data, {
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" , },
       });
       // Handle successful response
       console.log(response);
@@ -116,8 +116,9 @@ const SignUp = () => {
       <div className="text-white w-full md:w-3/4  px-6 mt-8 flex flex-col gap-5">
         <div className="flex flex-col gap-6 w-full ">
           <h1 className="font-medium text-3xl  w-full text-left md:text-5xl md:text-center">
-            Register Back
+         Get Started
           </h1>
+          <p className='text-lg tracking-wider'>Register To Begin Your Membership</p>
         </div>
         <div className="flex  flex-col items-center gap-5">
           <div className="w-full md:w-1/2">
@@ -190,8 +191,8 @@ const SignUp = () => {
           >
             Sign In
           </button>
-          <div className="text-center">
-            <h3 className="mt-4 text-lg tracking-wide">Forgot Password</h3>
+          <div className="text-center flex flex-col gap-2 items-center">
+            <Link href={'/auth/recover'} className="mt-4 text-lg tracking-wide">Forgot Password</Link>
             <Link href={"/auth/login"} className="mt-5 text-lg tracking-wide">
               already have an account ?{" "}
               <span className="text-red-600">Sign in</span>

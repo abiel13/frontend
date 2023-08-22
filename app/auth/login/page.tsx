@@ -128,7 +128,7 @@ const Login = () => {
           Sign In
         </button>
         <div className="text-center flex flex-col gap-2">
-          <Link href="/auth/reset" className="mt-4 text-lg tracking-wide">
+          <Link href="/auth/recover" className="mt-4 text-lg tracking-wide">
             Forgot Password
           </Link>
           <Link href={"/auth/signup"} className="mt-5 text-lg tracking-wide">
