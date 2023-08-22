@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*::-webkit-scrollbar{
+    width: 7px !important;
+}
+
+.home_page{
+    background: linear-gradient(to bottom, rgba(0,0,0, 0.4) 0%, rgba(0,0,0,0.4) 100% ) , url('../public/hero.png') ;
+}
