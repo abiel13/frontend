@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useRouter } from "next/navigation";
 
 const ResetPage = () => {
-  const [email, setEmail] = useState<string>("");
   const router = useRouter()
 const [pin , setPin ] = useState<string>('')
 const [password , setPassword ] = useState<string>('')
@@ -31,11 +30,13 @@ const validateRequest = () => {
       return { ...prev , confirmPassword:'passwords do not match'}
     })
   }
-  else if(pin.length ==6 && passwordRegex.test(password) && confirmPassword == password)
+  else if(pin.length ==6 && passwordRegex.test(password) && confirmPassword == password){
   console.log('sucess')
 setError({pin:'' , password:'' , confirmPassword:''})
+ sendRecoveryRequest()
+}
 
-  sendRecoveryRequest()
+ 
 }
 
 
@@ -52,7 +53,7 @@ setError({pin:'' , password:'' , confirmPassword:''})
         console.log(response)
     toast.success('Reset Sucessfull' , {theme:'colored'});
     setPassword(''),
-setEmail('')
+    setPin('')
 setConfirmPassword('')
         router.push('/auth/login')
       }
