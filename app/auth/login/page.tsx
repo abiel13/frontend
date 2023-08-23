@@ -72,7 +72,7 @@ const Login = () => {
       // Handle successful response
       console.log(response);
       toast.success("Login Sucessful", { theme: "colored" });
-      router.push('/home')
+      router.push('/')
     } catch (errors: any) {
       toast.error(`Error: ${errors.response.data.errors}`, {
         theme: "colored",
