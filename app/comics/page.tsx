@@ -3,7 +3,7 @@ import React from 'react'
 import Navbar from './components/Navbar'
 import Search from './components/Search'
 
-const HomePage = () => {
+const ComicPage = () => {
   return (
     <div className='bg-black min-h-screen py-3'>
     <Navbar />
@@ -12,4 +12,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default ComicPage
