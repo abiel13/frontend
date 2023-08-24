@@ -9,8 +9,8 @@ import React , {useState} from 'react'
 const ComicPage:React.FC =  () => {
   const [categories, setcategories] = useState()
   return (
-    <div className='bg-blak    min-h-screen px-3 py-[1rem] mt-3 font-bold'>
-<div className="my-4 w-[90] flex items-center bg-red-400 gap-4 overflow-x-hidden ">
+    <div className='bg-blak flex flex-col items-center md:px-[5rem]   min-h-screen px-3 py-[1rem] mt-3 font-bold'>
+<div className="my-4 justify-around w-full md:w-1/2 flex items-center gap-4 cat_over ">
 <Link className='px-5 py-3 rounded-lg bg-white text-black text-center' href={'/'}>Comedy</Link>
 <Link className='px-5 py-3 rounded-lg bg-white text-black text-center' href={'/'}>Epic</Link>
 <Link className='px-5 py-3 rounded-lg bg-white text-black text-center' href={'/'}>Adventure</Link>
@@ -18,7 +18,7 @@ const ComicPage:React.FC =  () => {
   <Link className='px-5 py-3 rounded-lg bg-white text-black text-center' href={'/'}>Folkore</Link>
 </div>
 
-   <div>
+   <div className='w-full'>
     <h1 className='text-2xl text-white tracking-wide '>Latest Stories</h1>
    </div>
    </div>
