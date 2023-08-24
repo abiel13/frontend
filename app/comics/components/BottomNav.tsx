@@ -5,21 +5,21 @@ import Link from 'next/link'
 
 const BottomNav = () => {
   return (
-    <div className='flex items-center w-full bg-white  opacity-100 py-5 fixed bottom-0 justify-around md:hidden'>
+    <div className='flex items-center w-full bg-white  opacity-100 pt-3 fixed bottom-0 justify-around md:hidden'>
 <Link  className='flex flex-col items-center gap-1' href={'/comics'}>
-<FaHome fontSize={27} />
+<FaHome fontSize={24} />
 <p>Home</p>
 </Link>
 <Link className='flex flex-col items-center gap-1'  href={'/comics'}>
-<FaBookmark fontSize={27} />
+<FaBookmark fontSize={24} />
 <p>BookMarks</p>
 </Link>
 <Link  className='flex flex-col items-center gap-1' href={'/comics'}>
-<FaStar  fontSize={27}/>
+<FaStar  fontSize={24}/>
 <p>Favorites</p>
 </Link>
 <Link className='flex flex-col items-center gap-1'  href={'/comics'}>
-<BiLibrary fontSize={27} />
+<BiLibrary fontSize={24} />
 <p>Library</p>
 </Link>
 
