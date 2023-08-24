@@ -14,7 +14,7 @@ export default function ComicsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="bg-black opacity-60">
+    <main className="bg-black opacity-60 md:opacity-70">
       <Navbar />
       <Search />
       {children}
