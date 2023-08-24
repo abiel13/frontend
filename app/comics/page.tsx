@@ -1,15 +1,8 @@
- 'use client'
-import Link from 'next/link'
-import React , {useState} from 'react'
+'use client'
+import React from 'react'
+import Navbar from './components/Navbar'
+import Search from './components/Search'
 
-
- const getData = async () => {
-
-}
-
-
-const ComicPage:React.FC = async () => {
-  const [categories, setcategories] = useState()
 
   return (
     <div className='bg-blak min-h-screen px-3 py-[1rem] mt-3 font-bold'>
