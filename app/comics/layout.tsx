@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "./components/Navbar";
 import Search from "./components/Search";
+import BottomNav from "./components/BottomNav";
 
 export const metadata: Metadata = {
   title: "AlteFlix | Comics",
@@ -18,6 +19,7 @@ export default function ComicsLayout({
       <Navbar />
       <Search />
       {children}
+      <BottomNav />
     </main>
   );
 }
