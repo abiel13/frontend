@@ -134,7 +134,7 @@ const SignUp = () => {
             {error && <p className="text-red-500">{error.first}</p>}
           </div>
           <div className="w-full md:w-1/2">
-            <p className="text-lg tracking-wide mb-3">Last Surname</p>
+            <p className="text-lg tracking-wide mb-3">Last Name</p>
             <input
               onChange={handleChange}
               type="text"

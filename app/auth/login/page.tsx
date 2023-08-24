@@ -109,7 +109,7 @@ const Login = () => {
             <p className="text-lg tracking-wide mb-3">Password</p>
             <input
               onChange={handleChange}
-              type="text"
+              type="password"
               name="password"
               value={password}
               className="py-3 px-3 text-gray-400 text-lg w-full rounded-lg"
