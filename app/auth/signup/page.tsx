@@ -118,7 +118,7 @@ const SignUp = () => {
           <h1 className="font-medium text-3xl  w-full text-left md:text-5xl md:text-center">
          Get Started
           </h1>
-          <p className='text-lg tracking-wider'>Register To Begin Your Membership</p>
+          <p className='text-lg tracking-wider text-left md:text-center'>Register To Begin Your Membership</p>
         </div>
         <div className="flex  flex-col items-center gap-5">
           <div className="w-full md:w-1/2">
