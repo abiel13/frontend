@@ -5,22 +5,22 @@ import Link from 'next/link'
 
 const BottomNav = () => {
   return (
-    <div className='flex items-center w-full bg-white  opacity-100 pt-3 fixed bottom-0 justify-around md:hidden'>
+    <div style={{background:'#dd0000'}} className='flex items-center w-full   opacity-100 pt-1 fixed px-2 bottom-0 justify-around md:hidden'>
 <Link  className='flex flex-col items-center gap-1' href={'/comics'}>
-<FaHome fontSize={24} />
-<p>Home</p>
+<FaHome fontSize={20} fill='white' />
+<p className='text-base font-bold text-white tracking-wider'>Home</p>
 </Link>
-<Link className='flex flex-col items-center gap-1'  href={'/comics'}>
-<FaBookmark fontSize={24} />
-<p>BookMarks</p>
+<Link className='flex flex-col items-center gap-1'  href={'/comics/bookmarks'}>
+<FaBookmark fontSize={20} fill='white' />
+<p className='text-base font-bold text-white tracking-wider'>BookMarks</p>
 </Link>
-<Link  className='flex flex-col items-center gap-1' href={'/comics'}>
-<FaStar  fontSize={24}/>
-<p>Favorites</p>
+<Link  className='flex flex-col items-center gap-1' href={'/comics/favorites'}>
+<FaStar  fontSize={20} fill='white'/>
+<p className='text-base font-bold text-white tracking-wider'>Favorites</p>
 </Link>
-<Link className='flex flex-col items-center gap-1'  href={'/comics'}>
-<BiLibrary fontSize={24} />
-<p>Library</p>
+<Link className='flex flex-col items-center gap-1'  href={'/comics/library'}>
+<BiLibrary fontSize={20} fill='white' />
+<p className='text-base font-bold text-white tracking-wider'>Library</p>
 </Link>
 
     </div>

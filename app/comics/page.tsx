@@ -11,11 +11,10 @@ const ComicPage:React.FC =  () => {
   return (
     <div className='bg-blak flex flex-col items-center md:px-[5rem]   min-h-screen px-3 py-[1rem] mt-3 font-bold'>
 <div className="my-4 justify-around w-full md:w-1/2 flex items-center gap-4 cat_over ">
-<Link className='ml-[5rem] md:ml-0 px-5 py-3 rounded-lg bg-white text-black text-center' href={'/'}>Comedy</Link>
-<Link className='px-5 py-3 rounded-lg bg-white text-black text-center' href={'/'}>Epic</Link>
-<Link className='px-5 py-3 rounded-lg bg-white text-black text-center' href={'/'}>Adventure</Link>
-
-  <Link className='px-5 py-3 rounded-lg bg-white text-black text-center' href={'/'}>Folkore</Link>
+<Link style={{background:'white'}} className='ml-[5rem] md:ml-0 px-5 py-3 rounded-lg  text-black text-center' href={'/'}>Comedy</Link>
+<Link style={{background:'white'}} className='px-5 py-3 rounded-lg  text-black text-center' href={'/'}>Epic</Link>
+<Link style={{background:'white'}} className='px-5 py-3 rounded-lg  text-black text-center' href={'/'}>Adventure</Link>
+  <Link style={{background:'white'}} className='px-5 py-3 rounded-lg  text-black text-center' href={'/'}>Folkore</Link>
 </div>
 
    <div className='w-full'>
