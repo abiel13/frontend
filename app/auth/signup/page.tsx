@@ -81,7 +81,6 @@ const SignUp = () => {
   const router = useRouter();
 
   const submitForm = async () => {
-  
     let data = JSON.stringify({
       email: email,
       password: password,
@@ -90,23 +89,23 @@ const SignUp = () => {
       lastname: last,
       newsletter_subscription: true,
     });
-
-    
-    try {
-      toast("Connecting to server...", { theme: "colored" });
-      const response =   await axios
-      .post("https://api.alteflix.com/api/v1/accounts/new", data, {
-        headers: { "Content-Type": "application/json" , },
-      });
-      // Handle successful response
-      console.log(response);
-      toast.success("Sign UP Sucessful", { theme: "colored" });
+try{
+  toast('Registering User Please Wait' , {theme:'colored'})
+    await axios.post("https://api.alteflix.com/api/v1/accounts/new" , data , {headers:{"Content-Type":"application/json"}}).then(res => {
+      console.log(res?.data)
+      toast.success('Registation Sucessful', {theme:'colored'})
       router.push('/auth/login')
-    } catch (errors: any) {
-      toast.error(`Error: ${errors.response.data.errors}`, {
-        theme: "colored",
-      });
-    }
+    }).catch((error) => {
+      toast.error(`Error: ${error.response.data.errors}` , {theme:'colored'})
+    })
+   
+}
+catch(error:Error | any) {
+  console.log(error)
+  toast.error(`network disconnected` )
+}
+
+  
   };
 
   
