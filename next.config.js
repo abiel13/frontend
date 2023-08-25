@@ -4,6 +4,9 @@ const nextConfig = {
     experimental: {
       typedRoutes: true,
     },
+      images: {
+        domains: ['alteflix-dev-assets.s3.amazonaws.com'],
+      }
   }
    
 
