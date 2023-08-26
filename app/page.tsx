@@ -1,7 +1,17 @@
+'use client'
 import React from "react";
 import Link from "next/link";
+import { useAppContext } from "./context/context";
+import { useRouter } from "next/navigation";
 
 const Home: React.FC = () => {
+ 
+  const {loggedIn} = useAppContext()
+  const router = useRouter()
+
+  if(loggedIn) router.push('/comics');
+  console.log(loggedIn)
+
   return (
     <div className="h-screen px-2 w-screen flex-col flex items-center  justify-center gap-8 text-white  ">
      <div className="flex flex-col items-center uppercase gap-5">
