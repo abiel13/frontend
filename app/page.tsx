@@ -10,7 +10,7 @@ const Home: React.FC = () => {
   const router = useRouter()
 
   if(loggedIn) router.push('/comics');
-  console.log(loggedIn)
+
 
   return (
     <div className="h-screen px-2 w-screen flex-col flex items-center  justify-center gap-8 text-white  ">
