@@ -72,6 +72,7 @@ const Login = () => {
       // Handle successful response
       console.log(response);
       toast.success("Login Sucessful", { theme: "colored" });
+      localStorage.setItem('AlteFlixUser' ,JSON.stringify(response.data.data))
       router.push('/comics')
     } catch (errors: any) {
       toast.error(`Error: ${errors.response.data.errors}`, {
