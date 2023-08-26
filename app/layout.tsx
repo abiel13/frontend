@@ -5,7 +5,6 @@ import "./globals.css";
 import { AppContextProvider } from "./context/context";
 
 const poppins = Poppins({ weight: "400", subsets: [] });
-
 export const metadata: Metadata = {
   title: "AlteFlix",
   description: "A Comic Streaming App",
@@ -19,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <main className="home_page">
-          <AppContextProvider>{children}</AppContextProvider>
+        <main className='home_page'>
+          <AppContextProvider>
+             {children}
+          </AppContextProvider>
         </main>
       </body>
     </html>
