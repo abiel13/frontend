@@ -72,6 +72,7 @@ const Login = () => {
       // Handle successful response
       console.log(response);
       toast.success("Login Sucessful", { theme: "colored" });
+      localStorage.setItem('AlteFlixUser' ,JSON.stringify(response.data.data))
       router.push('/comics')
     } catch (errors: any) {
       toast.error(`Error: ${errors.response.data.errors}`, {
@@ -109,11 +110,11 @@ const Login = () => {
             <p className="text-lg tracking-wide mb-3">Password</p>
             <input
               onChange={handleChange}
-              type="text"
+              type="password"
               name="password"
               value={password}
               className="py-3 px-3 text-gray-400 text-lg w-full rounded-lg"
-              placeholder="xxxxxxxx"
+              placeholder="type password"
             />
             {error && <p className="text-red-500">{error.password}</p>}
           </div>
