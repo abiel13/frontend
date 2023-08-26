@@ -51,6 +51,7 @@ const ComicPage: ({}:ComicPageProps) => Promise<JSX.Element> = async ({}) => {
                 index == 0 ? "ml-[5rem]" : "ml-0"
               } md:ml-0 px-5 py-3 bg-white rounded-lg  text-black text-center`}
               href={"/"}
+              key={item.id}
             >
               {<p className="">{item.title}</p>}
             </Link>
@@ -61,7 +62,7 @@ const ComicPage: ({}:ComicPageProps) => Promise<JSX.Element> = async ({}) => {
         <h1 className="text-2xl text-white tracking-wide ">Latest Stories</h1>
         <div className="flex flex-wrap gap-6 ">
           {stories?.map((item) => (
-            <div>
+            <div key={item.id}>
               <Image
                 src={item.background_url}
                 alt="book cover"
