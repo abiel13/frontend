@@ -1,20 +1,19 @@
-'use client'
-import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
-import './globals.css'
-import { AppContextProvider } from './context/context'
+"use client ";
+import type { Metadata } from "next";
+import { Poppins } from "next/font/google";
+import "./globals.css";
+import { AppContextProvider } from "./context/context";
 
-const poppins = Poppins({ weight:"400"  ,subsets:[] } )
-
+const poppins = Poppins({ weight: "400", subsets: [] });
 export const metadata: Metadata = {
-  title: 'AlteFlix',
-  description: 'A Comic Streaming App',
-}
+  title: "AlteFlix",
+  description: "A Comic Streaming App",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -23,9 +22,8 @@ export default function RootLayout({
           <AppContextProvider>
              {children}
           </AppContextProvider>
-         
         </main>
-        </body>
+      </body>
     </html>
-  )
+  );
 }
