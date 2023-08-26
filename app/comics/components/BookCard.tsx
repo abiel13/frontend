@@ -34,8 +34,8 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
     <div>
       {stories && (
         <Splide  options={option} >
-          {stories?.map((item) => (
-            <SplideSlide>
+          {stories?.map((item , i) => (
+            <SplideSlide key={i}>
               <div className="flex flex-col gap-2">
                 <Image
                   src={item.background_url}
