@@ -22,7 +22,7 @@ const validateRequest = () => {
   }
   if(!passwordRegex.test(password)){
     setError((prev) => {
-      return { ...prev , password:'password should include capital letters , numbers and special characters'}
+      return { ...prev , password:'password should have upper & lower case, numbers, special characters and be at least 8 characters long'}
     })
   }
   if(confirmPassword != password){
@@ -64,7 +64,7 @@ setConfirmPassword('')
   };
 
   return (
-    <div className="mt-[1rem] px-3 min-h-[70vh] flex items-center justify-center flex-col">
+    <div className="mt-[1rem] px-3 min-h-[70vh] w-full md:w-1/2 mx-auto flex items-center justify-center flex-col">
       <h3 className="text-3xl  font-bold tracking-wider text-white ">
         Reset PassWord{" "}
       </h3>
@@ -89,7 +89,7 @@ setConfirmPassword('')
           placeholder="input your password"
           className="px-2 text-gray-400 w-full text-lg py-5 rounded-xl"
         />
-        {error.password && <p className="text-red-600 text-lg">{error.password}</p>}
+        {error.password && <p className="text-red-600 text-sm md:text-lg">{error.password}</p>}
         </div>
         <div className="flex flex-col w-3/4 gap-4">
         <p className="text-white text-xl font-bold">Confirm Password</p>
@@ -105,7 +105,7 @@ setConfirmPassword('')
       </div>
       <div className="w-full flex justify-center">
         <button onClick={() => validateRequest()} className="bg-red-700 text-lg text-white px-3 py-4 mt-6 w-3/4  rounded-xl">
-          Reset Pin
+          Reset Password
         </button>
       </div>
       <ToastContainer />

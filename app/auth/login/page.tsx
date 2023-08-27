@@ -42,7 +42,7 @@ const Login = () => {
         return {
           ...prev,
           password:
-            "password must contain a capital letter with special character and be more than 8 characters",
+            "password should have upper & lower case, numbers, special characters and be at least 8 characters long",
         };
       });
     }
