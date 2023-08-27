@@ -56,7 +56,7 @@ const SignUp = () => {
         return {
           ...prev,
           password:
-            "password must contain a capital letter with special character and numbers",
+            "password should have upper & lower case, numbers, special characters and be at least 8 characters long",
         };
       });
     }

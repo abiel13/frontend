@@ -4,6 +4,7 @@ import axios from "axios";
 import {toast , ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const RecoverPage = () => {
   const [email, setEmail] = useState<string>("");
@@ -27,7 +28,7 @@ const RecoverPage = () => {
   };
 
   return (
-    <div className="mt-[1rem] px-3 min-h-[70vh] flex items-center justify-center flex-col">
+    <div className="mt-[1rem] w-full md:w-1/2 mx-auto px-3 min-h-[70vh] flex items-center justify-center flex-col">
       <h3 className="text-3xl  font-bold tracking-wider text-white ">
         Recover PassWord{" "}
       </h3>
@@ -42,10 +43,14 @@ const RecoverPage = () => {
           className="px-2 text-gray-400 text-lg py-5 rounded-xl"
         />
       </div>
-      <div className="w-full flex justify-center">
+      <div className="w-full flex flex-col gap-8 items-center">
         <button onClick={() => sendRecoveryEmail()} className="bg-red-700 text-lg text-white px-3 py-4 mt-6 w-3/4  rounded-xl">
           Recover
         </button>
+        <div className="flex flex-col gap-3 items-center">
+          <Link className="text-white font-normal text-normal" href='/auth/signup'>Dont have an Account ? Register Now</Link>
+          <Link className="text-white font-normal text-normal" href='/auth/login'>Already Have an Account ? Sign in</Link>
+        </div>
       </div>
       <ToastContainer />
     </div>
