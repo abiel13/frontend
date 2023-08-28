@@ -33,7 +33,7 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
   const categories: Categories[] = await getCategories();
   const stories: Stories[] = await getStories();
   return (
-    <div className="bg-blak flex flex-col items-center md:px-[5rem]   min-h-screen px-3 py-[1rem] mt-3 font-bold">
+    <div className="bg-blak flex flex-col items-center md:px-[5rem]   min-h-[100vh] px-3 py-[1rem] mt-3 font-bold">
       <div className="my-4 justify-around w-full md:w-1/2 flex items-center gap-4 cat_over ">
         {categories?.map((item, index) => (
           <Link
