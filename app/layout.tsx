@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <main className='home_page'>
+        <main className='home_page  overflow-x-hidden'>
           <Provider>
              {children}
           </Provider>

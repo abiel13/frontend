@@ -18,7 +18,7 @@ export default function ComicsLayout({
 if(loggedIn == false) {router.push('/auth/login')}
 
   return (
-    <main className="bg-black opacity-60 md:opacity-60">
+    <main className="bg-black overflow-x-hidden opacity-60 md:opacity-60">
       <SkeletonTheme baseColor="#505050" highlightColor="#777">
         <Navbar />
         <Search />

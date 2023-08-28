@@ -2,13 +2,43 @@
 import { useAppContext } from "@/app/context/context";
 import Link from "next/link";
 import React, { useState } from "react";
-import { BiSolidXCircle } from "react-icons/bi";
+import { toast , ToastContainer } from "react-toastify";
+import { BiSolidXCircle , BiSolidLogOut } from "react-icons/bi";
+import {FaHandHoldingUsd} from 'react-icons/fa'
+import {AiFillWallet , AiFillSetting} from 'react-icons/ai'
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import 'react-toastify/dist/ReactToastify.css'
 
 const Navbar = () => {
   const { userData } = useAppContext();
   const [visible, setVisible] = useState<boolean>(false);
-  let initials = userData?.firstname[0] + "." + userData?.lastname[0];
-  console.log(initials);
+  let initials = userData?.firstname[0] + "." + userData?.lastname[0];4
+  const router = useRouter()
+
+
+const logout = async () => {
+  setVisible(false)
+ console.log(userData?.token)
+ toast('connecting to server')
+ try {
+    await axios.get('https://api.alteflix.com/api/v1/accounts/logout' , { headers : {Authorization :`Bearer ${userData?.token}`}}).then(res =>{
+         console.log(res.data)
+    toast.success('logout sucessful')
+    localStorage.removeItem('AlteFlixUser');
+  router.push('/auth/login')
+    }
+    ).catch((error)=>{
+    toast.error('an error occured')
+    })
+ } catch (error) {
+  
+ }
+
+ 
+
+  }
+
   return (
     <>
       <div
@@ -21,7 +51,7 @@ const Navbar = () => {
         <div
           onClick={() => setVisible(true)}
           style={{ background: "red" }}
-          className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-white"
+          className="w-[50px] h-[50px] cursor-pointer rounded-full flex items-center justify-center text-white"
         >
           {initials == "undefined.undefined" ? "" : initials}
         </div>
@@ -30,9 +60,9 @@ const Navbar = () => {
         style={{ background: "black", borderLeft: "1px solid white" }}
         className={`${
           visible ? "block" : "hidden"
-        } fixed w-[80vw] md:w-[30vw] px-3  top-0 bottom-0 right-0 z-50`}
+        } fixed w-[90vw] md:w-[20vw] px-3  top-0 bottom-0 right-0 z-50`}
       >
-        <div className="text-white w-full pt-3 flex justify-end items-center">
+        <div className="text-white pr-2 w-full pt-3 flex justify-end items-center">
           <BiSolidXCircle
             onClick={() => setVisible(false)}
             fill="red"
@@ -60,31 +90,38 @@ const Navbar = () => {
         </Link>
         <Link
           style={{ borderBottom: "1px solid white" }}
-          className="flex gap-4 text-white font-normal tracking-wide px-4 py-6"
-          href={"/userprofile"}
+          className="flex  items-center gap-4 text-white font-normal tracking-wide px-4 py-6"
+          href={"/subscriptions"}
         >
+          <FaHandHoldingUsd fontSize={24} />
           Manage Subscription
         </Link>
         <Link
           style={{ borderBottom: "1px solid white" }}
-          className="flex gap-4 text-white font-normal tracking-wide px-4 py-6"
+          className="flex  items-center gap-4 text-white font-normal tracking-wide px-4 py-6"
           href={"/userprofile"}
         >
+          <AiFillWallet fontSize={24} />
           Wallet
         </Link>
         <Link
           style={{ borderBottom: "1px solid white" }}
-          className="flex gap-4 text-white font-normal tracking-wide px-4 py-6"
+          className="flex items-center  gap-4 text-white font-normal tracking-wide px-4 py-6"
           href={"/userprofile"}
         >
+          <AiFillSetting fontSize={24} />
           Settings
         </Link>
         <div
           style={{ borderBottom: "1px solid white" }}
-          className="flex gap-4 text-white font-normal tracking-wide px-4 py-6"
+          className="flex cursor-pointer  items-center  gap-4 text-white font-normal tracking-wide px-4 py-6"
+          onClick={() => logout()}
         >
+         <BiSolidLogOut fontSize={24} /> 
           Logout
         </div>
+
+        <ToastContainer />
       </div>
     </>
   );
