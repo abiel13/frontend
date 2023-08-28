@@ -50,16 +50,6 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
           ))}
         </Splide>
       )}
-      {!stories && (
-        <Splide options={option} className="  text-5xl text-white flex">
-          {[0, 0, 0, 0, 0].map((item, i) => (
-            <SplideSlide className="flex flex-col items-center gap-2" key={i}>
-              <Skeleton width={250} height={250} />
-              <Skeleton width={250} height={30} count={2} />
-            </SplideSlide>
-          ))}
-        </Splide>
-      )}
     </div>
   );
 };
