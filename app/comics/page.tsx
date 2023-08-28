@@ -40,7 +40,7 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
             className={`${
               index == 0 ? "ml-[5rem]" : "ml-0"
             } md:ml-0 px-5 py-3 bg-white rounded-lg  text-black text-center`}
-            href={"/"}
+            href={`/comics/categories/${item.id}`}
             key={item.id}
           >
             {<p className="">{item.title}</p>}

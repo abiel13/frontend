@@ -1,9 +1,9 @@
 import React from 'react'
 
-const page = () => {
+const BookMarks = () => {
   return (
-    <div>page</div>
+    <div className='min-h-[90vh]'>BookMarks</div>
   )
 }
 
-export default page
+export default BookMarks

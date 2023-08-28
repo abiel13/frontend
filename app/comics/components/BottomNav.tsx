@@ -1,7 +1,7 @@
 import React from 'react'
 import {FaHome , FaBookmark ,FaStar , }    from 'react-icons/fa'
 import {BiLibrary} from 'react-icons/bi'
-import Link from 'next/link'
+import Link  from 'next/link'
 
 const BottomNav = () => {
   return (
