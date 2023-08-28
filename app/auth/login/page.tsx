@@ -6,6 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {useAppContext} from '../../context/context'
 
 const Login = () => {
   const [error, setError] = useState<{ email: string; password: string }>({
@@ -18,6 +19,8 @@ const Login = () => {
   const [reqError, setreqError] = useState("");
   const { email, password } = formData;
   const router = useRouter();
+const  { setloggedin , sUserData }  = useAppContext()
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
@@ -69,10 +72,11 @@ const Login = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-      // Handle successful response
       console.log(response);
       toast.success("Login Sucessful", { theme: "colored" });
       localStorage.setItem('AlteFlixUser' ,JSON.stringify(response.data.data))
+      setloggedin();
+      sUserData(response.data.data)
       router.push('/comics')
     } catch (errors: any) {
       toast.error(`Error: ${errors.response.data.errors}`, {

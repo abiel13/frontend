@@ -4,6 +4,8 @@ import { ReactNode, createContext, useContext, useState ,useEffect } from "react
 interface AppContextType {
   loggedIn: boolean | null;
   userData: any;
+  setloggedin:any;
+    sUserData:any;
 }
 
 interface AppContextProviderI {
@@ -55,9 +57,20 @@ export const AppContextProvider: React.FC<AppContextProviderI> = ({
       }
   }, []);
 
+  const setloggedin = () =>{
+    setLoggedIn(true)
+  }
+
+const sUserData = (params:any) =>{ 
+  console.log(params)
+  setUserData(params)
+}
+
   const contextValue: AppContextType = {
       loggedIn: loggedIn,
       userData: userData,
+      setloggedin:setloggedin,
+      sUserData:sUserData,
   };
   
 
