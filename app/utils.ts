@@ -14,5 +14,6 @@ export type Categories = {
     id: number;
     title: string;
     year: number;
+    thumbnail_url:string;
     parts: [];
   };

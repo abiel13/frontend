@@ -20,14 +20,15 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
         perPage: 2,
       },
       640: {
-        perPage: 2,
+        perPage: 1,
+        gap:"0.4"
       },
     },
   };
 
   return (
        <Suspense fallback={<p className="text-white text-3xl">hey am a suspense</p>}>
-    <div>
+    <div className='px-4'>
       {stories && (
         <Splide options={option}>
           {stories?.map((item, i) => (

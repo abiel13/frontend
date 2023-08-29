@@ -13,7 +13,7 @@ const Home: React.FC = () => {
 
 
   return (
-    <div className="h-screen px-2 w-screen flex-col flex items-center  justify-center gap-8 text-white  ">
+    <div className="h-screen px-2 w-screen overflow-x-hidden flex-col flex items-center  justify-center gap-8 text-white  ">
      <div className="flex flex-col items-center uppercase gap-5">
       <h1 className="font-bold text-3xl  tracking-wider">Alte<span className="text-red-700">Flix</span></h1>
 <p className="text-lg tracking-wide">The art of Mordern Comic...</p>
