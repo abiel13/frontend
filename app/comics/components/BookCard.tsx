@@ -1,56 +1,46 @@
 "use client";
 import { Stories } from "@/app/utils";
-import Image from "next/image";
-import React from "react";
+import React, {Suspense} from "react";
 import { SplideSlide, Splide } from "@splidejs/react-splide";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
-import { FaArrowsAlt } from "react-icons/fa";
+import Book from "./Book";
 
 interface BookCardI {
   stories: Stories[];
 }
 
 const BookCard: React.FC<BookCardI> = ({ stories }) => {
-
-  const option ={
-    pagination:false,
-    arrows:false,
-    perPage:3,
-    gap:'0.5rem',
-    omitEnd:true,
-   breakpoints:{ 768:{
-    perPage:2,
-   } ,
-        640:{
-          perPage:2,
-        }
-  
-  }
-  }
-
+  const option = {
+    pagination: false,
+    arrows: false,
+    perPage: 3,
+    gap: "0.5rem",
+    omitEnd: true,
+    breakpoints: {
+      768: {
+        perPage: 2,
+      },
+      640: {
+        perPage: 1,
+        gap:"0.4"
+      },
+    },
+  };
 
   return (
-    <div>
+       <Suspense fallback={<p className="text-white text-3xl">hey am a suspense</p>}>
+    <div className='px-4'>
       {stories && (
-        <Splide  options={option} >
-          {stories?.map((item , i) => (
+        <Splide options={option}>
+          {stories?.map((item, i) => (
+           
             <SplideSlide key={i}>
-              <div className="flex flex-col gap-2">
-                <Image
-                  src={item.background_url}
-                  alt="book cover"
-                  width={250}
-                  height={250}
-                />
-                <div className="text-white" >{item.author}</div>
-                <div  className="text-white">{item.title}</div>
-              </div>
+              <Book book={item} />
             </SplideSlide>
           ))}
         </Splide>
       )}
-    </div>
+    
+    </div>  </Suspense>
   );
 };
 
