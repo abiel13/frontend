@@ -17,15 +17,15 @@ async function getData() {
 const DetailsPage = async ({params} : {params :{id:number}}) => {
     const data:Stories[]  = await getData();
 const book:Stories[] = data?.filter(item => item.id == params.id)
-const relatedBooks:Stories[] = data?.filter(item  => item.category == book[0].category)
+const relatedBooks:Stories[] = data?.filter(item  => item.category == book[0].category  && item.id  != book[0].id)
 
         return (
-            <div className="min-h-[90vh] mt-10  py-[2rem] text-white text-2xl">
+            <div className="min-h-[90vh] my-10  py-[2rem] text-white text-2xl">
                {
                 book?.map((item , i) =>(
                     <div key={i} className=" w-full flex flex-col md:flex-row gap-8 md:gap-0  md:w-3/4 mx-auto min-h-[60vh]">
-                        <div className="flex-1 flex items-center  justify-center ">
-                            <Image className="w-full h-[70vh] relative md:w-1/2 md:h-full  aspect-[4/3]" quality={100} src={item.background_url} alt="bg-img" width={250} height={250} />
+                        <div className="flex-1 flex items-center relative justify-center ">
+                            <Image className="w-full h-[70vh]  md:w-1/2 md:h-full  aspect-[4/3]" quality={100} src={item.background_url} alt="bg-img" width={250} height={250} />
                             <div className="flex items-end md:hidden absolute  top-0 right-0 bottom-0 left-0 opacity-40 justify-center gap-8 bg-black">
                             <div className="flex cursor-pointer  items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
                                 <BiBookReader />
@@ -61,15 +61,20 @@ const relatedBooks:Stories[] = data?.filter(item  => item.category == book[0].ca
                 ))
                }
 
-               <div className="w-full md:w-3/4 mx-auto flex flex-col gap-5 mt-[2.5rem]">
+              <div className="w-full md:w-3/4 mx-auto flex flex-col items-center gap-5 my-[2.5rem]">
                 <h4>Related Stories</h4>
 
-                <div>{
-                    relatedBooks?.map(( item  , i ) => (
+                <div>{ !relatedBooks?.length ? <div className='text-red-500'>No stories for this categrory </div> :  <div>
+                   { relatedBooks?.map(( item  , i ) => (
                         <Book key={i} book={item} />
-                    ))
+                    ))}
+                </div>
+                    
                     }</div>
                </div>
+               
+
+             
                  </div>
         )
 }

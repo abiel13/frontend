@@ -10,29 +10,33 @@ interface BookCardI {
 
 const BookCard: React.FC<BookCardI> = ({ stories }) => {
   const option = {
+    type:'carousel',
     pagination: false,
     arrows: false,
     perPage: 3,
     gap: "0.5rem",
     omitEnd: true,
+    autoplay:{
+      delay:3000,
+      pauseOnHover:true,
+    },
     breakpoints: {
       768: {
         perPage: 2,
       },
       640: {
-        perPage: 1,
-        gap:"0.4"
+        perPage: 'auto',
+        gap:"1rem",
       },
     },
   };
 
   return (
        <Suspense fallback={<p className="text-white text-3xl">hey am a suspense</p>}>
-    <div className='px-4'>
+    <div className='px-4 md:px-0 '>
       {stories && (
         <Splide options={option}>
           {stories?.map((item, i) => (
-           
             <SplideSlide key={i}>
               <Book book={item} />
             </SplideSlide>
