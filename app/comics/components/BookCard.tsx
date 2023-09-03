@@ -16,6 +16,7 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
     perPage: 3,
     gap: "0.5rem",
     omitEnd: true,
+    loop:true,
     autoplay:{
       delay:3000,
       pauseOnHover:true,
