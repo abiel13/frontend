@@ -1,8 +1,10 @@
+'use client'
 import axios from "axios";
 import { Stories } from "@/app/utils";
 import Image from "next/image";
 import { BiBookReader, BiStar } from "react-icons/bi";
 import Book from "../../components/Book";
+import  {useRouter} from "next/navigation";
 
 
 async function getData() {
@@ -15,6 +17,7 @@ async function getData() {
 }
 
 const DetailsPage = async ({params} : {params :{id:number}}) => {
+    const router = useRouter()
     const data:Stories[]  = await getData();
 const book:Stories[] = data?.filter(item => item.id == params.id)
 const relatedBooks:Stories[] = data?.filter(item  => item.category == book[0].category  && item.id  != book[0].id)
@@ -26,9 +29,9 @@ const relatedBooks:Stories[] = data?.filter(item  => item.category == book[0].ca
                     <div key={i} className=" w-full flex flex-col md:flex-row gap-8 md:gap-0  md:w-3/4 mx-auto min-h-[60vh]">
                         <div className="flex-1 flex items-center relative justify-center ">
                             <Image className="w-full h-[70vh]  md:w-1/2 md:h-full  aspect-[4/3]" quality={100} src={item.background_url} alt="bg-img" width={250} height={250} />
-                            <div className="flex items-end md:hidden absolute  top-0 right-0 bottom-0 left-0 opacity-40 justify-center gap-8 bg-black">
+                            <div className="flex items-end md:hidden absolute  top-0 right-0 bottom-0 left-0 opacity-60 justify-center gap-8 bg-black">
                             <div className="flex cursor-pointer  items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
-                                <BiBookReader />
+                                <BiBookReader onClick={() => router.push(`/comics/read-comics/${item?.doc_url}`)} />
                             </div>
                             <div className="flex cursor-pointer   items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
                                 <BiStar />
@@ -50,7 +53,7 @@ const relatedBooks:Stories[] = data?.filter(item  => item.category == book[0].ca
                             </div>
                             <div className="hidden md:flex gap-10   flex-1 py-8"> 
                             <div className="flex cursor-pointer  items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
-                                <BiBookReader />
+                            <BiBookReader onClick={() => router.push(`/comics/read-comics/${item.id}`)} />
                             </div>
                             <div className="flex cursor-pointer   items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
                                 <BiStar />
