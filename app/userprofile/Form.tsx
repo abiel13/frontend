@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import { FaToggleOff } from "react-icons/fa";
+import {BsToggle2Off , BsToggle2On} from 'react-icons/bs'
 
 
 const Form = () => {
@@ -45,7 +45,7 @@ const Form = () => {
         </div>
       </div>
     <div className="flex justify-between items-center">
-    <FaToggleOff />
+    <BsToggle2On fontSize={25} fill='red' />
    <p className="text-white">Subscribe To NewsLetter</p>
     </div>
     <div className="w-full mb-10">
