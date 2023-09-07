@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { toast , ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/ReactToastify.css'
+
 
 const SignUp = () => {
   const [error, setError] = useState<{
@@ -37,7 +39,7 @@ const SignUp = () => {
     if (!first) {
       setError((prev) => {
         return { ...prev, first: "name field cant be empty" };
-      });     
+      });
     }
 
     if (!last) {
@@ -59,14 +61,11 @@ const SignUp = () => {
             "password must contain a capital letter with special character and numbers",
         };
       });
-    }
- else   if (confirmPassword != password) {
+    } else if (confirmPassword != password) {
       setError((prev) => {
         return { ...prev, confirmPassword: "passwords dont match" };
       });
-    }
-    
-    else {
+    } else {
       setError({
         email: "",
         password: "",
@@ -109,15 +108,18 @@ catch(error:Error | any) {
   };
 
   
+  };
 
   return (
     <div className="flex flex-col items-center w-full">
       <div className="text-white w-full md:w-3/4  px-6 mt-8 flex flex-col gap-5">
         <div className="flex flex-col gap-6 w-full ">
           <h1 className="font-medium text-3xl  w-full text-left md:text-5xl md:text-center">
-         Get Started
+            Get Started
           </h1>
-          <p className='text-lg tracking-wider text-left md:text-center'>Register To Begin Your Membership</p>
+          <p className="text-lg tracking-wider text-left md:text-center">
+            Register To Begin Your Membership
+          </p>
         </div>
         <div className="flex  flex-col items-center gap-5">
           <div className="w-full md:w-1/2">
@@ -133,7 +135,7 @@ catch(error:Error | any) {
             {error && <p className="text-red-500">{error.first}</p>}
           </div>
           <div className="w-full md:w-1/2">
-            <p className="text-lg tracking-wide mb-3">Last Surname</p>
+            <p className="text-lg tracking-wide mb-3">Last Name</p>
             <input
               onChange={handleChange}
               type="text"
@@ -191,7 +193,9 @@ catch(error:Error | any) {
             Sign In
           </button>
           <div className="text-center flex flex-col gap-2 items-center">
-            <Link href={'/auth/recover'} className="mt-4 text-lg tracking-wide">Forgot Password</Link>
+            <Link href={"/auth/recover"} className="mt-4 text-lg tracking-wide">
+              Forgot Password
+            </Link>
             <Link href={"/auth/login"} className="mt-5 text-lg tracking-wide">
               already have an account ?{" "}
               <span className="text-red-600">Sign in</span>
@@ -202,7 +206,5 @@ catch(error:Error | any) {
       <ToastContainer />
     </div>
   );
-}
-;
-
+};
 export default SignUp;
