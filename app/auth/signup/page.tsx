@@ -107,6 +107,9 @@ catch(error:Error | any) {
   
   };
 
+  
+  };
+
   return (
     <div className="flex flex-col items-center w-full">
       <div className="text-white w-full md:w-3/4  px-6 mt-8 flex flex-col gap-5">
