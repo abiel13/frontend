@@ -2,8 +2,10 @@
 import { ReactNode, createContext, useContext, useState ,useEffect } from "react";
 
 interface AppContextType {
-  loggedIn: boolean;
-  userData: {};
+  loggedIn: boolean | null;
+  userData: any;
+  setloggedin:any;
+    sUserData:any;
 }
 
 interface AppContextProviderI {
@@ -14,6 +16,15 @@ declare global{
     interface Window{
         localStorage:Storage;
     }
+}
+
+type userDataI = {
+  email: string,
+firstname: string
+has_subscription: boolean,
+lastname: string
+newsletter_subscription:boolean
+token:string,
 }
 
 
@@ -33,21 +44,36 @@ export const AppContextProvider: React.FC<AppContextProviderI> = ({
   children,
 }) => { 
     
-    const [Login, setLogin] = useState<boolean>(false);
-    const [userData , setUserData ] = useState<any>(null)
+  const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
+  const [userData, setUserData] = useState<userDataI | null>(null);
 
-    useEffect(() => {
-        const user = window?.localStorage.getItem("AlteFlixUser");
-        if (user) {
+  useEffect(() => {
+      const user = window?.localStorage.getItem("AlteFlixUser");
+      if (user) {
           setUserData(JSON.parse(user));
-          setLogin(true);
-        }
-      }, []);
+          setLoggedIn(true);
+      } else {
+          setLoggedIn(false);
+      }
+  }, []);
+
+  const setloggedin = () =>{
+    setLoggedIn(true)
+  }
+
+const sUserData = (params:any) =>{ 
+  console.log(params)
+  setUserData(params)
+}
 
   const contextValue: AppContextType = {
-    loggedIn: Login,
-    userData: userData,
+      loggedIn: loggedIn,
+      userData: userData,
+      setloggedin:setloggedin,
+      sUserData:sUserData,
   };
+  
+
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
   );
