@@ -38,8 +38,9 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
       <div className="my-4 justify-around w-full md:w-1/2 flex items-center gap-4 cat_over ">
 
         {!categories?.length ? <div className='flex gap-5'>
-        { [0,0,0,0]?.map((item) => (
+        { [0,0,0,0]?.map((item , i) => (
           <Skeleton
+          key={i}
           width={100}
           height={50}
          
