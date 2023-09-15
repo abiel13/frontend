@@ -7,23 +7,6 @@
     width: 7px !important;
 }
 
-.home_page{
-    background: linear-gradient(to bottom, rgba(0,0,0, 0.4) 0%, rgba(0,0,0,0.4) 100% ) , url('../public/hero.png') ;
-    background-repeat: no-repeat;
-    aspect-ratio: 4/3;
-    background-size: cover;
-    background-position: center;
-}
-
-@media screen and (min-width : 1120px){
-    .home_page{
-        background: linear-gradient(to bottom, rgba(0,0,0, 0.3) 0%, rgba(0,0,0,0.3) 100% ) , url('../public/hero2.png') ;
-        aspect-ratio:4/3;
-        background-repeat: no-repeat;
-        background-size: cover;
-      
-    }
-}
 
 .cat_over{
     overflow-x: auto;
