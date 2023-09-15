@@ -58,12 +58,12 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
         <div className="text-white flex  text-left items-center justify-centers top-0  absolute">
           <div>
             <Typography
-              sx={{ fontSize: "2rem", fontWeight: "bold" }}
+              sx={{ fontSize: "1.5rem", fontWeight: "bold" }}
               variant="h3"
             >
               Welcome To AlteFlix
             </Typography>
-            <Typography sx={{width:'80%', fontSize:'1.2rem'}}>
+            <Typography sx={{width:'80%', fontSize:'1rem'}}>
               Where Your Comic Fantasies are Brought to Reality
             </Typography>
           </div>
