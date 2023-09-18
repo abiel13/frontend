@@ -1,8 +1,9 @@
 "use client";
 import { Stories } from "@/app/utils";
-import React, {Suspense} from "react";
+import React, { Suspense } from "react";
 import { SplideSlide, Splide } from "@splidejs/react-splide";
 import Book from "./Book";
+import Skeleton from "react-loading-skeleton";
 
 interface BookCardI {
   stories: Stories[];
@@ -10,24 +11,24 @@ interface BookCardI {
 
 const BookCard: React.FC<BookCardI> = ({ stories }) => {
   const option = {
-    type:'carousel',
+    type: "carousel",
     pagination: false,
     arrows: false,
     perPage: 3,
     gap: "0.5rem",
     omitEnd: true,
-    loop:true,
-    autoplay:{
-      delay:3000,
-      pauseOnHover:true,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      pauseOnHover: true,
     },
     breakpoints: {
       768: {
         perPage: 2,
       },
       640: {
-        perPage: 'auto',
-        gap:"1rem",
+        perPage: "auto",
+        gap: "1rem",
       },
     },
   };
@@ -46,6 +47,7 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
       )}
     
     </div>  </Suspense>
+
   );
 };
 

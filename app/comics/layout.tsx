@@ -5,6 +5,7 @@ import BottomNav from "./components/BottomNav";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { useAppContext } from "../context/context";
 import { useRouter } from "next/navigation";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function ComicsLayout({
   children,
