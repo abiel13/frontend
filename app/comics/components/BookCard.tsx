@@ -34,9 +34,9 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
 
   return (
        <Suspense fallback={<p className="text-white text-3xl">hey am a suspense</p>}>
-    <div className='px-4 md:px-0 '>
+    <div className='px-4 md:px-0 bg-blues-400'>
       {stories && (
-        <Splide options={option}>
+        <Splide className='py-[1rem}' options={option}>
           {stories?.map((item, i) => (
             <SplideSlide key={i}>
               <Book book={item} />
