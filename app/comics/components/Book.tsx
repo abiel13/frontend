@@ -20,7 +20,7 @@ const Book:React.FC<BookI> = ({book}) => {
         <Image src={book.background_url} className='w-[150px]  h-[150px] md:w-[300px] md:h-[300px]' height={200} width={300} alt={book.title} />
         <CardContent>
           
-          <Typography gutterBottom sx={{ fontSize:{md:'1.3rem' , sm:'.8rem'}  , maxWidth:{md:300 , sm:150}}}>
+          <Typography gutterBottom sx={{ fontSize:{md:'1.3rem' , sm:'.8rem'}  , width:{md:300 , sm:150}}}>
             {book.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">

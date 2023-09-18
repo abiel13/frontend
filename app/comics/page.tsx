@@ -62,8 +62,8 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
         </div>
       </div>
 
-      <div className="w-full  flex flex-col items-center ">
-        <h1 className="text-2xl text-white tracking-wide  self-start mb-8 ">
+      <div className="w-full mt-[1rem]  flex flex-col items-center ">
+        <h1 className="text-2xl text-black tracking-wide  self-start mb-8 ">
           Latest Stories
         </h1>
         <div className="flex items-center justify-between  mt-5 ">
