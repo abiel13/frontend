@@ -5,7 +5,7 @@ import React from "react";
 import { Stories, Categories } from "../utils";
 import BookCard from "./components/BookCard";
 import { Typography } from "@mui/material";
-
+import Skeleton from "react-loading-skeleton "
 
 interface ComicPageProps {}
 
@@ -83,21 +83,6 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
           <BookCard stories={stories} />
         </div>
       </div>
-
-      <div className="w-full mt-[2rem]  flex flex-col items-center ">
-        <h1 className="text-2xl text-white tracking-wide  self-start mb-8 ">Characters</h1>
-        <div className="flex items-center justify-between  mt-5 ">
-         <BookCard stories={stories} /> 
-        </div>
-      </div>
-
-      <div className="w-full mt-[2rem]  flex flex-col items-center ">
-        <h1 className="text-2xl text-white tracking-wide  self-start mb-8 ">Other Stories</h1>
-        <div className="flex items-center justify-between  mt-5 ">
-         <BookCard stories={stories} /> 
-        </div>
-      </div>
-
     </div>
   );
 };
