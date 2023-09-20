@@ -13,7 +13,7 @@ async function getdata() {
   }
 }
 
-const Categories = async ({params} : {params :{id :string}}) => {
+const Categories = async ({params} : {params :{id :number}}) => {
  const stories: Stories[] = await getdata()
 const catStories: Stories[] = stories?.filter(item => item.category_id == params.id )
 
@@ -24,7 +24,7 @@ search results
 </Typography>      
 <Grid container spacing={0.5}>
 {catStories?.map( items => (
-	  <Grid key={item.id} item>
+	  <Grid key={items.id} item>
     <Book book={items} />
   </Grid>
 	))}
