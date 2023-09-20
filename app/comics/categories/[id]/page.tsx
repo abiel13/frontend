@@ -1,7 +1,7 @@
 import { Stories }  from '@/app/utils'
 import Typography from "@mui/material/Typography"
 import Grid from "@mui/material/Grid"
-import Book from '../../components/Book.tsx'
+import Book from '../../components/Book'
 import axios from 'axios'
 
 async function getdata() {
