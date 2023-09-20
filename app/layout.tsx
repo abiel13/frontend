@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Provider from "./Provider";
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const poppins = Poppins({ weight: "400", subsets: [] });
 export const metadata: Metadata = {
@@ -20,6 +22,7 @@ export default function RootLayout({
         <main className='home_page'>
           <Provider>
              {children}
+             <ToastContainer/>
           </Provider>
         </main>
       </body>
