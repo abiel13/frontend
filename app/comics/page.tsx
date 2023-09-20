@@ -6,7 +6,7 @@ import { Stories, Categories } from "../utils";
 import BookCard from "./components/BookCard";
 import { Typography } from "@mui/material";
 
-import Skeleton from "react-skeleton-loading  "
+import Skeleton from "react-loading-skeleton"
 interface ComicPageProps {}
 
 async function getCategories() {
