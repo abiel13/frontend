@@ -64,7 +64,7 @@ const relatedBooks:Stories[] = data?.filter(item  => item.category == book[0].ca
                }
 
               <div className="w-full md:w-3/4 mx-auto flex flex-col items-center gap-5 my-[2.5rem]">
-                <h4>Related Stories</h4>
+                <h4 className="text-black">Related Stories</h4>
 
                 <div>{ !relatedBooks?.length ? <div className='text-red-500'>No stories for this categrory </div> :  <div>
                    { relatedBooks?.map(( item  , i ) => (
