@@ -24,7 +24,7 @@ search results
 </Typography>      
 <Grid container spacing={0.5}>
 {catStories?.map( items => (
-	  <Grid key={item.id} item>
+	  <Grid key={items.id} item>
     <Book book={items} />
   </Grid>
 	))}
