@@ -150,6 +150,9 @@ export default function HideAppBar() {
 
         <Divider light />
         <Paper
+        onClick={() => {
+          setVisible(false)
+          toast('feature coming soon')}}
           sx={{
             padding: "1rem 2rem",
             bgcolor: "transparent",
@@ -163,6 +166,9 @@ export default function HideAppBar() {
         </Paper>
         <Divider light />
         <Paper
+           onClick={() => {
+            setVisible(false)
+            toast('feature coming soon')}}
           sx={{
             padding: "1rem 2rem",
             bgcolor: "transparent",
@@ -176,6 +182,9 @@ export default function HideAppBar() {
         </Paper>
         <Divider light />
         <Paper
+          onClick={() => {
+            setVisible(false)
+            toast('feature coming soon')}}
           sx={{
             padding: "1rem 2rem",
             bgcolor: "transparent",
@@ -189,6 +198,9 @@ export default function HideAppBar() {
         </Paper>
         <Divider light />
         <Paper
+            onClick={() => {
+              setVisible(false)
+              toast('feature coming soon')}}
           sx={{
             padding: "1rem 2rem",
             bgcolor: "transparent",
