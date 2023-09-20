@@ -23,8 +23,8 @@ const catStories: Stories[] = stories?.filter(item => item.category_id == params
 search results 
 </Typography>      
 <Grid container spacing={0.5}>
-{catStories.map( items => (
-	  <Grid item>
+{catStories?.map( items => (
+	  <Grid key={item.id} item>
     <Book book={items} />
   </Grid>
 	))}
