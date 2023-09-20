@@ -3,7 +3,6 @@ import { Stories } from "@/app/utils";
 import React, { Suspense } from "react";
 import { SplideSlide, Splide } from "@splidejs/react-splide";
 import Book from "./Book";
-import Skeleton from "react-loading-skeleton";
 
 interface BookCardI {
   stories: Stories[];
@@ -34,7 +33,6 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
   };
 
   return (
-       <Suspense fallback={<p className="text-black text-3xl">hey am a suspense</p>}>
     <div className='px-4 md:px-0 bg-blues-400'>
       {stories && (
         <Splide className='py-[1rem}' options={option}>
@@ -46,7 +44,7 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
         </Splide>
       )}
     
-    </div>  </Suspense>
+    </div>
 
   );
 };
