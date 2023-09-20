@@ -44,12 +44,12 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
             className={` md:ml-0 px-5 py-3 bg-white rounded-lg  text-black text-center`}
           /> 
         ))}
-        </div> : <div className='flex gap-5 my-4 items-center justify-around w-full md:w-3/4 cat_over' >{ categories?.map((item, index) => (
+        </div> : <div className='flex gap-5 my-4 items-center justify-around w-full py-5 md:w-3/4 cat_over' >{ categories?.map((item, index) => (
           <Link
             className={`${
               index == 0 ? "ml-[5rem]" : "ml-0"
 
-            } md:ml-0 px-5 py-3 bg-white rounded-lg shadow-lg text-black text-center`}
+            } md:ml-0 px-5 py-3 bg-[#0066bb] text-white rounded-lg shadow-lg l text-center`}
             href={`/comics/categories/${item.id}`}
             key={item.id}
           >
