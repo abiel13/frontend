@@ -13,7 +13,7 @@ async function getdata() {
   }
 }
 
-const Categories = async ({params} : {params :{id :string}}) => {
+const Categories = async ({params} : {params :{id :number}}) => {
  const stories: Stories[] = await getdata()
 const catStories: Stories[] = stories?.filter(item => item.category_id == params.id )
 
