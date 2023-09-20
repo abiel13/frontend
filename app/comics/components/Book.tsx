@@ -15,12 +15,11 @@ interface BookI{
 const Book:React.FC<BookI> = ({book}) => {
   return ( 
     <Link href={`/comics/details/${book.id}`} >
-    
-  <Card sx={{ width: {md:300 , sm:150} , height:{md:350 , sm:200} }}>
-        <Image src={book.background_url} className='w-[150px]  h-[150px] md:w-[300px] md:h-[300px]' height={200} width={300} alt={book.title} />
+  <Card sx={{ width: {md:300 , sm:150} , height:{md:350 , sm:200} }} >
+        <Image src={book.background_url} className='w-[200px]  h-[150px] md:w-[300px] md:h-[300px]' height={200} width={300} alt={book.title} />
         <CardContent>
           
-          <Typography gutterBottom sx={{ fontSize:{md:'1.3rem' , sm:'.8rem'}  , width:{md:300 , sm:150}}}>
+          <Typography sx={{ fontSize:{md:'1.3rem' , sm:'.8rem'} ,  width:{md:300 , sm:150}}}>
             {book.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">

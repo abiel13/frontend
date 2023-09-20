@@ -27,14 +27,14 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
         perPage: 2,
       },
       640: {
-        perPage: "auto",
+        perPage: 'auto',
         gap: "1rem",
       },
     },
   };
 
   return (
-       <Suspense fallback={<p className="text-white text-3xl">hey am a suspense</p>}>
+       <Suspense fallback={<p className="text-black text-3xl">hey am a suspense</p>}>
     <div className='px-4 md:px-0 bg-blues-400'>
       {stories && (
         <Splide className='py-[1rem}' options={option}>
