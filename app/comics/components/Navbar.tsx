@@ -151,6 +151,7 @@ const router = useRouter()
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              gap:'1rem'
             }}
           >
             <Typography
@@ -163,7 +164,7 @@ const router = useRouter()
                 fontSize: "1.1rem",
               }}
             >
-              A.A
+            {`${userData?.firstname[0]}.${userData?.lastname[0]}` || ' '}
             </Typography>
             <Stack>
               <Typography>{fullname}</Typography>

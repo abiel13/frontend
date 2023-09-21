@@ -38,7 +38,7 @@ export default function RecoverPassword() {
       toast.success(response.data.data);
       router.push("/auth/reset");
     } catch (error: any) {
-      console.log(error);
+  
       toast.error(`Error : ${error.response.data.errors}`);
     }
   };

@@ -45,7 +45,7 @@ const validateRequest = () => {
     })
   }
   else if(pin.length ==6 && passwordRegex.test(password) && confirmPassword == password){
-  console.log('sucess')
+  
 setError({pin:'' , password:'' , confirmPassword:''})
  sendRecoveryRequest()
 }
@@ -64,7 +64,7 @@ setError({pin:'' , password:'' , confirmPassword:''})
       try{
         toast('Connecting To Server' , {theme:'colored'})
     const response = await axios.post("https://api.alteflix.com/api/v1/accounts/password_code_reset" , data , { headers : { "Content-Type":'application/json' }});
-        console.log(response)
+       
     toast.success('Reset Sucessfull' , {theme:'colored'});
     setPassword(''),
     setPin('')
@@ -72,7 +72,7 @@ setConfirmPassword('')
         router.push('/auth/login')
       }
       catch(error:any){
-        console.log(error)
+        
  toast.error(`Error : ${error.response.data.errors || error.message}`)
       }
   };

@@ -9,6 +9,10 @@
 
 
 .cat_over{
-    overflow-x: auto;
+    overflow-x: scroll  !important ;
+    scroll-behavior: smooth !important;
+    scroll-snap-type: mandatory !important;
+    scroll-snap-align: center !important;
+   
 }
 
