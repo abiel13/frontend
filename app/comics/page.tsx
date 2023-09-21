@@ -7,14 +7,15 @@ import BookCard from "./components/BookCard";
 import { Typography } from "@mui/material";
 
 import Skeleton from "react-loading-skeleton"
+import { toast } from "react-toastify";
 interface ComicPageProps {}
 
 async function getCategories() {
   try {
     const res = await axios.get("https://api.alteflix.com/api/v1/categories");
     return res.data.data;
-  } catch (error) {
-    console.log("an error occured");
+  } catch (error:any) {
+   toast(error.message)
   }
 }
 
@@ -22,8 +23,8 @@ async function getStories() {
   try {
     const res = await axios.get("https://api.alteflix.com/api/v1/stories");
     return res.data.data;
-  } catch (error) {
-    console.log("an error occured");
+  } catch (error:any) {
+   toast(error.message)
   }
 }
 
