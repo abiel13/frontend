@@ -33,7 +33,7 @@ export default function BottomNav() {
         label="Favorites"
         value="favorites"
         icon={<FavoriteIcon />}
-        onClick={() => router.push('/comics/bookmarks')}
+        onClick={() => router.push('/comics/favorites')}
       />
       <BottomNavigationAction
         label="Library"

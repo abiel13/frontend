@@ -1,9 +1,9 @@
-'use client'
 import axios from "axios";
 import { Stories } from "@/app/utils";
 import Image from "next/image";
 import { BiBookReader, BiStar } from "react-icons/bi";
 import Book from "../../components/Book";
+import Link from "next/link";
 
 
 
@@ -30,7 +30,9 @@ const relatedBooks:Stories[] = data?.filter(item  => item.category == book[0].ca
                             <Image className="w-full h-[70vh]  md:w-1/2 md:h-full  aspect-[4/3]" quality={100} src={item.background_url} alt="bg-img" width={250} height={250} />
                             <div className="flex items-end md:hidden absolute  top-0 right-0 bottom-0 left-0 opacity-60 justify-center gap-8 bg-black">
                             <div className="flex cursor-pointer  items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
-                                <BiBookReader oonClick/>
+                               <Link href={`/comics/read-comics/${item.id}`}>
+                                <BiBookReader/>
+                               </Link>
                             </div>
                             <div className="flex cursor-pointer   items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
                                 <BiStar />
@@ -51,11 +53,13 @@ const relatedBooks:Stories[] = data?.filter(item  => item.category == book[0].ca
                                 <div className="flex-1 flex justify-end"> <Image src={item.thumbnail_url}  alt="sample image" width={150} height={150} /></div>
                             </div>
                             <div className="hidden md:flex gap-10   flex-1 py-8"> 
-                            <div className="flex cursor-pointer  items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
-                            <BiBookReader/>
+                            <div className="flex cursor-pointer  items-center border-2 border-black w-[50px] h-[50px] rounded-full justify-center">
+                            <Link href={`/comics/read-comics/${item.id}`}>
+                                <BiBookReader fill='black' />
+                               </Link>
                             </div>
-                            <div className="flex cursor-pointer   items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
-                                <BiStar />
+                            <div className="flex cursor-pointer   items-center border-2 border-black w-[50px] h-[50px] rounded-full justify-center">
+                                <BiStar fill='black'  />
                             </div>
                             </div>
                         </div>

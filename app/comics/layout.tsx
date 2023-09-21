@@ -20,7 +20,7 @@ if(loggedIn == false) {router.push('/auth/login')}
 
   return (
     <main className="bg-white min-h-screen  overflow-x-hidden ">
-      <SkeletonTheme baseColor="#000" highlightColor="#aaa">
+      <SkeletonTheme baseColor="#aaa" highlightColor="#ccc">
         <Navbar />
         <Search />
         {children}
