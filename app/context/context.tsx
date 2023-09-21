@@ -62,7 +62,6 @@ export const AppContextProvider: React.FC<AppContextProviderI> = ({
   }
 
 const sUserData = (params:any) =>{ 
-  console.log(params)
   setUserData(params)
 }
 

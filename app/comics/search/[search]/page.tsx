@@ -3,6 +3,7 @@ import axios from "axios";
 import Book from '../../components/Book'
 import Typography from '@mui/material/Typography'
 import { toast } from "react-toastify";
+import { Grid } from "@mui/material";
 
 async function getData() {
   try {
@@ -20,24 +21,20 @@ const SearchPage = async ({ params }: { params: { search: string } }) => {
     (item) =>  item.title.includes(params.search) ||  item.title.toLowerCase().includes(params.search)
   );
 
-  return (
-    <div className="text-white mt-[3rem] mb-[5rem] md:mb-0 flex flex-col items-center min-h-[90vh] text-3xl">
-      <div className="w-3/4">
-        {!searchMathches?.length ? (
-          <div className="text-red-500 text-normal">No Comic Matches Your Search</div>
-        ) : (
-          <div className="flex flex-wrap gap-4 items-center  px-0 md:px-[2rem] justify-between ">
-          <Typography>
-          Search results
-          </Typography>
-            {searchMathches?.map((item , i) => (
-                <Book key={i} book={item} />
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
+  return(
+    <div className="text-black text-3xl px-[1rem] mt-[2rem]"> 
+        <Typography variant='h6'>
+  search results for <span className="font-bold"> {params.search}</span>
+  </Typography>      
+  <Grid container sx={{mt:'1.5rem' }} spacing={1}>
+  {searchMathches?.map( items => (
+      <Grid key={items.id} item xs={4}>
+      <Book book={items} />
+    </Grid>
+    ))}
+  </Grid>
+              </div> 
+             )
 };
 
 export default SearchPage;

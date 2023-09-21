@@ -19,13 +19,13 @@ const Categories = async ({params} : {params :{id :number}}) => {
 const catStories: Stories[] = stories?.filter(item => item.category_id == params.id )
 
         return(
-  <div className="text-white text-3xl"> 
-			<Typography>
+  <div className="text-black text-3xl px-[1rem] mt-[2rem]"> 
+			<Typography variant='h6'>
 search results 
 </Typography>      
-<Grid container spacing={0.5}>
+<Grid container sx={{mt:'1.5rem' }} spacing={1}>
 {catStories?.map( items => (
-	  <Grid key={items.id} item>
+	  <Grid key={items.id} item xs={4}>
     <Book book={items} />
   </Grid>
 	))}
