@@ -3,13 +3,14 @@ import Typography from "@mui/material/Typography"
 import Grid from "@mui/material/Grid"
 import Book from '../../components/Book'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 async function getdata() {
 	 try {
     const res = await axios.get("https://api.alteflix.com/api/v1/stories");
     return res.data.data;
-  } catch (error) {
-    console.log("an error occured");
+  } catch (error:any) {
+ toast(error?.meassage)
   }
 }
 
