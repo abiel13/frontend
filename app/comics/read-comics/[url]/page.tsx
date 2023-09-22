@@ -35,7 +35,7 @@ setDoc_url(doc_url[0]?.doc_url)
     }
 
     return (
-        <div className='w-[100vw] min-h-[80vh] mt-[4rem] flex items-center justify-center flex-col text-3xl'>
+        <div className='w-[100vw] min-h-[80vh] my-[4rem] flex items-center justify-center flex-col text-3xl'>
         <Document file={'https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf'} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
