@@ -18,7 +18,7 @@ export default function BottomNav() {
 
   return (
     <div className='block md:hidden'>
-          <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+          <Paper sx={{ position: 'fixed', zIndex:4000 ,bottom: 0, left: 0, right: 0 }} elevation={3}>
         <BottomNavigation sx={{ width: 'auto' }} value={value} onChange={handleChange}>
          
            <BottomNavigationAction
