@@ -23,7 +23,7 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
     },
     breakpoints: {
       768: {
-        perPage: 2,
+        perPage: 3,
       },
       640: {
         perPage: 3,
