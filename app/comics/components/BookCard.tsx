@@ -2,6 +2,8 @@
 import { Stories } from "@/app/utils";
 import React, { Suspense } from "react";
 import { SplideSlide, Splide } from "@splidejs/react-splide";
+import '@splidejs/react-splide/css'
+
 import Book from "./Book";
 
 interface BookCardI {
@@ -26,14 +28,14 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
         perPage: 3,
       },
       640: {
-        perPage: 3,
+        perPage: 2,
         gap: "1rem",
       },
     },
   };
 
   return (
-    <div className='px-4 md:px-0 bg-blues-400'>
+    <div className='px-0 md:px-0 bg-blues-400'>
       {stories && (
         <Splide className='py-[1rem}' options={option}>
           {stories?.map((item, i) => (
