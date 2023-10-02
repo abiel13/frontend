@@ -26,7 +26,7 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
         perPage: 2,
       },
       640: {
-        perPage: 'auto',
+        perPage: 3,
         gap: "1rem",
       },
     },

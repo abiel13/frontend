@@ -14,16 +14,16 @@ const Book:React.FC<BookI> = ({book}) => {
   return ( 
     <Link href={`/comics/details/${book.id}`} >
   <Card sx={{ width: {md:300 , sm:150} , height:{md:350 , sm:200} , bgcolor:'transparent' , boxShadow:'none' }} >
-        <Image src={book.background_url} className='w-[200px]  h-[150px] md:w-[300px] md:h-[250px]' height={200} width={300} alt={book.title} />
+        <Image src={book.background_url} className='w-[200px] rounded-xl object-cover  h-[150px] md:w-[300px] md:h-[250px]' height={200} width={300} alt={book.title} />
         <CardContent>
           
-          <Typography sx={{ fontSize:{md:'1.3rem' , sm:'.8rem'} ,  width:{md:300 , sm:150}}}>
+          <Typography fontWeight={'bold'} sx={{ fontSize:{md:'1.3rem' , sm:'.8rem'} ,  width:{md:300 , sm:150}}}>
             {book.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
          {book.author}
           </Typography>
-          <Typography color='text.secondary' >
+          <Typography fontWeight={'bold'} color='text.secondary' >
             {book.category}
           </Typography>
         </CardContent>

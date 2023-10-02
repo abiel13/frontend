@@ -22,17 +22,20 @@ const SearchPage = async ({ params }: { params: { search: string } }) => {
   );
 
   return(
-    <div className="text-black text-3xl px-[1rem] mt-[2rem]"> 
+    <div className="text-black text-3xl px-[1rem] md:px-[5rem]  mt-[2rem]"> 
         <Typography variant='h6'>
   search results for <span className="font-bold"> {params.search}</span>
-  </Typography>      
-  <Grid container sx={{mt:'1.5rem' }} spacing={1}>
+  </Typography>     
+   
+ { !searchMathches?.length ? <Typography color='red'>
+  No Search Results
+ </Typography> : <Grid container sx={{mt:'1.5rem' }} spacing={1}>
   {searchMathches?.map( items => (
-      <Grid key={items.id} item xs={4}>
+      <Grid item key={items.id}  xs={6} md={4} >
       <Book book={items} />
     </Grid>
     ))}
-  </Grid>
+  </Grid>}
               </div> 
              )
 };
