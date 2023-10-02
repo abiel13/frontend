@@ -1,57 +1,76 @@
-'use client'
+"use client";
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useAppContext } from "../context/context";
 import React from "react";
-import {BsToggle2Off , BsToggle2On} from 'react-icons/bs'
-
 
 const Form = () => {
+  const { userData } = useAppContext();
+
   return (
-    <div className="mt-[2rem] w-full md:w-1/3 flex flex-col gap-7 px-8">
-      <div>
-        <p className="text-white text-xl">First Name</p>
-        <input
-          placeholder="Abiel"
-          className="text-black  w-full bg-white py-4 px-2 rounded-xl "
-          type="text"
-        />
-      </div>
-      <div>
-        <p className="text-white text-xl">Last Name</p>
-        <input
-          placeholder="Asimiea"
-          className="text-black  w-full bg-white py-4 px-2 rounded-xl "
-          type="text"
-        />
-      </div>
-      <div>
-        <p className="text-white text-xl">Email Adress</p>
-        <input
-          placeholder="dbestabi28@gmail.com"
-          className="text-black  w-full bg-white py-4 px-2 rounded-xl "
-          type="text"
-        />
-      </div>
-      <div>
-        <p className="text-white text-xl">PassWord</p>
-        <div className=" relative">
-          {" "}
-          <input
-            placeholder="XXXXXXXX"
-            className="text-black text-base  w-full bg-white py-4 px-2 rounded-xl "
-            type="text"
+    <Box component="form" sx={{ mt: 3, padding: "0 1rem " }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            autoComplete="given-name"
+            name="first"
+            required
+            fullWidth
+            id="firstName"
+            label={`first name : ${userData?.firstname == undefined ? ' ' : userData?.firstname}`}
+            autoFocus
           />
-          <div className="text-red-500 text-normmal absolute top-[50%] right-[10%] -translate-y-[50%] translate-x-[10%] ">
-            Change
-          </div>
-        </div>
-      </div>
-    <div className="flex justify-between items-center">
-    <BsToggle2On fontSize={25} fill='red' />
-   <p className="text-white">Subscribe To NewsLetter</p>
-    </div>
-    <div className="w-full mb-10">
-        <button className="bg-red-600 w-full px-4 py-5 rounded-lg text-white font-bold text-lg">Update Profile</button>
-    </div>
-    </div>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            fullWidth
+            id="lastName"
+            label={`last name : ${userData?.lastname == undefined ? '' : userData?.lastname}`}
+            name="last"
+            autoComplete="family-name"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            id="email"
+            label={`Email Address : ${userData?.email == undefined ? ' ' : userData?.email}`}
+            name="email"
+            autoComplete="email"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            name="password"
+            label="xxxxxxxx"
+            type="password"
+            id="password"
+            autoComplete="new-password"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Checkbox
+            checked={userData?.newsletter_subscription}
+            color="primary"
+          />
+          Subscribed To Newsletters
+        </Grid>
+      </Grid>
+      <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+        Update Profile
+      </Button>
+    </Box>
   );
 };
 
