@@ -3,27 +3,25 @@ import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { toast ,  } from "react-toastify";
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Copyright from '@/app/components/CopyRight'
+import { toast } from "react-toastify";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Copyright from "@/app/components/CopyRight";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-
-
   const [error, setError] = useState<{
     email: string;
     password: string;
@@ -39,23 +37,32 @@ export default function SignUp() {
     confirmPassword: string;
   }>({ email: "", password: "", first: "", last: "", confirmPassword: "" });
   const { email, password, first, last, confirmPassword } = formData;
-  const [checked , setChecked ] = useState<boolean>(false)
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const [checked, setChecked] = useState<boolean>(false);
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { value, name } = event.target;
     setFormData((prev) => {
       return { ...prev, [name]: value };
     });
+    validate();
   };
 
   const validate = () => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,6}$/;
     const passwordRegex =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\_])[a-zA-Z0-9\W\_]{8,15}$/;
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\_])[a-zA-Z0-9\W\_]{8,87}$/;
 
     if (!first) {
       setError((prev) => {
         return { ...prev, first: "name field cant be empty" };
-      });     
+      });
+    }
+    if (first) {
+      setError((prev) => {
+        return { ...prev, first: "" };
+      });
     }
 
     if (!last) {
@@ -63,10 +70,20 @@ export default function SignUp() {
         return { ...prev, last: "last name field  cant be empty" };
       });
     }
+    if (last) {
+      setError((prev) => {
+        return { ...prev, last: "" };
+      });
+    }
 
     if (!emailRegex.test(email)) {
       setError((prev) => {
         return { ...prev, email: "invalid email type" };
+      });
+    }
+    if (emailRegex.test(email)) {
+      setError((prev) => {
+        return { ...prev, email: "" };
       });
     }
     if (!passwordRegex.test(password)) {
@@ -78,13 +95,29 @@ export default function SignUp() {
         };
       });
     }
- else   if (confirmPassword != password) {
+    if (passwordRegex.test(password)) {
+      setError((prev) => {
+        return { ...prev, password: "" };
+      });
+    }
+    if (confirmPassword != password) {
       setError((prev) => {
         return { ...prev, confirmPassword: "passwords dont match" };
       });
     }
-    
-    else {
+    if (confirmPassword == password) {
+      setError((prev) => {
+        return { ...prev, confirmPassword: "" };
+      });
+    }
+
+    if (
+      last &&
+      first &&
+      passwordRegex.test(password) &&
+      emailRegex.test(email) &&
+      password == confirmPassword
+    ) {
       setError({
         email: "",
         password: "",
@@ -107,23 +140,24 @@ export default function SignUp() {
       lastname: last,
       newsletter_subscription: checked,
     });
-try{
-  toast('Registering User Please Wait' , {theme:'colored'})
-    await axios.post("https://api.alteflix.com/api/v1/accounts/new" , data , {headers:{"Content-Type":"application/json"}}).then(res => {
-      
-      toast.success('Registation Sucessful', {theme:'colored'})
-      router.push('/auth/login')
-    }).catch((error) => {
-      toast.error(`Error: ${error.response.data.errors}` , {theme:'colored'})
-    })
-   
-}
-catch(error:Error | any) {
- 
-  toast.error(`network disconnected` )
-}
-
-  
+    try {
+      toast("Registering User Please Wait", { theme: "colored" });
+      await axios
+        .post("https://api.alteflix.com/api/v1/accounts/new", data, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then((res) => {
+          toast.success("Registation Sucessful", { theme: "colored" });
+          router.push("/auth/login");
+        })
+        .catch((error) => {
+          toast.error(`Error: ${error.response.data.errors}`, {
+            theme: "colored",
+          });
+        });
+    } catch (error: Error | any) {
+      toast.error(`network disconnected`);
+    }
   };
 
   return (
@@ -133,16 +167,16 @@ catch(error:Error | any) {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up 
+            Sign up
           </Typography>
           <Box component="form" sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -158,7 +192,9 @@ catch(error:Error | any) {
                   value={first}
                   onChange={(e) => handleChange(e)}
                 />
-                {error.first && <Typography color='red' > {error.first} </Typography>}
+                {error.first && (
+                  <Typography color="red"> {error.first} </Typography>
+                )}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -171,8 +207,9 @@ catch(error:Error | any) {
                   value={last}
                   onChange={(e) => handleChange(e)}
                 />
-                {error.last && <Typography color='red' > {error.last} </Typography>}
-
+                {error.last && (
+                  <Typography color="red"> {error.last} </Typography>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -185,7 +222,9 @@ catch(error:Error | any) {
                   value={email}
                   onChange={(e) => handleChange(e)}
                 />
-                {error.email && <Typography color='red' > {error.email} </Typography>}
+                {error.email && (
+                  <Typography color="red"> {error.email} </Typography>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -199,8 +238,9 @@ catch(error:Error | any) {
                   onChange={(e) => handleChange(e)}
                   value={password}
                 />
-                {error.password && <Typography color='red' > {error.password} </Typography>}
-
+                {error.password && (
+                  <Typography color="red"> {error.password} </Typography>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -214,13 +254,19 @@ catch(error:Error | any) {
                   onChange={(e) => handleChange(e)}
                   value={confirmPassword}
                 />
-                {error.confirmPassword && <Typography color='red' > {error.confirmPassword} </Typography>}
-
+                {error.confirmPassword && (
+                  <Typography color="red"> {error.confirmPassword} </Typography>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox onChange={() => setChecked(prev => !prev)} color="primary" />}
-                  label='Subscribe To Newsletters'
+                  control={
+                    <Checkbox
+                      onChange={() => setChecked((prev) => !prev)}
+                      color="primary"
+                    />
+                  }
+                  label="Subscribe To Newsletters"
                 />
               </Grid>
             </Grid>
@@ -230,13 +276,11 @@ catch(error:Error | any) {
               sx={{ mt: 3, mb: 2 }}
               onClick={() => validate()}
             >
-           Register Now
+              Register Now
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/auth/login">
-                  Already have an account? Sign in
-                </Link>
+                <Link href="/auth/login">Already have an account? Sign in</Link>
               </Grid>
             </Grid>
           </Box>
