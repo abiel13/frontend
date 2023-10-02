@@ -10,7 +10,7 @@ async function getData() {
      const response = await axios.get("https://api.alteflix.com/api/v1/stories");
   return response.data.data;
   } catch (error:any) {
-    toast(error?.meassage)
+    console.log(error?.meassage)
   }
  
 }
@@ -40,4 +40,4 @@ const SearchPage = async ({ params }: { params: { search: string } }) => {
              )
 };
 
-export default SearchPage;
+export default SearchPage; 
