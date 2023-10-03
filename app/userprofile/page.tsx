@@ -58,13 +58,13 @@ const UserProfilePage = () => {
             </Box>
           </Grid>
           <Grid sx={{ alignSelf: "flex-end" }} item>
-            <EditIcon cursor='pointer' />
+            <EditIcon onClick={() => setVisible(true)} cursor='pointer' />
           </Grid>
         </Grid>
       </Container>
     <UserDetails />
     <div  className={`${visible ? 'block' :'hidden'} absolute top-[50%] right-[50%] `}>
-    <EditModal />
+    <EditModal toggle = {() => setVisible(false)} />
     </div>
     </div>
   );
