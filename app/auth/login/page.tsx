@@ -46,7 +46,7 @@ export default function SignIn() {
   const validate = () => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,6}$/;
     const passwordRegex =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\_])[a-zA-Z0-9\W\_]{8,15}$/;
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\_])[a-zA-Z0-9\W\_]{8,87}$/;
 
     if (!emailRegex.test(email)) {
       setError((prev) => {
@@ -62,7 +62,18 @@ export default function SignIn() {
             "password should have upper & lower case, numbers, special characters and be at least 8 characters long",
         };
       });
-    } else {
+    }
+    if (emailRegex.test(email)) {
+      setError((prev) => {
+        return { ...prev, password: "" };
+      });
+    }
+    if (passwordRegex.test(password)) {
+      setError((prev) => {
+        return { ...prev, password: "" };
+      });
+    }
+    if (passwordRegex.test(password) && emailRegex.test(email)) {
       setError({ email: "", password: "" });
       submitForm();
     }

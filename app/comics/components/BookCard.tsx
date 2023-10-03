@@ -35,7 +35,7 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
   };
 
   return (
-    <div className='px-0 md:px-0 bg-blues-400'>
+    <div className='px-0 md:px-0 '>
       {stories && (
         <Splide className='py-[1rem}' options={option}>
           {stories?.map((item, i) => (
