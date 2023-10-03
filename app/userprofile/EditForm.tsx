@@ -32,7 +32,7 @@ const EditForm = () => {
     console.log(formData);
     
   return (
-    <Container sx={{ marginTop: "1rem" }}>
+    <Container sx={{ marginBlock: "1rem" }}>
       <Typography fontSize={27} fontWeight={"bold"}>
         Basic Infos
       </Typography>
@@ -65,6 +65,7 @@ const EditForm = () => {
         <Button variant="outlined">
             Save
         </Button>
+       
       </Stack>
     </Container>
   );

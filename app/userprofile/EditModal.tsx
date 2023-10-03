@@ -15,7 +15,7 @@ const EditModal: React.FC<EditModalI> = ({ toggle }) => {
       sx={{
         position: "absolute",
         width: { md: "50vw", xs: "100vw" },
-        height: { md: "50vh", xs: "100vh" },
+        minHeight: { md: "50vh", xs: "100vh" },
         transform: "translate(-50% , -50%)",
       }}
     >
