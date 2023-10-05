@@ -9,6 +9,7 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 import { Typography } from "@mui/material";
 import { BiChevronLeftCircle, BiChevronRightCircle } from "react-icons/bi";
 import { useSwipeable } from "react-swipeable";
+import { Circles } from "react-loader-spinner";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -17,7 +18,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 
 const ReadBookPage = ({ params }: { params: { url: string } }) => {
   const [numPages, setNumPages] = useState<number>(1);
-  const [pageNumber, setPageNumber] = useState<number>(13);
+  const [pageNumber, setPageNumber] = useState<number>(1);
   const [doc_url, setDoc_url] = useState<string>("");
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const ReadBookPage = ({ params }: { params: { url: string } }) => {
   const handlers = useSwipeable({
     onSwipedLeft: () => handleFlip("left"),
     onSwipedRight: () => handleFlip("right"),
-    swipeDuration: 500,
+    swipeDuration: 400,
     preventScrollOnSwipe: true,
     trackMouse: true,
   });
@@ -60,17 +61,19 @@ const ReadBookPage = ({ params }: { params: { url: string } }) => {
       className="w-[100vw] min-h-[80vh]  flex items-center justify-center flex-col text-3xl"
     >
       <Document file={doc_url} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} />
+        <Page loading={<></>} pageNumber={pageNumber} />
       </Document>
-      <div className="flex items-center justify-around gap-5 mt-[1rem]">
+      <div className="hidden md:flex items-center justify-around gap-5 mt-[1rem]">
         <BiChevronLeftCircle
+        fill='white'
           fontSize={40}
           onClick={() => handleFlip("right")}
         />
-        <Typography className="text-black">
+        <Typography className="text-white">
           Page {pageNumber} of {numPages}
         </Typography>
         <BiChevronRightCircle
+        fill='white'
           fontSize={40}
           onClick={() => handleFlip("left")}
         />

@@ -16,7 +16,7 @@ export default function ReadComicsLayout({
 if(loggedIn == false) {router.push('/auth/login')}
 
   return (
-    <main className="bg-white min-h-screen  overflow-x-hidden ">
+    <main className="bg-black min-h-screen  overflow-x-hidden ">
         {children}
         <BottomNav />
     </main>
