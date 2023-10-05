@@ -94,6 +94,16 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
         </Typography>
         <BookCard stories={stories} />
       </Container>
+
+      <Container sx={{marginBlock:'3rem'}}>
+      <Typography
+          variant="h4"
+          fontWeight={"bold"}
+          sx={{ marginBottom: "3rem" }}
+        >
+          More Stories
+        </Typography>
+      </Container>
     </div>
   );
 };

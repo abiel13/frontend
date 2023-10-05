@@ -38,7 +38,7 @@ const DetailsPage = async ({ params }: { params: { id: number } }) => {
             />
             <div className="flex items-end md:hidden absolute  top-0 right-0 bottom-0 left-0 opacity-60 justify-center gap-8 bg-black">
               <div className="flex cursor-pointer  items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
-                <Link href={`/comics/read-comics/${item.id}`}>
+                <Link href={`/read-comics/${item.id}`}>
                   <BiBookReader />
                 </Link>
               </div>
@@ -95,7 +95,7 @@ const DetailsPage = async ({ params }: { params: { id: number } }) => {
             </div>
             <div className="hidden md:flex gap-10   flex-1 py-8">
               <div className="flex cursor-pointer  items-center border-2 border-black w-[50px] h-[50px] rounded-full justify-center">
-                <Link href={`/comics/read-comics/${item.id}`}>
+                <Link href={`/read-comics/${item.id}`}>
                   <BiBookReader fill="black" />
                 </Link>
               </div>

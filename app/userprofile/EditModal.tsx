@@ -1,4 +1,4 @@
-import { Box, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { Container } from "@mui/material";
@@ -15,11 +15,12 @@ const EditModal: React.FC<EditModalI> = ({ toggle }) => {
       sx={{
         position: "absolute",
         width: { md: "50vw", xs: "100vw" },
-        minHeight: { md: "50vh", xs: "100vh" },
+        height: { md: "60vh", xs: "100vh" },
         transform: "translate(-50% , -50%)",
+        overflowY:'auto'
       }}
     >
-      <CloseIcon onClick={() => toggle()} />
+      <CloseIcon sx={{margin:'.3rem .4rem'}} cursor='pointer' onClick={() => toggle()} />
       <Container>
         <EditForm />
       </Container>
