@@ -6,7 +6,8 @@ const UserDetails = () => {
   const { userData } = useAppContext();
   const fullname = userData?.firstname + " " + userData?.lastname;
   return (
-    <Container sx={{ marginTop: { md: "5%", xs: "20%" } }}>
+    <>
+      <Container sx={{ marginTop: { md: "5%", xs: "20%" } }}>
     <Typography fontWeight='bold' fontSize={28}>
       {fullname == 'undefined undefined' ? '' :fullname}
     </Typography>
@@ -14,6 +15,13 @@ const UserDetails = () => {
       {userData?.email == 'undefined ' ? ' ' : userData?.email}
     </Typography>
   </Container>
+  <Container sx={{marginTop:'1rem'}}>
+    <Typography fontWeight={'bold'}>
+      Recents
+    </Typography>
+  </Container>
+    </>
+  
   )
 }
 

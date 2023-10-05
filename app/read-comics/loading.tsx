@@ -1,8 +1,10 @@
+'use client'
 import React from 'react'
+import { Circles } from 'react-loader-spinner'
 
 const readLoading = () => {
   return (
-    <div>readLoading</div>
+    <Circles />
   )
 }
 
