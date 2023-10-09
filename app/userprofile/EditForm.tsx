@@ -9,8 +9,13 @@ interface FormData {
   email: string;
 }
 
-const EditForm = () => {
+interface EditFormI{
+  editing:Function
+}
+
+const EditForm:React.FC<EditFormI> = ({editing}) => {
   const { userData } = useAppContext();
+
   const [formData, setFormData] = useState<FormData>({
     firstname: "",
     lastname: "",
@@ -34,6 +39,7 @@ const EditForm = () => {
     setFormData((prev) => {
       return { ...prev, [name]: value };
     });
+  editing(true)
   };
 
  
