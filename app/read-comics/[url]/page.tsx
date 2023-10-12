@@ -17,7 +17,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 
 const ReadBookPage = ({ params }: { params: { url: string } }) => {
   const [numPages, setNumPages] = useState<number>(1);
-  const [pageNumber, setPageNumber] = useState<number>(13);
+  const [pageNumber, setPageNumber] = useState<number>(1);
   const [doc_url, setDoc_url] = useState<string>("");
 
   // code for snackbar
