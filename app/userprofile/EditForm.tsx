@@ -42,6 +42,12 @@ const EditForm:React.FC<EditFormI> = ({editing}) => {
   editing(true)
   };
 
+
+  const updateUserProfile = () => {
+    if(formData.firstname && formData.email && formData.lastname){
+      
+    }
+  }
  
 
   return (
@@ -81,7 +87,7 @@ const EditForm:React.FC<EditFormI> = ({editing}) => {
           variant="standard"
         />
 
-        <Button variant="outlined">Save</Button>
+        <Button onClick={() => updateUserProfile()} variant="outlined">Save</Button>
       </Stack>
     </Container>
   );
