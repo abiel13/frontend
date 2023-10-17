@@ -18,19 +18,23 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useAppContext } from "../../context/context";
 import Copyright from "@/app/components/CopyRight";
+import { InputAdornment } from "@mui/material";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  const [signWithMobile, setSignWithMobile] = useState<boolean>(false);
   const [error, setError] = useState<{ email: string; password: string }>({
     email: "",
     password: "",
   });
-  const [formData, setFormData] = useState<{ email: string; password: string }>(
-    { email: "", password: "" }
-  );
-  const { email, password } = formData;
+  const [formData, setFormData] = useState<{
+    email: string;
+    password: string;
+    mobile: string;
+  }>({ email: "", password: "", mobile: "" });
+  const { email, password, mobile } = formData;
   const router = useRouter();
   const { setloggedin, sUserData } = useAppContext();
 
@@ -47,7 +51,6 @@ export default function SignIn() {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,6}$/;
     const passwordRegex =
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\_])[a-zA-Z0-9\W\_]{8,87}$/;
-
     if (!emailRegex.test(email)) {
       setError((prev) => {
         return { ...prev, email: "invalid email type" };
@@ -65,7 +68,7 @@ export default function SignIn() {
     }
     if (emailRegex.test(email)) {
       setError((prev) => {
-        return { ...prev, password: "" };
+        return { ...prev, email: "" };
       });
     }
     if (passwordRegex.test(password)) {
@@ -79,12 +82,19 @@ export default function SignIn() {
     }
   };
 
-  const submitForm = async () => {
-    var raw = JSON.stringify({
-      email: email,
-      password: password,
-    });
+  const validateMobileLogin = () => {
+    const mobileRegex = /^(?:\(\d{3}\)\s?|\d{3}-)\d{3}-\d{4}$/;
+    submitForm()
+  };
 
+  const submitForm = async () => {
+    const data: Record<string, any> = !signWithMobile
+      ? { email }
+      : { msisdn: `234${mobile}` };
+    data.password = password;
+
+    const raw: string = JSON.stringify(data);
+    console.log(raw)
     try {
       toast("Connecting to server...", { theme: "colored" });
       const response = await axios.post(
@@ -122,22 +132,61 @@ export default function SignIn() {
           <Avatar sx={{ m: 1, bgcolor: "#3456aa" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
+          <Typography
+            onClick={() => setSignWithMobile(false)}
+            component="h1"
+            variant="h5"
+            sx={{ cursor: "pointer" }}
+          >
+            Sign in with Email
+          </Typography>
+          <p>or</p>
+          <Typography
+            onClick={() => setSignWithMobile(true)}
+            sx={{ cursor: "pointer" }}
+            component="h1"
+            variant="body1"
+          >
+            sign in with mobile
           </Typography>
           <Box sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              value={email}
-              onChange={(e) => handleChange(e)}
-            />
+            {!signWithMobile ? (
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                value={email}
+                onChange={(e) => handleChange(e)}
+              />
+            ) : (
+              <TextField
+                sx={{ marginTop: "1rem" }}
+                label="Mobile Number"
+                variant="outlined"
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Typography >+234</Typography>
+                    </InputAdornment>
+                  ),
+                }}
+                inputProps={{
+                  inputMode: "numeric",
+                  pattern: "[0-9]",
+                }}
+                name="mobile"
+                value={mobile}
+                onChange={(e) => handleChange(e)}
+                type="number"
+              />
+            )}
+
             {error.email && (
               <Typography color={"red"}>{error.email}</Typography>
             )}
@@ -165,7 +214,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={() => {
-                validate();
+                signWithMobile ? validateMobileLogin() : validate();
               }}
             >
               Sign In
