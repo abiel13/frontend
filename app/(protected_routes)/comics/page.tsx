@@ -2,12 +2,10 @@ import "@splidejs/react-splide/css";
 import axios from "axios";
 import Link from "next/link";
 import React from "react";
-import { Stories, Categories } from "../utils";
+import { Stories, Categories } from "@/types/types";
 import BookCard from "./components/BookCard";
 import { Container, Typography } from "@mui/material";
-
 import Skeleton from "react-loading-skeleton";
-import { toast } from "react-toastify";
 interface ComicPageProps {}
 
 async function getCategories() {
@@ -51,17 +49,17 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
               <Link
                 className={`${
                   index == 0 ? "ml-[8rem]" : "ml-0"
-                } md:ml-0 px-5 py-3 bg-[#0066bb] text-white rounded-lg shadow-lg l text-center`}
+                } md:ml-0 px-5 py-3 bg-[#510800] text-white rounded-lg tracking-wide text-center`}
                 href={`/comics/categories/${item.id}`}
                 key={item.id}
               >
-                {<p className="">{item.title}</p>}
+                {<p className="tracking-widest text-lg">{item.title}</p>}
               </Link>
             ))}
           </div>
         )}
       </div>
-      <div className="relative mt-[1rem] h-[150px] bg-gradient-to-r to-[#1CB5E0] from-[#000851]  shadow-2xl rounded-2xl p-[1rem] flex flex-col items-center justify-center  overflow-hidden w-full md:w-1/2 ">
+      <div className="relative mt-[1rem] h-[150px] bg-gradient-to-r to-[#0b0b0c] from-[#510800]  shadow-2xl rounded-2xl p-[1rem] flex flex-col items-center justify-center  overflow-hidden w-full md:w-1/2 ">
         <div className="text-white flex  text-left items-center justify-center  ">
           <div>
             <Typography
@@ -93,16 +91,6 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
           Latest Stories
         </Typography>
         <BookCard stories={stories} />
-      </Container>
-
-      <Container sx={{marginBlock:'3rem'}}>
-      <Typography
-          variant="h4"
-          fontWeight={"bold"}
-          sx={{ marginBottom: "3rem" }}
-        >
-          More Stories
-        </Typography>
       </Container>
     </div>
   );

@@ -9,6 +9,7 @@ import { Typography } from "@mui/material";
 import { BiChevronLeftCircle, BiChevronRightCircle } from "react-icons/bi";
 import { useSwipeable } from "react-swipeable";
 import SimpleSnackbar from "./Snackbar";
+import Link from "next/link";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -80,6 +81,9 @@ const ReadBookPage = ({ params }: { params: { url: string } }) => {
       {...handlers}
       className="w-[100vw] min-h-[80vh] max-h-[100vh] flex items-center text-white justify-center flex-col text-3xl"
     >
+      <Link href={'/comics'}>
+      Go Back
+      </Link>
       <Document  file={doc_url} onLoadSuccess={onDocumentLoadSuccess}>
         <Page loading={<></>} pageNumber={pageNumber} />
       </Document>

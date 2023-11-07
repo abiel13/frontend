@@ -2,7 +2,6 @@
 import React , {useState} from "react";
 
 import Link from "next/link";
-import { useAppContext } from "../context/context";
 import EditIcon from "@mui/icons-material/Edit";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import UserDetails from "./UserDetails";
@@ -10,8 +9,6 @@ import EditModal from "./EditModal";
 
 const UserProfilePage = () => {
   const [visible, setVisible] = useState(false)
-  const { userData } = useAppContext();
-  const initials = userData?.firstname[0] + "." + userData?.lastname[0];
   return (
     <div className="min-h-screen relative">
       <div className="px-3 py-4 shadow-md ">
@@ -53,7 +50,7 @@ const UserProfilePage = () => {
               }}
             >
               <Typography fontWeight={"bold"} fontSize={24} color="white">
-                {initials == "undefined.undefined" ? "" : initials}
+                initialsF
               </Typography>
             </Box>
           </Grid>

@@ -1,5 +1,5 @@
 "use client";
-import { Stories } from "@/app/utils";
+import { Stories } from "@/types/types";
 import React, { Suspense } from "react";
 import { SplideSlide, Splide } from "@splidejs/react-splide";
 import '@splidejs/react-splide/css'
@@ -16,6 +16,7 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
     pagination: false,
     arrows: false,
     perPage: 3,
+    rewind:true,
     gap: "0.5rem",
     omitEnd: true,
     loop: true,
