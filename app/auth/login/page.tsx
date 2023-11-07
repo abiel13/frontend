@@ -98,6 +98,8 @@ export default function SignIn() {
     console.log(data);
     const raw: string = JSON.stringify(data);
     console.log(raw);
+
+
     try {
       toast("Connecting to server...", { theme: "colored" });
       const response = await axios.post(
