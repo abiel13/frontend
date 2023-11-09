@@ -1,20 +1,14 @@
-import axios from "axios";
 import { Stories } from "@/types/types";
 import Image from "next/image";
 import { BiBookReader, BiStar } from "react-icons/bi";
 import Book from "../../components/Book";
 import Link from "next/link";
 import { Typography, Grid, Container } from "@mui/material";
+import { getStories } from "@/request_api/ComicsApiRequest";
 
-async function getData() {
-  try {
-    const res = await axios.get("https://api.alteflix.com/api/v1/stories");
-    return res.data.data;
-  } catch (error) {}
-}
 
 const DetailsPage = async ({ params }: { params: { id: number } }) => {
-  const data: Stories[] = await getData();
+  const data: Stories[] = await getStories();
   const book: Stories[] = data?.filter((item) => item.id == params.id);
   const relatedBooks: Stories[] = data?.filter(
     (item) => item.category == book[0].category && item.id != book[0].id
