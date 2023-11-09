@@ -23,7 +23,7 @@ const Search = () => {
         />
         <FaSearch
           fill={"white"}
-          className=" right-[10%] bottom-[50%] translate-y-[50%] text-[1.2rem] absolute"
+          className=" right-[10%] bottom-[50%] translate-y-[50%] text-[1.1rem] absolute"
         />
       </div>
     </div>

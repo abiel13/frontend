@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Stories } from "@/app/utils";
+import { Stories } from "@/types/types";
 import Image from "next/image";
 import { BiBookReader, BiStar } from "react-icons/bi";
 import Book from "../../components/Book";

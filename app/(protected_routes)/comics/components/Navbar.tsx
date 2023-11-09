@@ -57,7 +57,7 @@ export default function HideAppBar() {
     <>
       <CssBaseline />
       <HideOnScroll>
-        <AppBar sx={{ bgcolor: "#121212" }}>
+        <AppBar sx={{ bgcolor: "#121212", boxShadow: "none" }}>
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
             <Link href={"/comics"}>
               {" "}
