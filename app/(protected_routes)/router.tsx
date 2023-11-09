@@ -7,7 +7,7 @@ export const Router = ({isLoggedin}:{isLoggedin:boolean}) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!isLoggedin) {
+    if (isLoggedin) {
       router.push("/auth/login");
     }
   }, []);
