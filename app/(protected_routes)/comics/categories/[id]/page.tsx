@@ -1,4 +1,4 @@
-import { Stories } from "@/app/utils";
+import { Stories } from "@/types/types";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Book from "../../components/Book";
