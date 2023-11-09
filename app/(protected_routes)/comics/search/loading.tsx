@@ -1,7 +1,7 @@
 "use client";
 import { Container } from "@mui/material";
 import React from "react";
-import LoadingComponent from "../../components/LoadingComponent";
+import LoadingComponent from "@/app/(protected_routes)/components/LoadingComponent";
 
 const SearchLoading = () => {
   return (

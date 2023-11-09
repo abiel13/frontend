@@ -1,5 +1,5 @@
 import { Stories } from "@/types/types";
-import Book from "../../components/Book";
+import Book from "@/app/(protected_routes)/comics/components/Book";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import { getStories } from "@/request_api/ComicsApiRequest";
