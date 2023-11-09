@@ -84,17 +84,22 @@ export default function SignIn() {
 
   const validateMobileLogin = () => {
     const mobileRegex = /^(?:\(\d{3}\)\s?|\d{3}-)\d{3}-\d{4}$/;
-    submitForm()
+    submitForm();
   };
 
   const submitForm = async () => {
+    const number: number = parseInt(`234${mobile}`);
+
     const data: Record<string, any> = !signWithMobile
       ? { email }
-      : { msisdn: `234${mobile}` };
+      : { msisdn: number };
     data.password = password;
 
+    console.log(data);
     const raw: string = JSON.stringify(data);
-    console.log(raw)
+    console.log(raw);
+
+
     try {
       toast("Connecting to server...", { theme: "colored" });
       const response = await axios.post(
@@ -172,7 +177,7 @@ export default function SignIn() {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Typography >+234</Typography>
+                      <Typography>+234</Typography>
                     </InputAdornment>
                   ),
                 }}

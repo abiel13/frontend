@@ -5,10 +5,9 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className=" min-h-screen bg-white py-4 ">
+    <main className=" min-h-screen background-gradients  py-4 ">
       <Navbar />
       <div>{children}</div>
-    
     </main>
   );
 }

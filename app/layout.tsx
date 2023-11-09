@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, Chewy, Architects_Daughter } from "next/font/google";
 import "./globals.css";
-import Provider from "./Provider";
-import {ToastContainer} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const poppins = Poppins({ weight: "400", subsets: [] });
+const chewy = Chewy({ weight: "400", subsets: ["latin"] });
+const arch = Architects_Daughter({ weight: "400", subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "AlteFlix",
   description: "A Comic Streaming App",
@@ -18,12 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
-        <main className='home_page'>
-          <Provider>
-             {children}
-             <ToastContainer/>
-          </Provider>
+      <body className={chewy.className}>
+        <main className="home_page">
+          {children}
+          <ToastContainer />
         </main>
       </body>
     </html>

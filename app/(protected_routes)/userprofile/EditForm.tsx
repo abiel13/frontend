@@ -1,7 +1,7 @@
 "use client";
 import { Button, Container, Stack, TextField, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { useAppContext } from "../context/context";
+
 
 interface FormData {
   firstname: string;
@@ -14,7 +14,7 @@ interface EditFormI{
 }
 
 const EditForm:React.FC<EditFormI> = ({editing}) => {
-  const { userData } = useAppContext();
+  
 
   const [formData, setFormData] = useState<FormData>({
     firstname: "",
@@ -23,14 +23,8 @@ const EditForm:React.FC<EditFormI> = ({editing}) => {
   });
 
   useEffect(() => {
-    if (userData) {
-      setFormData({
-        firstname: userData.firstname || "",
-        lastname: userData.lastname || "",
-        email: userData.email || "",
-      });
-    }
-  }, [userData]);
+  
+  }, []);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

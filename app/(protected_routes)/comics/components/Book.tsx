@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Stories } from "@/app/utils";
+import { Stories } from "@/types/types";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -34,14 +34,15 @@ const Book: React.FC<BookI> = ({ book }) => {
             sx={{
               fontSize: { md: "1.3rem", sm: ".8rem" },
               width: { md: 300, sm: 150 },
+              color:'white'
             }}
           >
             {book.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="white">
             {book.author}
           </Typography>
-          <Typography fontWeight={"bold"} color="text.secondary">
+          <Typography fontWeight={"bold"} color="white">
             {book.category}
           </Typography>
         </CardContent>
