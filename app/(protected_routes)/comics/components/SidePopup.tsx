@@ -46,9 +46,9 @@ const SidePopup = ({
           padding: "1rem",
         }}
       >
-        <Typography className="text-xl">
+        <h3 className="text-xl">
           Alte <span className="text-red-500 ">Flix</span>
-        </Typography>
+        </h3>
         <Close sx={{ color: "red" }} onClick={() => setVisible(false)} />
       </Box>
       <Link href={"/userprofile"}>
@@ -186,8 +186,8 @@ const SidePopup = ({
                 alignItems: "center",
               }}
             >
-              <CollectionsBookmarkIcon sx={{color:'white'}}  />
-              <Typography sx={{color:'white'}} >Bookmarks</Typography>
+              <CollectionsBookmarkIcon sx={{ color: "white" }} />
+              <Typography sx={{ color: "white" }}>Bookmarks</Typography>
             </Paper>
           </Link>
         </Stack>
@@ -207,8 +207,8 @@ const SidePopup = ({
           alignItems: "center",
         }}
       >
-        <ExitToAppIcon sx={{color:'white'}}  />
-        <Typography sx={{color:'white'}} >Logout</Typography>
+        <ExitToAppIcon sx={{ color: "white" }} />
+        <Typography sx={{ color: "white" }}>Logout</Typography>
       </Paper>
       <Divider light />
     </Stack>

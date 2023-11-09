@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
+import { authstore } from "@/store/store";
+import { Router } from "./router";
 
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  const isloggs = authstore.getState().isLoggedIn;
 
-
-const Layout = ({children}:{children:React.ReactNode}) => {
   return (
-    <div>{children}</div>
-  )
-}
+    <div>
+      <Router isLoggedin={isloggs} />
+      {children}
+    </div>
+  );
+};
 
-export default Layout
+export default Layout;

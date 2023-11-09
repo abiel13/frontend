@@ -1,0 +1,8 @@
+.loader {
+  animation: c1 1s linear infinite alternate;
+}
+@keyframes c1 {
+  to {
+    opacity: 0;
+  }
+}
