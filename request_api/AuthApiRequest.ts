@@ -5,21 +5,19 @@ import { toast } from "react-toastify";
 
 export const loginUserRequest = async ({
   mobile,
-  signWithMobile,
   email,
   password,
 }: {
   mobile: number;
-  signWithMobile: boolean;
   email: string;
   password: string;
 }) => {
   const number: number = parseInt(`234${mobile}`);
 
-  const data: Record<string, any> = !signWithMobile
-    ? { email }
-    : { msisdn: number };
-  data.password = password;
+  const data = {
+    email,
+    password,
+  };
 
   console.log(data);
   const raw: string = JSON.stringify(data);
@@ -42,3 +40,11 @@ export const loginUserRequest = async ({
     });
   }
 };
+
+export const loginWithMobile = () => {};
+
+export const RegisterUser = () => {};
+
+export const recoverPassword = () => {};
+
+export const resetPassword = () => {};

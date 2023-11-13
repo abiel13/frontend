@@ -1,30 +1,21 @@
 import React, { useState } from "react";
-import Avatar from "@mui/material/Avatar";
-
 import CssBaseline from "@mui/material/CssBaseline";
-
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import Copyright from "@/app/components/CopyRight";
 import LoginForm from "./loginForm";
+import { Stack } from "@mui/material";
+import Link from "next/link";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
 export default function SignIn() {
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <Box
+      <Stack
+        spacing={3}
         sx={{
           marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
           alignItems: "center",
         }}
       >
@@ -33,10 +24,22 @@ export default function SignIn() {
           variant="h5"
           sx={{ cursor: "pointer", color: "white" }}
         >
-          Sign in
+          Sign in To Alteflix
         </Typography>
         <LoginForm />
-      </Box>
+        <Stack
+          sx={{ width: "100%" }}
+          direction={"row"}
+          justifyContent={"space-between"}
+        >
+          <Link href={"/auth/recover"}>
+            <p className="text-red-500">Forgot Password</p>
+          </Link>
+          <Link href={"/auth/signup"}>
+            <p className="text-white">Dont have an account ? Register</p>
+          </Link>
+        </Stack>
+      </Stack>
     </Container>
   );
 }
