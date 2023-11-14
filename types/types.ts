@@ -1,4 +1,4 @@
-export type User = {
+export type TUser = {
   email: string;
   firstname: string;
   has_subscription: boolean;

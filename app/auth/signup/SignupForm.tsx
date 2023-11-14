@@ -45,6 +45,7 @@ const SignupForm = () => {
             title="first name"
             value=""
             change={() => {}}
+            type="text"
           />
         </Grid>
         <Grid item xs={12} md={5}>
@@ -52,6 +53,7 @@ const SignupForm = () => {
             name="lastname"
             title="last name"
             value=""
+            type="text"
             change={() => {}}
           />
         </Grid>
@@ -60,6 +62,7 @@ const SignupForm = () => {
             name="email"
             title="email address"
             value=""
+            type="email"
             change={() => {}}
           />
         </Grid>
@@ -68,15 +71,17 @@ const SignupForm = () => {
             name="password"
             title="password"
             value=""
+            type="password"
             change={() => {}}
           />
         </Grid>
         <Grid item xs={12}>
           <FormField
-            name="first name"
+            name="confirm_password"
             title="confirm password"
             value=""
             change={() => {}}
+            type="password"
           />
         </Grid>
       </Grid>

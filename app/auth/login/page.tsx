@@ -6,10 +6,11 @@ import Container from "@mui/material/Container";
 import LoginForm from "./loginForm";
 import { Stack } from "@mui/material";
 import Link from "next/link";
-
-// TODO remove, this demo shouldn't need to reset the theme.
+import { UserStore } from "@/store/store";
 
 export default function SignIn() {
+  const setUser = UserStore.getState().setUser;
+
   return (
     <Container component="main" maxWidth="xs">
       <Stack
