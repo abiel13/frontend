@@ -2,7 +2,7 @@
 import { Stories } from "@/types/types";
 import React, { Suspense } from "react";
 import { SplideSlide, Splide } from "@splidejs/react-splide";
-import '@splidejs/react-splide/css'
+import "@splidejs/react-splide/css";
 
 import Book from "./Book";
 
@@ -16,7 +16,7 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
     pagination: false,
     arrows: false,
     perPage: 3,
-    rewind:true,
+    rewind: true,
     gap: "0.5rem",
     omitEnd: true,
     loop: true,
@@ -36,9 +36,9 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
   };
 
   return (
-    <div className='px-0 md:px-0 '>
+    <div className="px-0 md:px-0 ">
       {stories && (
-        <Splide className='py-[1rem}' options={option}>
+        <Splide className="py-[1rem}" options={option}>
           {stories?.map((item, i) => (
             <SplideSlide key={i}>
               <Book book={item} />
@@ -46,9 +46,7 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
           ))}
         </Splide>
       )}
-    
     </div>
-
   );
 };
 

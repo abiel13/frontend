@@ -1,31 +1,55 @@
 "use client";
 import { Box, Stack } from "@mui/material";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import FormField from "../components/FormFields";
 import { useFormik } from "formik";
 import CtaButton from "../components/CtaButton";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { loginMobile, loginSchema } from "../validations/validations";
-import { loginUserRequest } from "@/request_api/AuthApiRequest";
-import { UserStore } from "@/store/store";
+import {
+  loginUserRequest,
+  loginWithMobile,
+} from "@/request_api/AuthApiRequest";
+import { TUser } from "@/types/types";
+import { useRouter } from "next/navigation";
 
-const LoginForm = ({setUser}: any) => {
+interface LoginFormI {
+  setUser: (e: TUser) => {};
+}
+
+const LoginForm: FC<LoginFormI> = ({ setUser }) => {
   const [phone, setPhone] = useState("");
   const [isMobile, setisMobile] = useState<boolean>(false);
   const [phoneerror, setPhoneerror] = useState("");
+  const router = useRouter();
 
   let onSubmit = async (values: any) => {
     const { email, password } = values;
-    console.log(values);
-    console.log(phone);
+    console.log(phone.split("+")[1]);
 
     if (!isMobile) {
       try {
         const response = await loginUserRequest({ email, password });
-        console.log(response?.data);
-        setUser(response?.data);
+        if (response?.data) {
+          setUser(response?.data);
+          router.push("/comics");
+        }
       } catch (error) {
         console.error("an error occured");
+      }
+    } else {
+      try {
+        const parsenum = parseInt(phone.split("+")[1]);
+        const response = await loginWithMobile({
+          msisdn: parsenum,
+          password,
+        });
+        if (response?.data) {
+          setUser(response?.data);
+          router.push("/comics");
+        }
+      } catch (error) {
+        console.error(error);
       }
     }
   };

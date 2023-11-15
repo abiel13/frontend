@@ -9,6 +9,7 @@ const Search = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     if (!value.length) return;
+    setSearchItem(value);
     router.push(`/comics/search/${value}`);
   };
 
