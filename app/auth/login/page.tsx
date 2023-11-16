@@ -1,16 +1,12 @@
-import React, { useState } from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
+import React from "react";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import LoginForm from "./loginForm";
 import { Stack } from "@mui/material";
 import Link from "next/link";
 import { UserStore } from "@/store/store";
-import { TUser } from "@/types/types";
 
 export default function SignIn() {
- 
   return (
     <Container component="main" maxWidth="xs">
       <Stack
@@ -30,8 +26,12 @@ export default function SignIn() {
         <LoginForm
           setUser={async (value) => {
             "use server";
-            const setUser = UserStore.getState().setUser;
-            setUser(value);
+            try {
+              const setUser = UserStore.getState().setUser;
+              setUser(value);
+            } catch (error) {
+              console.log(error);
+            }
           }}
         />
         <Stack
