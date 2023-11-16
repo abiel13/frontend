@@ -19,6 +19,7 @@
 .DS_Store
 *.pem
 
+/scratch/AlteFlxUser
 # debug
 npm-debug.log*
 yarn-debug.log*
