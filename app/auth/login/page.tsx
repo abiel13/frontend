@@ -6,10 +6,11 @@ import Container from "@mui/material/Container";
 import LoginForm from "./loginForm";
 import { Stack } from "@mui/material";
 import Link from "next/link";
-
-// TODO remove, this demo shouldn't need to reset the theme.
+import { UserStore } from "@/store/store";
+import { TUser } from "@/types/types";
 
 export default function SignIn() {
+ 
   return (
     <Container component="main" maxWidth="xs">
       <Stack
@@ -26,7 +27,13 @@ export default function SignIn() {
         >
           Sign in To Alteflix
         </Typography>
-        <LoginForm />
+        <LoginForm
+          setUser={async (value) => {
+            "use server";
+            const setUser = UserStore.getState().setUser;
+            setUser(value);
+          }}
+        />
         <Stack
           sx={{ width: "100%" }}
           direction={"row"}

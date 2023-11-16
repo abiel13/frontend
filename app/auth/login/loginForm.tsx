@@ -1,33 +1,76 @@
 "use client";
-import { Box, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Stack } from "@mui/material";
+import React, { FC, useState } from "react";
 import FormField from "../components/FormFields";
-import Link from "next/link";
-import { title } from "process";
+import { useFormik } from "formik";
 import CtaButton from "../components/CtaButton";
+import { isValidPhoneNumber } from "react-phone-number-input";
+import { loginMobile, loginSchema } from "../validations/validations";
+import {
+  loginUserRequest,
+  loginWithMobile,
+} from "@/request_api/AuthApiRequest";
+import { TUser } from "@/types/types";
+import { useRouter } from "next/navigation";
 
-interface loginI {
-  email: string;
-  password: string;
+interface LoginFormI {
+  setUser: (e: TUser) => {};
 }
 
-const LoginForm = () => {
-  const [LoginData, setLoginData] = useState<loginI>({
-    email: "",
-    password: "",
-  });
+const LoginForm: FC<LoginFormI> = ({ setUser }) => {
+  const [phone, setPhone] = useState("");
   const [isMobile, setisMobile] = useState<boolean>(false);
+  const [phoneerror, setPhoneerror] = useState("");
+  const router = useRouter();
 
-  const handleChange = (Event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = Event.target;
-    setLoginData((prev) => {
-      return { ...prev, [name]: value };
-    });
+  let onSubmit = async (values: any) => {
+    const { email, password } = values;
+    console.log(phone.split("+")[1]);
+
+    if (!isMobile) {
+      try {
+        const response = await loginUserRequest({ email, password });
+        if (response?.data) {
+          setUser(response?.data);
+          router.push("/comics");
+        }
+      } catch (error) {
+        console.error("an error occured");
+      }
+    } else {
+      try {
+        const parsenum = parseInt(phone.split("+")[1]);
+        const response = await loginWithMobile({
+          msisdn: parsenum,
+          password,
+        });
+        if (response?.data) {
+          setUser(response?.data);
+          router.push("/comics");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
-  const validate = () => {};
+  const { values, errors, handleSubmit, handleChange } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+      mobile: "",
+    },
+    onSubmit,
+    validationSchema: isMobile ? loginMobile : loginSchema,
+  });
 
-  const login = async () => {};
+  const validatePhone = () => {
+    if (!isValidPhoneNumber(phone) && isMobile) {
+      setPhoneerror("Invalid phone number for selected country");
+      return;
+    }
+    setPhoneerror((prev) => (prev = ""));
+  };
 
   return (
     <Stack spacing={4} sx={{ marginTop: "1rem", width: "100%" }}>
@@ -42,28 +85,38 @@ const LoginForm = () => {
         </p>
       </Box>
       {isMobile ? (
-        <FormField
-          name="mobile"
-          value=""
-          title="Mobile Number"
-          change={handleChange}
-        />
+        <>
+          <FormField
+            name="mobile"
+            value={phone}
+            title="Mobile Number"
+            change={setPhone}
+            type="number"
+          />
+          <p className="text-red-500">{phoneerror.length != 0 && phoneerror}</p>
+        </>
       ) : (
-        <FormField
-          change={handleChange}
-          value={LoginData.email}
-          title="Email Address"
-          name="email"
-        />
+        <>
+          <FormField
+            value={values.email}
+            title="Email Address"
+            name="email"
+            type="email"
+            change={handleChange}
+          />
+          {errors.email && <p className="text-red-500">{errors.email}</p>}
+        </>
       )}
-
       <FormField
-        change={handleChange}
-        value={LoginData.password}
+        value={values.password}
         title="password"
         name="password"
+        change={handleChange}
+        type="password"
       />
-      <CtaButton title="Login" />
+      {errors.password && <p className="text-red-500">{errors.password}</p>}
+
+      <CtaButton title="Login" click={handleSubmit} />
     </Stack>
   );
 };

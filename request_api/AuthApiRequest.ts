@@ -1,50 +1,75 @@
-//login user
-
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const loginUserRequest = async ({
-  mobile,
-  email,
-  password,
-}: {
-  mobile: number;
+//login user
+export const loginUserRequest = async (data: {
   email: string;
   password: string;
 }) => {
-  const number: number = parseInt(`234${mobile}`);
-
-  const data = {
-    email,
-    password,
-  };
-
   console.log(data);
   const raw: string = JSON.stringify(data);
-  console.log(raw);
-  try {
-    toast("Connecting to server...", { theme: "colored" });
-    const response = await axios.post(
-      "https://api.alteflix.com/api/v1/accounts/login",
-      raw,
-      {
-        headers: { "Content-Type": "application/json" },
-      }
-    );
 
-    toast.success("Login Sucessful", { theme: "colored" });
-    localStorage.setItem("AlteFlixUser", JSON.stringify(response.data.data));
-  } catch (errors: any) {
-    toast.error(`Error: ${errors.response.data.errors}`, {
-      theme: "colored",
-    });
+  try {
+    const response = await axios
+      .post("https://api.alteflix.com/api/v1/accounts/login", raw, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return response?.data;
+  } catch (error) {
+    console.log(error);
   }
 };
 
-export const loginWithMobile = () => {};
+//login with mobile
+export const loginWithMobile = async (data: {
+  msisdn: number;
+  password: string;
+}) => {
+  const raw: string = JSON.stringify(data);
+  console.log(raw);
+  try {
+    const response = await axios
+      .post("https://api.alteflix.com/api/v1/accounts/login", raw, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .catch((err) => {
+        toast.error(err?.response.data.errors[0], { theme: "colored" });
+      });
+    return response?.data;
+  } catch (error: any) {
+    toast.error(error);
+  }
+};
 
-export const RegisterUser = () => {};
+export const RegisterUser = async (data: any) => {
+  const raw = JSON.stringify(data);
 
-export const recoverPassword = () => {};
+  try {
+    const response = await axios.post("");
+  } catch (error) {}
+};
 
+export const recoverPasswordRequest = async (data: { email: string }) => {
+  const raw = JSON.stringify(data);
+
+  try {
+    const response = await axios
+      .post("https://api.alteflix.com/api/v1/accounts/password_recovery", raw, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return response?.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// reset password
 export const resetPassword = () => {};
