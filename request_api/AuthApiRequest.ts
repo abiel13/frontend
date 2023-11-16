@@ -48,13 +48,28 @@ export const RegisterUser = async (data: any) => {
   const raw = JSON.stringify(data);
 
   try {
-    const response = await axios.post("")
-  } catch (error) {
-    
-  }
-
+    const response = await axios.post("");
+  } catch (error) {}
 };
 
-export const recoverPassword = () => {};
+export const recoverPasswordRequest = async (data: { email: string }) => {
+  const raw = JSON.stringify(data);
 
+  try {
+    const response = await axios
+      .post("https://api.alteflix.com/api/v1/accounts/password_recovery", raw, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return response?.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// reset password
 export const resetPassword = () => {};

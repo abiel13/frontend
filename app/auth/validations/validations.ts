@@ -42,3 +42,11 @@ export const signupSchema = yup.object({
     .oneOf([yup.ref("password")], "Passwords must match")
     .required("Required"),
 });
+
+export const recoverPasswordSchema = yup.object({
+  email: yup.string().email("invalid email type").required("Required"),
+});
+
+export const resetPasswordSchema = yup.object({
+  pin: yup.string().required("Required"),
+});
