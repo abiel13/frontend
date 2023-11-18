@@ -12,6 +12,7 @@ import {
 } from "@/request_api/AuthApiRequest";
 import { TUser } from "@/types/types";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 interface LoginFormI {
   setUser: (e: TUser) => {};
@@ -32,6 +33,8 @@ const LoginForm: FC<LoginFormI> = ({ setUser }) => {
         const response = await loginUserRequest({ email, password });
         if (response?.data) {
           setUser(response?.data);
+          localStorage.setItem("AlteFlixUser", JSON.stringify(response?.data));
+          toast.success("Login Successful", { theme: "colored" });
           router.push("/comics");
         }
       } catch (error) {

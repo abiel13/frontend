@@ -1,6 +1,6 @@
-import { LocalStorage } from "node-localstorage";
-
-global.localStorage = new LocalStorage("./scratch");
+"use client";
 
 export const isLoggedIn = !localStorage.getItem("AlteFlixUser");
-export const user = localStorage.getItem("AlteFlixUser");
+export const user = JSON.parse(localStorage.getItem("AlteFlixUser")!);
+
+console.log(isLoggedIn, user);

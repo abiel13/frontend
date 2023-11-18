@@ -1,14 +1,13 @@
-'use server'
-
+// "use server";
 import { create } from "zustand";
 import { TAuthStore, TUserStore } from "./storeTypes";
 import { isLoggedIn, user } from "./storeutils";
 import { TUser } from "@/types/types";
 
 export const UserStore = create<TUserStore>((set) => ({
-  user: JSON.parse(user!),
+  user: user,
   setUser(value) {
-    localStorage.setItem("AlteFlixUser", JSON.stringify(value));
+    console.log(user, isLoggedIn);
     set({ user: value });
   },
 }));
