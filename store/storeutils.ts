@@ -1,8 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-export const isLoggedIn = !localStorage.getItem("AlteFlixUser");
-export const user = JSON.parse(localStorage.getItem("AlteFlixUser")!);
+export const isLoggedIn =
+  typeof window !== undefined && !localStorage.getItem("AlteFlixUser");
+export const user =
+  typeof window !== undefined &&
+  JSON.parse(localStorage.getItem("AlteFlixUser")!);
 
-console.log(isLoggedIn, user); 
-
+console.log(isLoggedIn, user);

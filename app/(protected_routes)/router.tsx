@@ -1,15 +1,16 @@
 "use client";
+import React from "react";
 import { authstore } from "@/store/store";
+import { isLoggedIn } from "@/store/storeutils";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
 
-export const Router = () => {
+const Router = () => {
   const router = useRouter();
-  const isloggedIn = authstore((state) => state.isLoggedIn);
-
-  if (!isloggedIn) {
-    router.push("/comics");
+  const loggedin = authstore((state) => state.isLoggedIn);
+  if (!loggedin) {
+    router.push("/auth/login");
   }
-
-  return <div></div>;
+  return <></>;
 };
+
+export default Router;

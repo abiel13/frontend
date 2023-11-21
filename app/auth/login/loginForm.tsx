@@ -10,16 +10,12 @@ import {
   loginUserRequest,
   loginWithMobile,
 } from "@/request_api/AuthApiRequest";
-import { TUser } from "@/types/types";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { UserStore, authstore } from "@/store/store";
 
-interface LoginFormI {
-  setUser: (e: TUser) => {};
-}
 
-const LoginForm: FC<LoginFormI> = () => {
+const LoginForm= () => {
   const [phone, setPhone] = useState("");
   const [isMobile, setisMobile] = useState<boolean>(false);
   const [phoneerror, setPhoneerror] = useState("");
