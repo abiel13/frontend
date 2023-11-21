@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import BottomNav from "./components/BottomNav";
-import Router from "../Router";
+import Router from "../components/Router";
 
 export default function ComicsLayout({
   children,
