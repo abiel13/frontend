@@ -12,7 +12,7 @@ import {
 } from "@/request_api/AuthApiRequest";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { UserStore, authstore } from "@/store/store";
+import {  authstore } from "@/store/store";
 
 
 const LoginForm= () => {
@@ -20,7 +20,7 @@ const LoginForm= () => {
   const [isMobile, setisMobile] = useState<boolean>(false);
   const [phoneerror, setPhoneerror] = useState("");
   const router = useRouter();
-  const setUser = UserStore((state) => state.setUser);
+  const setUser = authstore((state) => state.setUser);
   const setlogged = authstore((state) => state.setLoggedIn);
 
   let onSubmit = async (values: any) => {

@@ -1,10 +1,15 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { authstore } from "@/store/store";
-import { isLoggedIn } from "@/store/storeutils";
+
 import { useRouter } from "next/navigation";
 
 const Router = () => {
+  const execWindow = authstore((state) => state.initializeWindowEvent);
+  useEffect(() => {
+    execWindow();
+  }, []);
+
   const router = useRouter();
   const loggedin = authstore((state) => state.isLoggedIn);
   if (!loggedin) {
