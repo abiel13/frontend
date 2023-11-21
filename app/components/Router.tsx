@@ -6,15 +6,15 @@ import { useRouter } from "next/navigation";
 
 const Router = () => {
   const execWindow = authstore((state) => state.initializeWindowEvent);
-  useEffect(() => {
-    execWindow();
-  }, []);
-
   const router = useRouter();
   const loggedin = authstore((state) => state.isLoggedIn);
-  if (!loggedin) {
-    router.push("/auth/login");
-  }
+  useEffect(() => {
+    execWindow();
+    if (!loggedin) {
+      router.push("/auth/login");
+    }
+  }, []);
+
   return <></>;
 };
 
