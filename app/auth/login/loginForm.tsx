@@ -10,19 +10,18 @@ import {
   loginUserRequest,
   loginWithMobile,
 } from "@/request_api/AuthApiRequest";
-import { TUser } from "@/types/types";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import {  authstore } from "@/store/store";
 
-interface LoginFormI {
-  setUser: (e: TUser) => {};
-}
 
-const LoginForm: FC<LoginFormI> = ({ setUser }) => {
+const LoginForm= () => {
   const [phone, setPhone] = useState("");
   const [isMobile, setisMobile] = useState<boolean>(false);
   const [phoneerror, setPhoneerror] = useState("");
   const router = useRouter();
+  const setUser = authstore((state) => state.setUser);
+  const setlogged = authstore((state) => state.setLoggedIn);
 
   let onSubmit = async (values: any) => {
     const { email, password } = values;
@@ -33,6 +32,7 @@ const LoginForm: FC<LoginFormI> = ({ setUser }) => {
         const response = await loginUserRequest({ email, password });
         if (response?.data) {
           setUser(response?.data);
+          setlogged(true);
           localStorage.setItem("AlteFlixUser", JSON.stringify(response?.data));
           toast.success("Login Successful", { theme: "colored" });
           router.push("/comics");
@@ -48,7 +48,11 @@ const LoginForm: FC<LoginFormI> = ({ setUser }) => {
           password,
         });
         if (response?.data) {
+          console.log(response?.data);
+          localStorage.setItem("AlteFlixUser", JSON.stringify(response?.data));
           setUser(response?.data);
+          setlogged(true);
+          toast.success("Login Successful", { theme: "colored" });
           router.push("/comics");
         }
       } catch (error) {

@@ -1,4 +1,4 @@
-import LoadingComponent from "@/app/(protected_routes)/components/LoadingComponent";
+import LoadingComponent from "@/app/components/LoadingComponent";
 import { Container } from "@mui/material";
 import React from "react";
 import { ColorRing } from "react-loader-spinner";

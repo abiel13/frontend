@@ -1,6 +1,23 @@
-"use client";
+// "use client";
+// import { useEffect, useState } from "react";
 
-export const isLoggedIn = !localStorage.getItem("AlteFlixUser");
-export const user = JSON.parse(localStorage.getItem("AlteFlixUser")!);
+// declare var window: Window & typeof globalThis;
 
-console.log(isLoggedIn, user);
+// let isLoggedIn;
+// let user;
+
+// if (typeof window !== undefined) {
+//   window.addEventListener("load", () => {
+//     isLoggedIn = !localStorage.getItem("AlteFlixUser");
+//     user = JSON.parse(localStorage.getItem("AlteFlixUser")!);
+//   });
+// }
+
+// const data = { isLoggedIn, user };
+
+// export default data;
+
+
+
+
+// // 

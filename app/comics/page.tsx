@@ -11,7 +11,8 @@ interface ComicPageProps {}
 const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
   const stories: Stories[] = await getStories();
   return (
-    <div className="bg-blak flex flex-col items-center md:px-[5rem]   min-h-[100vh] px-3 py-[1rem] mt-3 font-bold">
+    <>
+     <div className="bg-blak flex flex-col items-center md:px-[5rem]   min-h-[100vh] px-3 py-[1rem] mt-3 font-bold">
       <Categories />
       <Banner />
       <Container sx={{ marginBlock: "3rem" }}>
@@ -25,6 +26,8 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
         <BookCard stories={stories} />
       </Container>
     </div>
+    </>
+   
   );
 };
 

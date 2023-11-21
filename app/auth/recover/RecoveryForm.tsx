@@ -16,7 +16,9 @@ const RecoveryForm: FC<{}> = () => {
       const response = await recoverPasswordRequest(values);
       toast.success(response?.data, { theme: "colored" });
       router.push("/auth/reset");
-    } catch (error) {}
+    } catch (error) {
+      console.error('an error occured')
+    }
   };
 
 

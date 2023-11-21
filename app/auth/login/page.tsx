@@ -4,7 +4,6 @@ import Container from "@mui/material/Container";
 import LoginForm from "./loginForm";
 import { Stack } from "@mui/material";
 import Link from "next/link";
-import { UserStore } from "@/store/store";
 
 export default function SignIn() {
   return (
@@ -23,17 +22,7 @@ export default function SignIn() {
         >
           Sign in To Alteflix
         </Typography>
-        <LoginForm
-          setUser={async (value) => {
-            "use server";
-            try {
-              const setUser = UserStore.getState().setUser;
-              setUser(value);
-            } catch (error) {
-              console.log(error);
-            }
-          }}
-        />
+        <LoginForm />
         <Stack
           sx={{ width: "100%" }}
           direction={"row"}
