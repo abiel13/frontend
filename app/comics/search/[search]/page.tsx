@@ -3,6 +3,7 @@ import Book from "@/app/comics/components/Book";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import { getStories } from "@/request_api/ComicsApiRequest";
+import NoResults from "../../components/NoResults";
 
 const SearchPage = async ({ params }: { params: { search: string } }) => {
   const stories: Stories[] = await getStories();
@@ -13,13 +14,12 @@ const SearchPage = async ({ params }: { params: { search: string } }) => {
   );
 
   return (
-    <div className="text-black text-3xl px-[1rem] md:px-[5rem]  mt-[2rem]">
+    <div className="text-white text-3xl px-[1rem] md:px-[5rem]  mt-[2rem]">
       <Typography variant="h6">
         search results for <span className="font-bold"> {params.search}</span>
       </Typography>
-
       {!searchMathches?.length ? (
-        <Typography color="red">No Search Results</Typography>
+        <NoResults />
       ) : (
         <Grid container sx={{ mt: "1.5rem" }} spacing={1}>
           {searchMathches?.map((items) => (

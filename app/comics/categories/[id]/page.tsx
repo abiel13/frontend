@@ -5,6 +5,7 @@ import Book from "../../components/Book";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Container } from "@mui/material";
+import NoResults from "../../components/NoResults";
 
 async function getdata() {
   try {
@@ -22,13 +23,18 @@ const Categories = async ({ params }: { params: { id: number } }) => {
   );
 
   return (
-    <div className="text-black text-3xl px-[1rem] mt-[2rem]">
+    <div className="text-white text-3xl px-[1rem] mt-[2rem]">
       <Container>
-        <Typography variant="h6">search results</Typography>
+        {catStories[0]?.category && (
+          <Typography variant="h6">
+            {" "}
+            Category results for {catStories[0]?.category}{" "}
+          </Typography>
+        )}
       </Container>
       {!catStories.length ? (
         <Container>
-          <Typography color="red">No Books found for the category</Typography>
+          <NoResults />
         </Container>
       ) : (
         <Container>

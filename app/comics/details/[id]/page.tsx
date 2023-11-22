@@ -1,11 +1,13 @@
 import { Stories } from "@/types/types";
 import Image from "next/image";
-import { BiBookReader, BiStar } from "react-icons/bi";
+import { FaBookOpen } from "react-icons/fa6";
 import Book from "../../components/Book";
 import Link from "next/link";
-import { Typography, Grid, Container } from "@mui/material";
+import { Typography, Grid, Container, Stack } from "@mui/material";
 import { getStories } from "@/request_api/ComicsApiRequest";
-
+import { MdStars } from "react-icons/md";
+import DetailsCta from "../../components/DetailsCta";
+import Details from "../../components/Details";
 
 const DetailsPage = async ({ params }: { params: { id: number } }) => {
   const data: Stories[] = await getStories();
@@ -15,109 +17,29 @@ const DetailsPage = async ({ params }: { params: { id: number } }) => {
   );
 
   return (
-    <div className="min-h-[90vh] my-10  py-[2rem] text-white text-2xl">
+    <Stack
+      spacing={8}
+      className="min-h-[90vh] my-10  py-[2rem] text-white px-4 text-2xl"
+    >
       {book?.map((item, i) => (
-        <div
-          key={i}
-          className=" w-full flex flex-col md:flex-row gap-8 md:gap-0  md:w-3/4 mx-auto min-h-[60vh]"
-        >
-          <div className="flex-1 flex items-center relative justify-center ">
-            <Image
-              className="w-full h-[70vh]  md:w-1/2 md:h-full  aspect-[4/3]"
-              quality={100}
-              src={item.background_url}
-              alt="bg-img"
-              width={250}
-              height={250}
-            />
-            <div className="flex items-end md:hidden absolute  top-0 right-0 bottom-0 left-0 opacity-60 justify-center gap-8 bg-black">
-              <div className="flex cursor-pointer  items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
-                <Link href={`/read-comics/${item.id}`}>
-                  <BiBookReader />
-                </Link>
-              </div>
-              <div className="flex cursor-pointer   items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
-                <BiStar />
-              </div>
-            </div>
-          </div>
-          <div className="flex-1 flex  flex-col">
-            <div className="flex flex-1 px-4 justify-between">
-              <div className="flex-1  flex gap-8 flex-col justify-between">
-                <div
-                  className="text-sm text-black md:text-base "
-                  dangerouslySetInnerHTML={{ __html: item.description }}
-                />
-                <div className="flex flex-col gap-5 md:gap-2">
-                  <div className=" flex items-center gap-2">
-                    <p className=" text-sm md:text-base text-black font-normal md:font-bold tracking-widest">
-                      Title:
-                    </p>{" "}
-                    <p className="  md:font-medium  md:text-base text-black text-sm font-light">
-                      {" "}
-                      {item.title}
-                    </p>
-                  </div>
-                  <div className=" flex items-center gap-2">
-                    <p className="  text-sm md:text-base text-black font-normal md:font-bold tracking-widest">
-                      Category:
-                    </p>{" "}
-                    <p className="  md:font-medium  md:text-base text-black text-sm font-light">
-                      {item.category}
-                    </p>{" "}
-                  </div>
-                  <div className=" flex items-center gap-2">
-                    <p className="  text-sm md:text-base text-black font-normal md:font-bold tracking-widest">
-                      Publisher:
-                    </p>{" "}
-                    <p className="  md:font-medium  md:text-base text-black text-sm font-light">
-                      {item.author}
-                    </p>{" "}
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex-1 flex justify-end">
-                {" "}
-                <Image
-                  src={item.thumbnail_url}
-                  alt="sample image"
-                  width={150}
-                  height={150}
-                />
-              </div>
-            </div>
-            <div className="hidden md:flex gap-10   flex-1 py-8">
-              <div className="flex cursor-pointer  items-center border-2 border-black w-[50px] h-[50px] rounded-full justify-center">
-                <Link href={`/read-comics/${item.id}`}>
-                  <BiBookReader fill="black" />
-                </Link>
-              </div>
-              <div className="flex cursor-pointer   items-center border-2 border-black w-[50px] h-[50px] rounded-full justify-center">
-                <BiStar fill="black" />
-              </div>
-            </div>
-          </div>
-        </div>
+        <>
+          <Details key={i} item={item} />
+        </>
       ))}
+      {relatedBooks && (
+        <Stack sx={{ padding: "1rem 2rem" }} spacing={4}>
+          <Typography
+            sx={{ fontWeight: "bold", fontSize: { md: "2rem", xs: "1.4rem" } }}
+          >
+            Related Books
+          </Typography>
 
-      <div className="w-full md:w-3/4 mx-auto flex flex-col items-center gap-5 my-[2.5rem]">
-        <h4 className="text-black">Related Stories</h4>
-        <Container>
-          {!relatedBooks?.length ? (
-            <Typography color="red">No Search Results</Typography>
-          ) : (
-            <Grid container sx={{ mt: "1.5rem" }} spacing={1}>
-              {relatedBooks?.map((items) => (
-                <Grid item key={items.id} xs={6} md={4}>
-                  <Book book={items} />
-                </Grid>
-              ))}
-            </Grid>
-          )}
-        </Container>
-      </div>
-    </div>
+          {relatedBooks.map((item, i) => (
+            <Book key={i} book={item} />
+          ))}
+        </Stack>
+      )}
+    </Stack>
   );
 };
 

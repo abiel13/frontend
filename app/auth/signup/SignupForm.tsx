@@ -2,6 +2,8 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import FormField from "../components/FormFields";
+import { useFormik } from "formik";
+import CtaButton from "../components/CtaButton";
 
 interface signupI {
   firstname: string;
@@ -9,24 +11,25 @@ interface signupI {
   email: string;
   password: string;
   confirmPassword: string;
+  newsletter_subscription: boolean;
 }
 
 const SignupForm = () => {
-  const [registerData, setRegisterData] = useState<signupI>({
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+  const onSubmit = () => {};
+
+  const { values, errors, handleChange, handleSubmit } = useFormik<signupI>({
+    initialValues: {
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      newsletter_subscription: true,
+    },
+    onSubmit,
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
 
-    setRegisterData((prev) => {
-      return { ...prev, [name]: value };
-    });
-  };
 
   return (
     <>
@@ -43,7 +46,7 @@ const SignupForm = () => {
           <FormField
             name="firstname"
             title="first name"
-            value=""
+            value={values.firstname}
             change={() => {}}
             type="text"
           />
@@ -52,7 +55,7 @@ const SignupForm = () => {
           <FormField
             name="lastname"
             title="last name"
-            value=""
+            value={values.lastname}
             type="text"
             change={() => {}}
           />
@@ -61,7 +64,7 @@ const SignupForm = () => {
           <FormField
             name="email"
             title="email address"
-            value=""
+            value={values.email}
             type="email"
             change={() => {}}
           />
@@ -70,7 +73,7 @@ const SignupForm = () => {
           <FormField
             name="password"
             title="password"
-            value=""
+            value={values.password}
             type="password"
             change={() => {}}
           />
@@ -79,26 +82,13 @@ const SignupForm = () => {
           <FormField
             name="confirm_password"
             title="confirm password"
-            value=""
+            value={values.confirmPassword}
             change={() => {}}
             type="password"
           />
         </Grid>
       </Grid>
-      <Box
-        className="bg-red-600"
-        sx={{
-          width: { md: "50%", xs: "100%" },
-          color: "white",
-          padding: "1rem",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          borderRadius: "4px",
-        }}
-      >
-        <Typography sx={{ fontSize: "1.3rem" }}>Sign Up</Typography>
-      </Box>
+   <CtaButton title="Register now"/>
     </>
   );
 };
