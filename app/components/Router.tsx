@@ -7,12 +7,14 @@ import { useRouter } from "next/navigation";
 const Router = () => {
   const execWindow = authstore((state) => state.initializeWindowEvent);
   const router = useRouter();
-  const loggedin = authstore((state) => state.isLoggedIn);
   useEffect(() => {
     execWindow();
+    const loggedin = authstore.getState().isLoggedIn;
     if (!loggedin) {
       router.push("/auth/login");
+      console.log(loggedin);
     }
+
   }, []);
 
   return <></>;
