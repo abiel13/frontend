@@ -1,8 +1,14 @@
 import { Container, Typography } from "@mui/material";
-import React from "react";
+import React, { FC } from "react";
 
-const UserDetails = () => {
-  const fullname = "fullname";
+
+interface UserDetailsI {
+  fullname:string
+  user:any
+}
+
+const UserDetails:FC<UserDetailsI> = ({fullname , user}) => {
+  console.log(fullname)
   return (
     <>
       <Container sx={{ marginTop: { md: "5%", xs: "20%" } }}>

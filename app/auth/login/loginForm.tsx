@@ -98,7 +98,7 @@ const LoginForm= () => {
             value={phone}
             title="Mobile Number"
             change={setPhone}
-            type="number"
+            type="mobile"
           />
           <p className="text-red-500">{phoneerror.length != 0 && phoneerror}</p>
         </>
