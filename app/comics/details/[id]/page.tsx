@@ -26,7 +26,7 @@ const DetailsPage = async ({ params }: { params: { id: number } }) => {
           <Details key={i} item={item} />
         </>
       ))}
-      {relatedBooks && (
+      {relatedBooks.length && (
         <Stack sx={{ padding: "1rem 2rem" }} spacing={4}>
           <Typography
             sx={{ fontWeight: "bold", fontSize: { md: "2rem", xs: "1.4rem" } }}

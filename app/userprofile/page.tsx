@@ -8,22 +8,32 @@ import UserDetails from "./UserDetails";
 import EditModal from "./EditModal";
 import { authstore } from "@/store/store";
 
+interface profileData {
+  user: any;
+  fullname: string;
+  initials: string;
+}
+
 const UserProfilePage = () => {
   const [visible, setVisible] = useState(false);
   const execwindow = authstore((state) => state.initializeWindowEvent);
-  let user;
-  let fullname = '';
-  let initials = '';
+  const [profileData, setprofileData] = useState<profileData>({
+    user: null,
+    fullname: "",
+    initials: "",
+  });
 
   useEffect(() => {
     execwindow();
-    user = authstore.getState().user;
-    fullname = user?.firstname + " " + user?.lastname;
-    console.log(fullname)
-    initials = fullname?.split(" ")[0][0] + "." + fullname?.split(" ")[1][0];
-  }, []);
-  console.log(fullname)
+    const user = authstore.getState().user;
+    const fullname = user?.firstname + " " + user?.lastname;
+    const initials =
+      fullname?.split(" ")[0][0] + "." + fullname?.split(" ")[1][0];
 
+    setprofileData((prev) => {
+      return { ...prev, fullname: fullname, initials: initials, user: user };
+    });
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#121212] relative">
@@ -36,10 +46,11 @@ const UserProfilePage = () => {
 
       <Container
         sx={{
-          bgcolor: "#0b0b0c",
+          bgcolor: "#323232",
           marginTop: "1rem",
           padding: "2rem 0",
           position: "relative",
+          minHeight:'20vh'
         }}
       >
         <Grid
@@ -55,7 +66,7 @@ const UserProfilePage = () => {
           <Grid item>
             <Box
               sx={{
-                bgcolor: "black",
+                bgcolor: "#0b0b0c",
 
                 width: "100px",
                 height: "100px",
@@ -70,7 +81,7 @@ const UserProfilePage = () => {
                 fontSize={24}
                 sx={{ color: "white" }}
               >
-                {initials}
+                {profileData.initials}
               </Typography>
             </Box>
           </Grid>
@@ -83,7 +94,7 @@ const UserProfilePage = () => {
           </Grid>
         </Grid>
       </Container>
-      <UserDetails fullname={fullname} user={user} />
+      <UserDetails fullname={profileData?.fullname} user={profileData.user} />
       <div
         className={`${
           visible ? "block" : "hidden"
