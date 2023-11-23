@@ -57,7 +57,7 @@ const Details = ({ item }: { item: Stories }) => {
           >
             <div dangerouslySetInnerHTML={{ __html: item.description }} />
           </Typography>
-          <DetailsCta />
+          <DetailsCta id={item.id} />
         </Stack>
       </Stack>
     </Stack>

@@ -36,53 +36,15 @@ const EditForm:React.FC<EditFormI> = ({editing}) => {
   editing(true)
   };
 
-
-  const updateUserProfile = () => {
-    if(formData.firstname && formData.email && formData.lastname){
-      
-    }
-  }
  
 
   return (
     <Container sx={{ marginBlock: "1rem" }}>
-      <Typography fontSize={27} fontWeight={"bold"}>
+      <Typography color='white' fontSize={27} fontWeight={"bold"}>
         Basic Info
       </Typography>
-      <Stack sx={{ marginTop: "2rem" }} spacing={3}>
-        <TextField
-          id="standard-basic"
-          label="First name"
-          value={formData?.firstname}
-          variant="standard"
-          name="firstname"
-          onChange={(e) => handleChange(e)}
-        />
-        <TextField
-          id="standard-basic"
-          label="Last Name"
-          name="lastname"
-          value={formData?.lastname}
-          variant="standard"
-          onChange={(e) => handleChange(e)}
-        />
-        <TextField
-          id="standard-basic"
-          label="Email"
-          value={formData?.email}
-          variant="standard"
-          name="email"
-          onChange={(e) => handleChange(e)}
-        />
-        <TextField
-          id="standard-basic"
-          label="Password"
-          value="xxxxxxxx"
-          variant="standard"
-        />
-
-        <Button onClick={() => updateUserProfile()} variant="outlined">Save</Button>
-      </Stack>
+     
+   
     </Container>
   );
 };

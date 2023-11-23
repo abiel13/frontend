@@ -1,6 +1,7 @@
 import { Stack } from "@mui/material";
 import React from "react";
 import { FaStar, FaBookOpen, FaBookmark } from "react-icons/fa6";
+import Link from "next/link";
 
 const IconHolder = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -10,11 +11,13 @@ const IconHolder = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const DetailsCta = () => {
+const DetailsCta = ({id}:{id:number}) => {
   return (
     <Stack direction="row" sx={{ gap: "1rem" }}>
       <IconHolder>
-        <FaBookOpen color="black" />
+        <Link href={`/read-comics/${id}`}>
+          <FaBookOpen color="black" />
+        </Link>
       </IconHolder>
       <IconHolder>
         <FaStar color="black" />

@@ -133,3 +133,37 @@ export const logoutUser = async (token: string) => {
     console.log(error);
   }
 };
+
+export const updateUser = async (
+  data: {
+    email?: string;
+    firstname?: string;
+    lastname?: string;
+    newsletter_subscription?: boolean;
+    password?: string;
+  },
+  token: string
+) => {
+  const raw = JSON.stringify(data);
+
+  try {
+    const response = await axios
+      .post("https://api.alteflix.com/api/v1/accounts/update", raw, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .catch((err) => {
+        toast.error(
+          !err?.response.data.errors[0]
+            ? err.message
+            : err?.response.data.errors[0],
+          { theme: "colored" }
+        );
+      });
+      return response?.data;
+  } catch (error: any) {
+    console.error("an error has occured", error.message);
+  }
+};

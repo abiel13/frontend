@@ -32,10 +32,11 @@ const EditModal: React.FC<EditModalI> = ({ toggle }) => {
         height: { md: "60vh", xs: "100vh" },
         transform: "translate(-50% , -50%)",
         overflowY: "auto",
+        bgcolor:'#121212'
       }}
     >
       <CloseIcon
-        sx={{ margin: ".3rem .4rem" }}
+        sx={{ margin: ".3rem .4rem" , color:'white' }}
         cursor="pointer"
         onClick={() => closeModal()}
       />
