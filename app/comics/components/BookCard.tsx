@@ -26,11 +26,12 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
     },
     breakpoints: {
       768: {
-        perPage: 3,
+        perPage: 2,
+        gap: "1rem",
       },
       640: {
         perPage: 2,
-        gap: "1rem",
+        gap: "2rem",
       },
     },
   };

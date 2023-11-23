@@ -37,7 +37,7 @@ export const signupSchema = yup.object({
         "password must contain a number , special chararcters and be longer than eight characters",
     })
     .required("Required"),
-  confirmPassword: yup
+  password_confirmation: yup
     .string()
     .oneOf([yup.ref("password")], "Passwords must match")
     .required("Required"),
@@ -48,5 +48,16 @@ export const recoverPasswordSchema = yup.object({
 });
 
 export const resetPasswordSchema = yup.object({
-  pin: yup.string().required("Required"),
+  one_time_code: yup.string().length(6 , 'pin must be six characters').required("Required"),
+  password: yup
+    .string()
+    .matches(strongPasswordRegex, {
+      message:
+        "password must contain a number , special chararcters and be longer than eight characters",
+    })
+    .required("Required"),
+  password_confirmation: yup
+    .string()
+    .oneOf([yup.ref("password")], "Passwords must match")
+    .required("Required"),
 });

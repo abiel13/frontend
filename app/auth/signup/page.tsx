@@ -8,7 +8,7 @@ export default function SignUp() {
     <Container>
       <Stack alignItems={"center"} sx={{ marginTop: "1rem" }} spacing={3}>
         <Typography sx={{ color: "white", fontSize: "1.5rem" }}>
-          Register Now
+          Become A Member Of AlteFlix
         </Typography>
         <SignupForm />
         <Stack alignItems={"end"} sx={{ width: { md: "50%", xs: "100%" } }}>

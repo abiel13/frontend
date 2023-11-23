@@ -4,18 +4,29 @@ import React, { useState } from "react";
 import FormField from "../components/FormFields";
 import { useFormik } from "formik";
 import CtaButton from "../components/CtaButton";
+import { signupSchema } from "../validations/validations";
+import { RegisterUser } from "@/request_api/AuthApiRequest";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 interface signupI {
   firstname: string;
   lastname: string;
   email: string;
   password: string;
-  confirmPassword: string;
+  password_confirmation: string;
   newsletter_subscription: boolean;
 }
 
 const SignupForm = () => {
-  const onSubmit = () => {};
+  const router = useRouter();
+  const onSubmit = async (value: signupI) => {
+    const response = await RegisterUser(value);
+    if (response) {
+      toast.success("Registration Successful", { theme: "colored" });
+      router.push("/auth/login");
+    }
+  };
 
   const { values, errors, handleChange, handleSubmit } = useFormik<signupI>({
     initialValues: {
@@ -23,13 +34,12 @@ const SignupForm = () => {
       lastname: "",
       email: "",
       password: "",
-      confirmPassword: "",
+      password_confirmation: "",
       newsletter_subscription: true,
     },
     onSubmit,
+    validationSchema: signupSchema,
   });
-
-
 
   return (
     <>
@@ -47,9 +57,12 @@ const SignupForm = () => {
             name="firstname"
             title="first name"
             value={values.firstname}
-            change={() => {}}
+            change={handleChange}
             type="text"
           />
+          {errors.firstname && (
+            <p className="text-red-500">{errors.firstname}</p>
+          )}
         </Grid>
         <Grid item xs={12} md={5}>
           <FormField
@@ -57,8 +70,9 @@ const SignupForm = () => {
             title="last name"
             value={values.lastname}
             type="text"
-            change={() => {}}
+            change={handleChange}
           />
+          {errors.lastname && <p className="text-red-500">{errors.lastname}</p>}
         </Grid>
         <Grid item xs={12} md={5}>
           <FormField
@@ -66,8 +80,9 @@ const SignupForm = () => {
             title="email address"
             value={values.email}
             type="email"
-            change={() => {}}
+            change={handleChange}
           />
+          {errors.email && <p className="text-red-500">{errors.email}</p>}
         </Grid>
         <Grid item xs={12} md={5}>
           <FormField
@@ -75,20 +90,24 @@ const SignupForm = () => {
             title="password"
             value={values.password}
             type="password"
-            change={() => {}}
+            change={handleChange}
           />
+          {errors.password && <p className="text-red-500">{errors.password}</p>}
         </Grid>
         <Grid item xs={12}>
           <FormField
-            name="confirm_password"
+            name="password_confirmation"
             title="confirm password"
-            value={values.confirmPassword}
-            change={() => {}}
+            value={values.password_confirmation}
+            change={handleChange}
             type="password"
           />
+          {errors.password_confirmation && (
+            <p className="text-red-500">{errors.password_confirmation}</p>
+          )}
         </Grid>
+        <CtaButton title="Register now" click={handleSubmit} />
       </Grid>
-   <CtaButton title="Register now"/>
     </>
   );
 };

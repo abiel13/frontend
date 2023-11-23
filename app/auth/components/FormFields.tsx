@@ -53,11 +53,11 @@ const FormField: React.FC<TformField> = ({
         />
       )}
 
-      {type == "number" && (
+      {type == "mobile" && (
         <PhoneInput value={value} onChange={change} defaultCountry="NG" />
       )}
 
-      {type != "password" && type != "number" && (
+      {type != "password" && type != "mobile" && (
         <TextField
           name={name}
           value={value}

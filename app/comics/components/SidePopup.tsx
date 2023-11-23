@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -11,12 +11,22 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import Close from "@mui/icons-material/Close";
 
-const SidePopup = ({
+type TSidePopup = {
+  visible: boolean;
+  setVisible: (val: boolean) => void;
+  user: any;
+  fullname: string;
+  initials: string;
+  logout: () => void;
+};
+
+const SidePopup: FC<TSidePopup> = ({
   visible,
   setVisible,
-}: {
-  visible: boolean;
-  setVisible: Function;
+  user,
+  fullname,
+  initials,
+  logout,
 }) => {
   return (
     <Stack
@@ -25,7 +35,7 @@ const SidePopup = ({
         top: "0",
         bottom: 0,
         right: 0,
-        width: { md: "20%", sm: "90%" },
+        width: { md: "30%", sm: "90%", xl: "20%" },
         bgcolor: "#0b0b0c",
         zIndex: 10000,
         transition: "transform ease-in .3s",
@@ -72,11 +82,11 @@ const SidePopup = ({
               fontSize: "1.1rem",
             }}
           >
-            {`A.A` || " "}
+            {initials || " "}
           </Typography>
           <Stack>
-            <Typography color={"white"}>{"abiel asimiea"}</Typography>
-            <Typography color={"white"}>{"dbestabi28@gmail.com"}</Typography>
+            <Typography color={"white"}>{fullname || " "}</Typography>
+            <Typography color={"white"}>{user?.email}</Typography>
           </Stack>
         </Paper>
       </Link>
@@ -197,7 +207,7 @@ const SidePopup = ({
       <Paper
         onClick={() => {
           setVisible(false);
-          //   logout();
+          logout();
         }}
         sx={{
           padding: "1rem 2rem",
@@ -205,6 +215,7 @@ const SidePopup = ({
           display: "flex",
           gap: "1rem",
           alignItems: "center",
+          cursor: "pointer",
         }}
       >
         <ExitToAppIcon sx={{ color: "white" }} />

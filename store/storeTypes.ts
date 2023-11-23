@@ -4,6 +4,6 @@ export type TAuthStore = {
   isLoggedIn: any;
   setLoggedIn: (value: boolean) => void;
   user: any;
-  setUser: (value: TUser) => void;
+  setUser: (value: any) => void;
   initializeWindowEvent: () => void;
 };
