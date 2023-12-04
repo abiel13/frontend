@@ -1,17 +1,31 @@
-"use client";
-import React, { useState } from "react";
-import axios from "axios";
-import {toast , ToastContainer} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+'use client'
+import  React , {useState } from 'react';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Copyright from '@/app/components/CopyRight';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {toast } from 'react-toastify'
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
-const ResetPage = () => {
+
+
+// TODO remove, this demo shouldn't need to reset the theme.
+const defaultTheme = createTheme();
+
+export default function SignIn() {
+
+  const [pin , setPin ] = useState<string>('')
+  const [password , setPassword ] = useState<string>('')
+  const [confirmPassword , setConfirmPassword ] = useState<string>('')
+  const [error , setError ] = useState<{pin:string , password:string , confirmPassword: string}>({pin:'' , password:'' , confirmPassword: ''})
+
+
   const router = useRouter()
-const [pin , setPin ] = useState<string>('')
-const [password , setPassword ] = useState<string>('')
-const [confirmPassword , setConfirmPassword ] = useState<string>('')
-const [error , setError ] = useState<{pin:string , password:string , confirmPassword: string}>({pin:'' , password:'' , confirmPassword: ''})
-
 const validateRequest = () => {
   const passwordRegex =
   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\_])[a-zA-Z0-9\W\_]{8,15}$/;
@@ -63,54 +77,77 @@ setConfirmPassword('')
       }
   };
 
-  return (
-    <div className="mt-[1rem] px-3 min-h-[70vh] w-full md:w-1/2 mx-auto flex items-center justify-center flex-col">
-      <h3 className="text-3xl  font-bold tracking-wider text-white ">
-        Reset PassWord{" "}
-      </h3>
-      <div className=" mt-[1rem] flex flex-col py-4 gap-4 w-full items-center">
-        <div className="flex flex-col w-3/4 gap-4">
-        <p className="text-white text-xl font-bold">OTP</p>
-        <input
-          value={pin}
-          onChange={(e) => setPin(e.target.value)}
-          type="number"
-          placeholder="input your six digit pin"
-          className="px-2 text-gray-400 text-lg w-full py-5 rounded-xl"
-        />
-         {error.pin && <p className="text-red-600 text-lg">{error.pin}</p>}
-        </div>
-        <div className="flex flex-col w-3/4 gap-4">
-        <p className="text-white text-xl font-bold">Password</p>
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          placeholder="input your password"
-          className="px-2 text-gray-400 w-full text-lg py-5 rounded-xl"
-        />
-        {error.password && <p className="text-red-600 text-sm md:text-lg">{error.password}</p>}
-        </div>
-        <div className="flex flex-col w-3/4 gap-4">
-        <p className="text-white text-xl font-bold">Confirm Password</p>
-        <input
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          type="password"
-          placeholder="confirm password"
-          className="px-2 text-gray-400 w-full text-lg py-5 rounded-xl"
-        />
-               {error.confirmPassword && <p className="text-red-600 text-lg">{error.confirmPassword}</p>}
-        </div>
-      </div>
-      <div className="w-full flex justify-center">
-        <button onClick={() => validateRequest()} className="bg-red-700 text-lg text-white px-3 py-4 mt-6 w-3/4  rounded-xl">
-          Reset Password
-        </button>
-      </div>
-      <ToastContainer />
-    </div>
-  );
-};
 
-export default ResetPage;
+  
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+        
+          <Typography component="h1" variant="h5">
+            Reset PassWord
+          </Typography>
+          <Box component="form" sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="pin"
+              label="pin"
+              type="numbers"
+              id="pin"
+              autoComplete="one time pin"
+              value={pin}
+              onChange={( e) => setPin(e.target.value)}
+            />
+            {error.pin && <Typography color='red'>{error.pin}</Typography>}
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {error.password && <Typography color='red'>{error.password}</Typography>}
+
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="confirm PassWord"
+              label="confirm PassWord"
+              type="password"
+              id="confirm password"
+              autoComplete="current-password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            {error.confirmPassword && <Typography color='red'>{error.confirmPassword}</Typography>}
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={() => validateRequest()}
+            >
+             Reset PassWord
+            </Button>
+          </Box>
+        </Box>
+        <Copyright sx={{ mt: 8, mb: 4 }} />
+      </Container>
+    </ThemeProvider>
+  );
+}

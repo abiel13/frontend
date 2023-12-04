@@ -7,7 +7,6 @@ import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/ReactToastify.css'
 
 
-const SignUp = () => {
   const [error, setError] = useState<{
     email: string;
     password: string;
@@ -23,8 +22,8 @@ const SignUp = () => {
     confirmPassword: string;
   }>({ email: "", password: "", first: "", last: "", confirmPassword: "" });
   const { email, password, first, last, confirmPassword } = formData;
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const [checked , setChecked ] = useState<boolean>(false)
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { value, name } = event.target;
     setFormData((prev) => {
       return { ...prev, [name]: value };
@@ -86,7 +85,7 @@ const SignUp = () => {
       password_confirmation: confirmPassword,
       firstname: first,
       lastname: last,
-      newsletter_subscription: true,
+      newsletter_subscription: checked,
     });
 try{
   toast('Registering User Please Wait' , {theme:'colored'})
@@ -159,31 +158,33 @@ catch(error:Error | any) {
             {error && <p className="text-red-500">{error.email}</p>}
           </div>
 
-          <div className="w-full md:w-1/2">
-            <p className="text-lg tracking-wide mb-3">Password</p>
-            <input
-              onChange={handleChange}
-              type="password"
-              name="password"
-              value={password}
-              className="py-3 px-3 text-gray-400 text-lg w-full rounded-lg"
-              placeholder="xxxxxxxx"
-            />
-            {error && <p className="text-red-500">{error.password}</p>}
-          </div>
-          <div className="w-full md:w-1/2">
-            <p className="text-lg tracking-wide mb-3">Confirm Password</p>
-            <input
-              onChange={handleChange}
-              type="password"
-              name="confirmPassword"
-              value={confirmPassword}
-              className="py-3 px-3 text-gray-400 text-lg w-full rounded-lg"
-              placeholder="xxxxxxxx"
-            />
-            {error && <p className="text-red-500">{error.confirmPassword}</p>}
-          </div>
-        </div>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => handleChange(e)}
+                />
+                {error.email && <Typography color='red' > {error.email} </Typography>}
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                  onChange={(e) => handleChange(e)}
+                  value={password}
+                />
+                {error.password && <Typography color='red' > {error.password} </Typography>}
 
         <div className="w-full flex flex-col mt-[1rem]  items-center gap-5">
           <button
