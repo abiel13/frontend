@@ -14,8 +14,13 @@ export const loginUserRequest = async (data: {
       .post("https://api.alteflix.com/api/v1/accounts/login", raw, {
         headers: { "Content-Type": "application/json" },
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        toast.error(
+          !err?.response.data.errors[0]
+            ? err.message
+            : err?.response.data.errors[0],
+          { theme: "colored" }
+        );
       });
     return response?.data;
   } catch (error) {
@@ -36,7 +41,12 @@ export const loginWithMobile = async (data: {
         headers: { "Content-Type": "application/json" },
       })
       .catch((err) => {
-        toast.error(err?.response.data.errors[0], { theme: "colored" });
+        toast.error(
+          !err?.response.data.errors[0]
+            ? err.message
+            : err?.response.data.errors[0],
+          { theme: "colored" }
+        );
       });
     return response?.data;
   } catch (error: any) {
@@ -78,7 +88,12 @@ export const recoverPasswordRequest = async (data: { email: string }) => {
         },
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(
+          !err?.response.data.errors[0]
+            ? err.message
+            : err?.response.data.errors[0],
+          { theme: "colored" }
+        );
       });
     return response?.data;
   } catch (error) {
@@ -162,7 +177,7 @@ export const updateUser = async (
           { theme: "colored" }
         );
       });
-      return response?.data;
+    return response?.data;
   } catch (error: any) {
     console.error("an error has occured", error.message);
   }
