@@ -17,4 +17,3 @@ export type Categories = {
     thumbnail_url:string;
     parts: [];
   };
-

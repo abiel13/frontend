@@ -1,53 +1,38 @@
-import React, { Suspense } from "react";
+import React , {Suspense} from 'react'
 import Image from "next/image";
 import Link from "next/link";
-import { Stories } from "@/app/utils";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import { Stories } from '@/app/utils';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
-interface BookI {
-  book: Stories;
+interface BookI{
+    book:Stories
 }
 
-const Book: React.FC<BookI> = ({ book }) => {
-  return (
-    <Link href={`/comics/details/${book.id}`}>
-      <Card
-        sx={{
-          width: { md: 300, sm: 250 },
-          height: { md: 350, sm: 200 },
-          bgcolor: "transparent",
-          boxShadow: "none",
-        }}
-      >
-        <Image
-          src={book.background_url}
-          className="w-[200px] rounded-xl object-cover  h-[150px] md:w-[300px] md:h-[250px]"
-          height={200}
-          width={300}
-          alt={book.title}
-        />
+const Book:React.FC<BookI> = ({book}) => {
+  return ( 
+    <Link href={`/comics/details/${book.id}`} >
+  <Card sx={{ width: {md:300 , sm:150} , height:{md:350 , sm:200} , bgcolor:'transparent' , boxShadow:'none' }} >
+        <Image src={book.background_url} className='w-[200px]  h-[150px] md:w-[300px] md:h-[250px]' height={200} width={300} alt={book.title} />
         <CardContent>
-          <Typography
-            fontWeight={"bold"}
-            sx={{
-              fontSize: { md: "1.3rem", sm: ".8rem" },
-              width: { md: 300, sm: 150 },
-            }}
-          >
+          
+          <Typography sx={{ fontSize:{md:'1.3rem' , sm:'.8rem'} ,  width:{md:300 , sm:150}}}>
             {book.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {book.author}
+         {book.author}
           </Typography>
-          <Typography fontWeight={"bold"} color="text.secondary">
+          <Typography color='text.secondary' >
             {book.category}
           </Typography>
         </CardContent>
       </Card>
-    </Link>
-  );
-};
+     </Link>
+  )
+}
 
-export default Book;
+export default Book
+
+
+

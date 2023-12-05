@@ -59,27 +59,23 @@ export default function HideAppBar() {
 
     return color;
   }
-  const router = useRouter();
-  function logout() {
-    try {
-      axios
-        .get("https://api.alteflix.com/api/v1/accounts/logout", {
-          headers: { Authorization: `Bearer ${userData?.token}` },
+const router = useRouter()
+    function logout (){
+      try {
+        axios.get('https://api.alteflix.com/api/v1/accounts/logout', {headers: {Authorization:`Bearer ${userData?.token}`}}).then(res =>{
+          localStorage.removeItem('AlteFlixUser');
+          router.push('/auth/login')
+          toast('logout sucessfull')
+        }
+        ).catch(error =>{
+          localStorage.removeItem('AlteFlixUser');
+          router.push('/auth/login')
+          toast('logout sucessful')
         })
-        .then((res) => {
-          localStorage.removeItem("AlteFlixUser");
-          router.push("/auth/login");
-          toast("logout sucessfull");
-        })
-        .catch((error) => {
-          localStorage.removeItem("AlteFlixUser");
-          router.push("/auth/login");
-          toast("logout sucessful");
-        });
-    } catch (error: any) {
-      toast(error?.message);
+      } catch (error:any) {
+        toast(error?.message)
+      }
     }
-  }
 
   function stringAvatar(name: string) {
     return {
@@ -155,7 +151,7 @@ export default function HideAppBar() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              gap: "1rem",
+              gap:'1rem'
             }}
           >
             <Typography
@@ -168,7 +164,7 @@ export default function HideAppBar() {
                 fontSize: "1.1rem",
               }}
             >
-              {`${userData?.firstname[0]}.${userData?.lastname[0]}` || " "}
+            {`${userData?.firstname[0]}.${userData?.lastname[0]}` || ' '}
             </Typography>
             <Stack>
               <Typography>{fullname}</Typography>
@@ -228,8 +224,7 @@ export default function HideAppBar() {
           <SettingsIcon />
           <Typography>Settings</Typography>
         </Paper>
-        <div className='hidden md:block'>
-            <Stack >
+        <Stack className="hidden md:block">
           <Divider light />
           <Link href={"/comics/library"}>
             <Paper
@@ -287,13 +282,11 @@ export default function HideAppBar() {
             </Paper>
           </Link>
         </Stack>
-        </div>
-      
         <Divider light />
         <Paper
           onClick={() => {
             setVisible(false);
-            logout();
+            logout()
           }}
           sx={{
             padding: "1rem 2rem",
