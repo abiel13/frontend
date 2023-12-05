@@ -1,4 +1,4 @@
-"use client ";
+"use client";
 import { ReactNode, createContext, useContext, useState ,useEffect } from "react";
 
 interface AppContextType {

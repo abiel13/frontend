@@ -35,19 +35,36 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
   };
 
   return (
-    <div className='px-0 md:px-0 '>
-      {stories && (
-        <Splide className='py-[1rem}' options={option}>
-          {stories?.map((item, i) => (
-            <SplideSlide key={i}>
-              <Book book={item} />
-            </SplideSlide>
-          ))}
-        </Splide>
-      )}
-    
-    </div>
-
+    <Suspense
+      fallback={<p className="text-white text-3xl">hey am a suspense</p>}
+    >
+      <div className="px-4 md:px-0 ">
+        {!stories?.length ? (
+          <div>
+              <Splide options={option}>
+              {[0,0,0,0]?.map((i) => (
+                <SplideSlide key={i}>
+                  <div>
+                <Skeleton width={250} height={250} borderRadius={10} />
+                <Skeleton width={250} height={20}  count={2} borderRadius={5} />
+                  </div>
+                </SplideSlide>
+              ))}
+            </Splide>
+          </div>
+        ) : (
+          <div>
+            <Splide options={option}>
+              {stories?.map((item, i) => (
+                <SplideSlide key={i}>
+                  <Book book={item} />
+                </SplideSlide>
+              ))}
+            </Splide>
+          </div>
+        )}
+      </div>{" "}
+    </Suspense>
   );
 };
 
