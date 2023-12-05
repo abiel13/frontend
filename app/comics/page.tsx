@@ -1,7 +1,8 @@
 import "@splidejs/react-splide/css";
 import axios from "axios";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
+import Skeleton from "react-loading-skeleton";
 import { Stories, Categories } from "../utils";
 import BookCard from "./components/BookCard";
 import { Typography } from "@mui/material";
@@ -48,9 +49,8 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
         </div> : <div className='flex gap-5 my-4 items-center justify-around w-full py-5 md:w-3/4 cat_over' >{ categories?.map((item, index) => (
           <Link
             className={`${
-              index == 0 ? "ml-[8rem]" : "ml-0"
-
-            } md:ml-0 px-5 py-3 bg-[#0066bb] text-white rounded-lg shadow-lg l text-center`}
+              index == 0 ? "ml-[5rem]" : "ml-0"
+            } md:ml-0 px-5 py-3 bg-white rounded-lg flex text-black text-center`}
             href={`/comics/categories/${item.id}`}
             key={item.id}
           >
