@@ -11,16 +11,19 @@ import Avatar from "@mui/material/Avatar";
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
 import { Stack, Paper, Divider, Grid } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Close from "@mui/icons-material/Close";
 import { useAppContext } from "@/app/context/context";
-import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import SettingsIcon from '@mui/icons-material/Settings';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
+import { error } from "console";
 
 function HideOnScroll({
   children,
@@ -56,6 +59,23 @@ export default function HideAppBar() {
 
     return color;
   }
+const router = useRouter()
+    function logout (){
+      try {
+        axios.get('https://api.alteflix.com/api/v1/accounts/logout', {headers: {Authorization:`Bearer ${userData?.token}`}}).then(res =>{
+          localStorage.removeItem('AlteFlixUser');
+          router.push('/auth/login')
+          toast('logout sucessfull')
+        }
+        ).catch(error =>{
+          localStorage.removeItem('AlteFlixUser');
+          router.push('/auth/login')
+          toast('logout sucessful')
+        })
+      } catch (error:any) {
+        toast(error?.message)
+      }
+    }
 
   function stringAvatar(name: string) {
     return {
@@ -69,19 +89,23 @@ export default function HideAppBar() {
 
   const { userData } = useAppContext();
   const [visible, setVisible] = useState<boolean>(false);
-
+  const fullname = userData?.firstname + " " + userData?.lastname;
   return (
     <>
       <CssBaseline />
       <HideOnScroll>
         <AppBar sx={{ bgcolor: "white" }}>
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Typography variant="h6" color="black" component="div">
-              Alte <span className="text-red-500">Flix</span>
-            </Typography>
+            <Link href={"/comics"}>
+              {" "}
+              <Typography variant="h6" color="black" component="div">
+                Alte <span className="text-red-500">Flix</span>
+              </Typography>
+            </Link>
+
             <Avatar
               onClick={() => setVisible(true)}
-              {...stringAvatar("Abiel Asimiea")}
+              {...stringAvatar(fullname || "")}
             />
           </Toolbar>
         </AppBar>
@@ -110,7 +134,7 @@ export default function HideAppBar() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            gap:'1rem',
+            gap: "1rem",
             padding: "1rem",
           }}
         >
@@ -127,6 +151,7 @@ export default function HideAppBar() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              gap:'1rem'
             }}
           >
             <Typography
@@ -139,25 +164,26 @@ export default function HideAppBar() {
                 fontSize: "1.1rem",
               }}
             >
-              A.A
+            {`${userData?.firstname[0]}.${userData?.lastname[0]}` || ' '}
             </Typography>
             <Stack>
-              <Typography>Abiel Asimiea</Typography>
-              <Typography>dbestabi28@gmail.com</Typography>
+              <Typography>{fullname}</Typography>
+              <Typography>{userData?.email}</Typography>
             </Stack>
           </Paper>
         </Link>
 
         <Divider light />
         <Paper
-        onClick={() => {
-          setVisible(false)
-          toast('feature coming soon')}}
+          onClick={() => {
+            setVisible(false);
+            toast("feature coming soon");
+          }}
           sx={{
             padding: "1rem 2rem",
             bgcolor: "transparent",
             display: "flex",
-           gap:'1rem',
+            gap: "1rem",
             alignItems: "center",
           }}
         >
@@ -166,14 +192,15 @@ export default function HideAppBar() {
         </Paper>
         <Divider light />
         <Paper
-           onClick={() => {
-            setVisible(false)
-            toast('feature coming soon')}}
+          onClick={() => {
+            setVisible(false);
+            toast("feature coming soon");
+          }}
           sx={{
             padding: "1rem 2rem",
             bgcolor: "transparent",
             display: "flex",
-           gap:'1rem',
+            gap: "1rem",
             alignItems: "center",
           }}
         >
@@ -183,29 +210,89 @@ export default function HideAppBar() {
         <Divider light />
         <Paper
           onClick={() => {
-            setVisible(false)
-            toast('feature coming soon')}}
+            setVisible(false);
+            toast("feature coming soon");
+          }}
           sx={{
             padding: "1rem 2rem",
             bgcolor: "transparent",
             display: "flex",
-           gap:'1rem',
+            gap: "1rem",
             alignItems: "center",
           }}
         >
           <SettingsIcon />
           <Typography>Settings</Typography>
         </Paper>
+        <Stack className="hidden md:block">
+          <Divider light />
+          <Link href={"/comics/library"}>
+            <Paper
+              onClick={() => {
+                setVisible(false);
+              }}
+              sx={{
+                padding: "1rem 2rem",
+                bgcolor: "transparent",
+                display: "flex",
+                gap: "1rem",
+                alignItems: "center",
+              }}
+            >
+              <LocalLibraryIcon />
+              <Typography>Library</Typography>
+            </Paper>
+          </Link>
+
+          <Divider light />
+          <Link href={"/comics/favorites"}>
+            <Paper
+              onClick={() => {
+                setVisible(false);
+              }}
+              sx={{
+                padding: "1rem 2rem",
+                bgcolor: "transparent",
+                display: "flex",
+                gap: "1rem",
+                alignItems: "center",
+              }}
+            >
+              <FavoriteIcon />
+              <Typography>Favorites</Typography>
+            </Paper>
+          </Link>
+          <Divider light />
+          <Link href={"/comics/bookmarks"}>
+            <Paper
+              onClick={() => {
+                setVisible(false);
+                toast("feature coming soon");
+              }}
+              sx={{
+                padding: "1rem 2rem",
+                bgcolor: "transparent",
+                display: "flex",
+                gap: "1rem",
+                alignItems: "center",
+              }}
+            >
+              <CollectionsBookmarkIcon />
+              <Typography>Bookmarks</Typography>
+            </Paper>
+          </Link>
+        </Stack>
         <Divider light />
         <Paper
-            onClick={() => {
-              setVisible(false)
-              toast('feature coming soon')}}
+          onClick={() => {
+            setVisible(false);
+            logout()
+          }}
           sx={{
             padding: "1rem 2rem",
             bgcolor: "transparent",
             display: "flex",
-           gap:'1rem',
+            gap: "1rem",
             alignItems: "center",
           }}
         >

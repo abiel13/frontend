@@ -90,7 +90,7 @@ import 'react-toastify/ReactToastify.css'
 try{
   toast('Registering User Please Wait' , {theme:'colored'})
     await axios.post("https://api.alteflix.com/api/v1/accounts/new" , data , {headers:{"Content-Type":"application/json"}}).then(res => {
-      console.log(res?.data)
+      
       toast.success('Registation Sucessful', {theme:'colored'})
       router.push('/auth/login')
     }).catch((error) => {
@@ -99,7 +99,7 @@ try{
    
 }
 catch(error:Error | any) {
-  console.log(error)
+ 
   toast.error(`network disconnected` )
 }
 

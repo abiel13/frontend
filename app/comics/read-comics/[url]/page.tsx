@@ -29,17 +29,15 @@ setDoc_url(doc_url[0]?.doc_url)
     function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
       setNumPages(numPages);
     }
-  
-    console.log(doc_url)
 
     return (
-        <div className='text-white text-3xl'>
+        <div className='text-black text-3xl'>
         <Document file={doc_url} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
-        <p>
+        <p className='text-black'>
           Page {pageNumber} of {numPages}
-          {doc_url}
+     
         </p>
       </div>
     )

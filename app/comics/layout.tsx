@@ -14,8 +14,8 @@ export default function ComicsLayout({
 }) {
   const { loggedIn } = useAppContext();
   const router = useRouter();
-  if(loggedIn == null) {console.log(loggedIn)} ;
-  if(loggedIn == true) {console.log(loggedIn)}
+  if(loggedIn == null) {} ;
+  if(loggedIn == true) {}
 if(loggedIn == false) {router.push('/auth/login')}
 
   return (
