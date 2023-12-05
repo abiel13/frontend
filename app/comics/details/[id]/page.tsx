@@ -31,7 +31,7 @@ const relatedBooks:Stories[] = data?.filter(item  => item.category == book[0].ca
                             <Image className="w-full h-[70vh]  md:w-1/2 md:h-full  aspect-[4/3]" quality={100} src={item.background_url} alt="bg-img" width={250} height={250} />
                             <div className="flex items-end md:hidden absolute  top-0 right-0 bottom-0 left-0 opacity-60 justify-center gap-8 bg-black">
                             <div className="flex cursor-pointer  items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
-                                <BiBookReader onClick={() => router.push(`/comics/read-comics/${item?.doc_url}`)} />
+                                <BiBookReader onClick={() => router.push(`/comics/read-comics/${item?.id}`)} />
                             </div>
                             <div className="flex cursor-pointer   items-center border-2 border-white w-[50px] h-[50px] rounded-full justify-center">
                                 <BiStar />
@@ -41,11 +41,11 @@ const relatedBooks:Stories[] = data?.filter(item  => item.category == book[0].ca
                         <div className="flex-1 flex  flex-col">
                             <div className="flex flex-1 px-4 justify-between">
                                 <div className="flex-1  flex gap-8 flex-col justify-between">
-                                     <div className="text-sm md:text-base " dangerouslySetInnerHTML={{__html : item.description}} />
+                                     <div className="text-sm text-black md:text-base " dangerouslySetInnerHTML={{__html : item.description}} />
                                      <div className='flex flex-col gap-5 md:gap-2'>
-                                        <div className=" flex items-center gap-2"><p className= " text-sm md:text-base font-normal md:font-bold tracking-widest">Title:</p>  <p className="  md:font-medium  md:text-base text-sm font-light"> {item.title}</p></div>
-                                        <div className=" flex items-center gap-2"><p className="  text-sm md:text-base font-normal md:font-bold tracking-widest">Category:</p>  <p className="  md:font-medium  md:text-base text-sm font-light">{item.category}</p> </div>
-                                        <div className=" flex items-center gap-2"><p className="  text-sm md:text-base font-normal md:font-bold tracking-widest">Publisher:</p>  <p className="  md:font-medium  md:text-base text-sm font-light">{item.author}</p> </div>
+                                        <div className=" flex items-center gap-2"><p className= " text-sm md:text-base text-black font-normal md:font-bold tracking-widest">Title:</p>  <p className="  md:font-medium  md:text-base text-sm font-light"> {item.title}</p></div>
+                                        <div className=" flex items-center gap-2"><p className="  text-sm md:text-base text-black font-normal md:font-bold tracking-widest">Category:</p>  <p className="  md:font-medium  md:text-base text-sm font-light">{item.category}</p> </div>
+                                        <div className=" flex items-center gap-2"><p className="  text-sm md:text-base text-black font-normal md:font-bold tracking-widest">Publisher:</p>  <p className="  md:font-medium  md:text-base text-sm font-light">{item.author}</p> </div>
                                      </div>
                                 </div>
                               

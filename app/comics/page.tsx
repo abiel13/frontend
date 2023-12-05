@@ -1,14 +1,11 @@
 import "@splidejs/react-splide/css";
 import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
 import React, { Suspense } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Stories, Categories } from "../utils";
 import BookCard from "./components/BookCard";
-import Paper from "@mui/material/Paper";
-import web from "../../public/hero.png";
-import { Typography, Stack } from "@mui/material";
+import { Typography } from "@mui/material";
 
 
 interface ComicPageProps {}
@@ -60,31 +57,26 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
           </Link>
         ))}</div> }
       </div>
-      <div className="relative overflow-hidden w-full md:w-1/2">
-        <Image
-          src={web}
-          alt="image"
-          className="h-[150px] w-full rounded-2xl"
-          width={`250`}
-          height={"250"}
-        />
-        <div className="text-white flex  text-left items-center justify-centers top-0  absolute">
+      <div className="relative mt-[1rem] h-[150px] bg-gradient-to-r to-[#1CB5E0] from-[#000851]  shadow-2xl rounded-2xl p-[1rem] flex flex-col items-center justify-center  overflow-hidden w-full md:w-1/2 ">
+        <div className="text-white flex  text-left items-center justify-center  ">
           <div>
             <Typography
               sx={{ fontSize: "1.5rem", fontWeight: "bold" }}
               variant="h3"
             >
-              Welcome To AlteFlix
+              Step Into AlteFlix
             </Typography>
-            <Typography sx={{width:'80%', fontSize:'1rem'}}>
-              Where Your Comic Fantasies are Brought to Reality
+            <Typography className='mt-[1rem]'
+       sx={{ width: {md:'80%' , sm:'100% ' } , fontSize: {md:'1.2rem' , sm:'1rem'} }}>
+              Where the lines between fantasies and reality blur and your comics
+              are brought to life
             </Typography>
           </div>
         </div>
       </div>
 
-      <div className="w-full  flex flex-col items-center ">
-        <h1 className="text-2xl text-white tracking-wide  self-start mb-8 ">
+      <div className="w-full mt-[1rem]  flex flex-col items-center ">
+        <h1 className="text-2xl text-black tracking-wide  self-start mb-8 ">
           Latest Stories
         </h1>
         <div className="flex items-center justify-between  mt-5 ">
