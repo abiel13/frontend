@@ -59,7 +59,7 @@ export default function RecoverPassword() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Forgot password 
           </Typography>
           <Box component="form" sx={{ mt: 1 }}>
             <TextField

@@ -7,7 +7,7 @@ import { Stories, Categories } from "../utils";
 import BookCard from "./components/BookCard";
 import { Typography } from "@mui/material";
 
-
+import Skeleton from "react-loading-skeleton"
 interface ComicPageProps {}
 
 async function getCategories() {
@@ -45,7 +45,7 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
             className={` md:ml-0 px-5 py-3 bg-white rounded-lg  text-black text-center`}
           /> 
         ))}
-        </div> : <div className='flex gap-5 my-4 items-center justify-around w-full md:w-3/4 cat_over' >{ categories?.map((item, index) => (
+        </div> : <div className='flex gap-5 my-4 items-center justify-around w-full py-5 md:w-3/4 cat_over' >{ categories?.map((item, index) => (
           <Link
             className={`${
               index == 0 ? "ml-[5rem]" : "ml-0"
@@ -83,21 +83,6 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
           <BookCard stories={stories} />
         </div>
       </div>
-
-      <div className="w-full mt-[2rem]  flex flex-col items-center ">
-        <h1 className="text-2xl text-white tracking-wide  self-start mb-8 ">Characters</h1>
-        <div className="flex items-center justify-between  mt-5 ">
-         <BookCard stories={stories} /> 
-        </div>
-      </div>
-
-      <div className="w-full mt-[2rem]  flex flex-col items-center ">
-        <h1 className="text-2xl text-white tracking-wide  self-start mb-8 ">Other Stories</h1>
-        <div className="flex items-center justify-between  mt-5 ">
-         <BookCard stories={stories} /> 
-        </div>
-      </div>
-
     </div>
   );
 };

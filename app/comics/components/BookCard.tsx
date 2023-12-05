@@ -3,7 +3,6 @@ import { Stories } from "@/app/utils";
 import React, { Suspense } from "react";
 import { SplideSlide, Splide } from "@splidejs/react-splide";
 import Book from "./Book";
-import Skeleton from "react-loading-skeleton";
 
 interface BookCardI {
   stories: Stories[];
@@ -27,7 +26,7 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
         perPage: 2,
       },
       640: {
-        perPage: "auto",
+        perPage: 'auto',
         gap: "1rem",
       },
     },
