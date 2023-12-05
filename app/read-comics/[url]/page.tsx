@@ -3,13 +3,12 @@
 import { useState, useEffect } from "react";
 import { Document, Page } from "react-pdf";
 import { pdfjs } from "react-pdf";
-import axios from "axios";
 import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import { Typography } from "@mui/material";
 import { BiChevronLeftCircle, BiChevronRightCircle } from "react-icons/bi";
 import { useSwipeable } from "react-swipeable";
-import { Circles } from "react-loader-spinner";
+import SimpleSnackbar from "./Snackbar";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -20,6 +19,25 @@ const ReadBookPage = ({ params }: { params: { url: string } }) => {
   const [numPages, setNumPages] = useState<number>(1);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [doc_url, setDoc_url] = useState<string>("");
+
+  // code for snackbar
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+    return;
+  };
+
+  const handleClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   useEffect(() => {
     fetch("https://api.alteflix.com/api/v1/stories")
@@ -37,7 +55,9 @@ const ReadBookPage = ({ params }: { params: { url: string } }) => {
   const handleFlip = (direction: string) => {
     switch (direction) {
       case "left":
-        if (pageNumber >= numPages) setPageNumber(0);
+        if (pageNumber >= numPages) {
+          return handleClick();
+        }
         setPageNumber((prev) => prev + 1);
         break;
       case "right":
@@ -58,14 +78,14 @@ const ReadBookPage = ({ params }: { params: { url: string } }) => {
   return (
     <div
       {...handlers}
-      className="w-[100vw] min-h-[80vh]  flex items-center justify-center flex-col text-3xl"
+      className="w-[100vw] min-h-[80vh] max-h-[100vh] flex items-center text-white justify-center flex-col text-3xl"
     >
-      <Document file={doc_url} onLoadSuccess={onDocumentLoadSuccess}>
+      <Document  file={doc_url} onLoadSuccess={onDocumentLoadSuccess}>
         <Page loading={<></>} pageNumber={pageNumber} />
       </Document>
       <div className="hidden md:flex items-center justify-around gap-5 mt-[1rem]">
         <BiChevronLeftCircle
-        fill='white'
+          fill="white"
           fontSize={40}
           onClick={() => handleFlip("right")}
         />
@@ -73,11 +93,12 @@ const ReadBookPage = ({ params }: { params: { url: string } }) => {
           Page {pageNumber} of {numPages}
         </Typography>
         <BiChevronRightCircle
-        fill='white'
+          fill="white"
           fontSize={40}
           onClick={() => handleFlip("left")}
         />
       </div>
+      <SimpleSnackbar open={open} handleClose={handleClose} />
     </div>
   );
 };
