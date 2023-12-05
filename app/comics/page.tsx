@@ -5,9 +5,9 @@ import React, { Suspense } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Stories, Categories } from "../utils";
 import BookCard from "./components/BookCard";
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 
-import Skeleton from "react-loading-skeleton"
+import Skeleton from "react-loading-skeleton";
 import { toast } from "react-toastify";
 interface ComicPageProps {}
 
@@ -15,8 +15,8 @@ async function getCategories() {
   try {
     const res = await axios.get("https://api.alteflix.com/api/v1/categories");
     return res.data.data;
-  } catch (error:any) {
-   console.error(error.message)
+  } catch (error: any) {
+    console.error(error.message);
   }
 }
 
@@ -24,8 +24,8 @@ async function getStories() {
   try {
     const res = await axios.get("https://api.alteflix.com/api/v1/stories");
     return res.data.data;
-  } catch (error:any) {
-console.error(error.message)
+  } catch (error: any) {
+    console.error(error.message);
   }
 }
 
@@ -67,8 +67,13 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
             >
               Step Into AlteFlix
             </Typography>
-            <Typography className='mt-[1rem]'
-       sx={{ width: {md:'80%' , sm:'100% ' } , fontSize: {md:'1.2rem' , sm:'1rem'} }}>
+            <Typography
+              className="mt-[1rem]"
+              sx={{
+                width: { md: "80%", sm: "100% " },
+                fontSize: { md: "1.2rem", sm: "1rem" },
+              }}
+            >
               Where the lines between fantasies and reality blur and your comics
               are brought to life
             </Typography>
@@ -76,14 +81,26 @@ const ComicPage: ({}: ComicPageProps) => Promise<JSX.Element> = async ({}) => {
         </div>
       </div>
 
-      <div className="w-full mt-[1rem]  flex flex-col items-center ">
-        <h1 className="text-2xl text-black tracking-wide  self-start mb-8 ">
+      <Container sx={{ marginBlock: "3rem" }}>
+        <Typography
+          variant="h4"
+          fontWeight={"bold"}
+          sx={{ marginBottom: "3rem" }}
+        >
           Latest Stories
-        </h1>
-        <div className="flex items-center justify-between  mt-5 ">
-          <BookCard stories={stories} />
-        </div>
-      </div>
+        </Typography>
+        <BookCard stories={stories} />
+      </Container>
+
+      <Container sx={{marginBlock:'3rem'}}>
+      <Typography
+          variant="h4"
+          fontWeight={"bold"}
+          sx={{ marginBottom: "3rem" }}
+        >
+          More Stories
+        </Typography>
+      </Container>
     </div>
   );
 };
