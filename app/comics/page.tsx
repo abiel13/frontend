@@ -16,7 +16,7 @@ async function getCategories() {
     const res = await axios.get("https://api.alteflix.com/api/v1/categories");
     return res.data.data;
   } catch (error:any) {
-   toast(error.message)
+   console.error(error.message)
   }
 }
 
@@ -25,7 +25,7 @@ async function getStories() {
     const res = await axios.get("https://api.alteflix.com/api/v1/stories");
     return res.data.data;
   } catch (error:any) {
-   toast(error.message)
+console.error(error.message)
   }
 }
 
