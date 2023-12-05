@@ -22,18 +22,22 @@ import 'react-toastify/ReactToastify.css'
     confirmPassword: string;
   }>({ email: "", password: "", first: "", last: "", confirmPassword: "" });
   const { email, password, first, last, confirmPassword } = formData;
-  const [checked , setChecked ] = useState<boolean>(false)
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const [checked, setChecked] = useState<boolean>(false);
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { value, name } = event.target;
     setFormData((prev) => {
       return { ...prev, [name]: value };
     });
+    validate();
   };
 
   const validate = () => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,6}$/;
     const passwordRegex =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\_])[a-zA-Z0-9\W\_]{8,15}$/;
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W\_])[a-zA-Z0-9\W\_]{8,87}$/;
 
     if (!first) {
       setError((prev) => {
@@ -46,10 +50,20 @@ import 'react-toastify/ReactToastify.css'
         return { ...prev, last: "last name field  cant be empty" };
       });
     }
+    if (last) {
+      setError((prev) => {
+        return { ...prev, last: "" };
+      });
+    }
 
     if (!emailRegex.test(email)) {
       setError((prev) => {
         return { ...prev, email: "invalid email type" };
+      });
+    }
+    if (emailRegex.test(email)) {
+      setError((prev) => {
+        return { ...prev, email: "" };
       });
     }
     if (!passwordRegex.test(password)) {
@@ -87,23 +101,24 @@ import 'react-toastify/ReactToastify.css'
       lastname: last,
       newsletter_subscription: checked,
     });
-try{
-  toast('Registering User Please Wait' , {theme:'colored'})
-    await axios.post("https://api.alteflix.com/api/v1/accounts/new" , data , {headers:{"Content-Type":"application/json"}}).then(res => {
-      
-      toast.success('Registation Sucessful', {theme:'colored'})
-      router.push('/auth/login')
-    }).catch((error) => {
-      toast.error(`Error: ${error.response.data.errors}` , {theme:'colored'})
-    })
-   
-}
-catch(error:Error | any) {
- 
-  toast.error(`network disconnected` )
-}
-
-  
+    try {
+      toast("Registering User Please Wait", { theme: "colored" });
+      await axios
+        .post("https://api.alteflix.com/api/v1/accounts/new", data, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then((res) => {
+          toast.success("Registation Sucessful", { theme: "colored" });
+          router.push("/auth/login");
+        })
+        .catch((error) => {
+          toast.error(`Error: ${error.response.data.errors}`, {
+            theme: "colored",
+          });
+        });
+    } catch (error: Error | any) {
+      toast.error(`network disconnected`);
+    }
   };
 
   
@@ -170,7 +185,9 @@ catch(error:Error | any) {
                   value={email}
                   onChange={(e) => handleChange(e)}
                 />
-                {error.email && <Typography color='red' > {error.email} </Typography>}
+                {error.email && (
+                  <Typography color="red"> {error.email} </Typography>
+                )}
               </Grid>
               <Grid item xs={12}>
                 <TextField

@@ -2,6 +2,8 @@
 import { Stories } from "@/app/utils";
 import React, { Suspense } from "react";
 import { SplideSlide, Splide } from "@splidejs/react-splide";
+import '@splidejs/react-splide/css'
+
 import Book from "./Book";
 
 interface BookCardI {
@@ -23,10 +25,10 @@ const BookCard: React.FC<BookCardI> = ({ stories }) => {
     },
     breakpoints: {
       768: {
-        perPage: 2,
+        perPage: 3,
       },
       640: {
-        perPage: 'auto',
+        perPage: 2,
         gap: "1rem",
       },
     },
