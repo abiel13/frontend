@@ -160,7 +160,6 @@ export const updateUser = async (
   token: string
 ) => {
   const raw = JSON.stringify(data);
-
   try {
     const response = await axios
       .post("https://api.alteflix.com/api/v1/accounts/update", raw, {
@@ -180,5 +179,6 @@ export const updateUser = async (
     return response?.data;
   } catch (error: any) {
     console.error("an error has occured", error.message);
+    toast.error("an error occured");
   }
 };
