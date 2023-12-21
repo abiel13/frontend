@@ -11,8 +11,8 @@ type TformField = {
   name: string;
   title: string;
   type: string;
-  placeholder? :string;
   change: (e: any) => void;
+  placeholder?: string;
 };
 
 const FormField: React.FC<TformField> = ({
@@ -21,7 +21,7 @@ const FormField: React.FC<TformField> = ({
   title,
   change,
   type,
-  placeholder
+  placeholder,
 }) => {
   const [types, settypes] = useState<string>(type);
   return (
