@@ -7,8 +7,12 @@ const CtaButton = ({ title, click }: { title: string; click?: () => void }) => {
       alignItems={"center"}
       justifyContent={"center"}
       className="bg-red-700"
-      sx={{ padding: "1rem", borderRadius: "5px" , width:'100%' }}
-      
+      sx={{
+        padding: "1rem",
+        borderRadius: "5px",
+        width: "100%",
+        cursor: "pointer",
+      }}
       onClick={click}
     >
       <Typography

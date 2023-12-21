@@ -17,6 +17,7 @@ interface profileData {
 const UserProfilePage = () => {
   const [visible, setVisible] = useState(false);
   const execwindow = authstore((state) => state.initializeWindowEvent);
+  const isUpdated = authstore((state) => state.isUpdated);
   const [profileData, setprofileData] = useState<profileData>({
     user: null,
     fullname: "",
@@ -33,10 +34,14 @@ const UserProfilePage = () => {
     setprofileData((prev) => {
       return { ...prev, fullname: fullname, initials: initials, user: user };
     });
-  }, []);
+    console.log(user);
+  }, [isUpdated]);
 
   return (
-    <div className="min-h-screen bg-[#121212] relative">
+    <div className="min-h-screen bg-[#121212] px-3 relative">
+      <div className="w-[120px] h-[120px] rounded-full  fixed -bottom-6 -right-3 bg-[#842A2A] flex items-center justify-center">
+        AlteFlix
+      </div>
       <div className="px-3 py-4 bg-[#121212] ">
         <Link href={"/comics"} className="text-white cursor-pointer  px-4">
           {" "}
@@ -46,11 +51,12 @@ const UserProfilePage = () => {
 
       <Container
         sx={{
-          bgcolor: "#323232",
+          bgcolor: "#0b0b0c",
           marginTop: "1rem",
           padding: "2rem 0",
           position: "relative",
-          minHeight:'20vh'
+          minHeight: "20vh",
+          borderRadius: "1rem",
         }}
       >
         <Grid
@@ -66,10 +72,10 @@ const UserProfilePage = () => {
           <Grid item>
             <Box
               sx={{
-                bgcolor: "#0b0b0c",
+                bgcolor: "#AB1515",
 
-                width: "100px",
-                height: "100px",
+                width: "120px",
+                height: "120px",
                 borderRadius: "50%",
                 display: "flex",
                 alignItems: "center",

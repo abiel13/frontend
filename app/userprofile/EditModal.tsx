@@ -1,10 +1,11 @@
 "use client";
 import { Paper } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { Container } from "@mui/material";
 import EditForm from "./EditForm";
 import CloseAlarmError from "./CloseAlarmError";
+import { authstore } from "@/store/store";
 
 interface EditModalI {
   toggle: Function;
@@ -29,19 +30,19 @@ const EditModal: React.FC<EditModalI> = ({ toggle }) => {
       sx={{
         position: "absolute",
         width: { md: "50vw", xs: "100vw" },
-        height: { md: "60vh", xs: "100vh" },
+        height: { md: "70vh", xs: "100vh" },
         transform: "translate(-50% , -50%)",
         overflowY: "auto",
-        bgcolor:'#121212'
+        bgcolor: "#121212",
       }}
     >
       <CloseIcon
-        sx={{ margin: ".3rem .4rem" , color:'white' }}
+        sx={{ margin: ".3rem .4rem", color: "white" }}
         cursor="pointer"
         onClick={() => closeModal()}
       />
       <Container>
-        <EditForm editing={toggleEdit} />
+        <EditForm close={() => toggle()} editing={toggleEdit} />
       </Container>
       <CloseAlarmError
         open={Dialog}
