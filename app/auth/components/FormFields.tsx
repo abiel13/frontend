@@ -12,6 +12,7 @@ type TformField = {
   title: string;
   type: string;
   change: (e: any) => void;
+  placeholder?: string;
 };
 
 const FormField: React.FC<TformField> = ({
@@ -20,6 +21,7 @@ const FormField: React.FC<TformField> = ({
   title,
   change,
   type,
+  placeholder,
 }) => {
   const [types, settypes] = useState<string>(type);
   return (
@@ -65,6 +67,7 @@ const FormField: React.FC<TformField> = ({
           fullWidth
           onChange={(e) => change(e)}
           type={type}
+          placeholder={placeholder}
         />
       )}
     </Stack>
