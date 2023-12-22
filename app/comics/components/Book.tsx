@@ -15,15 +15,15 @@ const Book: React.FC<BookI> = ({ book }) => {
     <Link href={`/comics/details/${book.id}`}>
       <Card
         sx={{
-          width: { xl: 300, sm: 250, md: 200 },
-          minHeight: { xl: 350, sm: 200, md: 250 },
+          width: { xl: 300, md: 250,  },
+          minHeight: { xl: 350,  md: 250 },
           bgcolor: "transparent",
           boxShadow: "none",
         }}
       >
         <Image
           src={book.background_url}
-          className="w-[150px] rounded-xl object-cover  h-[150px] md:w-[300px] md:h-[250px]"
+          className="w-[200px] rounded-xl object-cover  h-[150px] md:w-[300px] md:h-[250px]"
           height={200}
           width={300}
           alt={book.title}
@@ -33,7 +33,8 @@ const Book: React.FC<BookI> = ({ book }) => {
             fontWeight={"bold"}
             sx={{
               fontSize: { md: "1.3rem", sm: ".8rem" },
-              width: { md: 300, sm: 150 },
+              width: { md: 300, sm: 200 },
+              textOverflow:'ellipsis',
               color: "white",
             }}
           >
